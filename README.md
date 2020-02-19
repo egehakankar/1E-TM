@@ -4,10 +4,10 @@ Terra Mystica is a board game that can be played with 2 to 5 people. The game pa
 
 # Project Group Members
 
-Aziz Ozan Azizoğlu 
-Ege Hakan Karaağaç 
-Ömer Olkun 
-Fırat Yönak 
+Aziz Ozan Azizoğlu
+Ege Hakan Karaağaç
+Ömer Olkun
+Fırat Yönak
 Berdan Akyürek
 
 # Extra Features: 
