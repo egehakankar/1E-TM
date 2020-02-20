@@ -13,3 +13,4 @@ Terra Mystica is a board game that can be played with 2 to 5 people. The game pa
 # Extra Features: 
 * Timer which shows a player's playing time in each turn.
 * Window that shows the previous game's score. 
+* Tutorial for begginers.
