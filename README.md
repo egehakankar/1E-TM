@@ -16,4 +16,4 @@ Terra Mystica is a board game that can be played with 2 to 5 people. The game pa
 * Tutorial for begginers.
 
 # Iteration 1 - Analysis Report
-https://docs.google.com/document/d/1grzWOdsi3NNCH4UwOPM3f_Y6EIUWkwAusR6q1I8rfwA/edit?usp=sharing
+* [Iteration 1 - Project Analysis Report](https://docs.google.com/document/d/1grzWOdsi3NNCH4UwOPM3f_Y6EIUWkwAusR6q1I8rfwA/edit?usp=sharing)
