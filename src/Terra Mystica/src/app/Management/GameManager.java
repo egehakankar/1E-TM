@@ -3,6 +3,7 @@ package app.Management;
 public class GameManager 
 {
     public static void main(String[] args) {
-        System.out.println("ozan");
-    }
-}
+        System.out.println("OKAAY")
+        
+        
+    }}
