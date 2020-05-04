@@ -1,9 +1,12 @@
 package app.Management;
 
+import app.UserInterface.Display;
+
 public class GameManager 
 {
-    public static void main(String[] args) 
+    public GameManager()
     {
-        System.out.println("OKAAY");
+        Display allDisplay = new Display();
+        allDisplay.displayMainMenu();
     }
 }

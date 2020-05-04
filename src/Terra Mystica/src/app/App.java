@@ -1,10 +1,11 @@
 package app;
 
+import app.Management.GameManager;
+
 public class App 
 {
     public static void main(String[] args) throws Exception 
     {
-        System.out.println("Hakan Yaptı");
-        System.out.println("Berdan :)");
+        GameManager game = new GameManager();
     }
 }
