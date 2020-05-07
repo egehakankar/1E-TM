@@ -1,29 +1,46 @@
 package app.UserInterface;
 
-import java.awt.*;
-import java.awt.event.*;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Graphics2D;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.geom.Rectangle2D;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
 
 import app.Management.GameManager;
 
-public class HowToPlay extends DisplayPanel
+public class MainMenu extends DisplayPanel
 {
-    private Font titleFont = new Font("Courier New", 1, 200);
+
+    private BufferedImage image;
+
+    private Font titleFont = new Font("Bitstream Vera Sans", 1, 200);
     
     private String title = "Terra Mystica";
     private int buttonWidth = 400;
     private int spacing = 170;
     private int buttonHeight = 120;
 
-    public HowToPlay()
+    public MainMenu()
     {
         super();
+
+        try{
+            image = ImageIO.read(getClass().getResourceAsStream("background1.jpg"));
+        }catch(IOException e)
+        {
+            e.printStackTrace();
+        }
 
         int colorPB[] = {102, 255, 102};
         int colorHB[] = {255, 178, 102};
         int colorCB[] = {192, 192, 192};
         int colorQB[] = {255, 102, 102};
-
 
         GuiButton playB = new GuiButton(GameManager.WIDTH / 2 - buttonWidth / 2, 320, buttonWidth, buttonHeight, colorPB, 50);	
         GuiButton htpB = new GuiButton(GameManager.WIDTH / 2 - buttonWidth / 2, playB.getY() + spacing, buttonWidth, buttonHeight, colorHB, 50);
@@ -31,7 +48,7 @@ public class HowToPlay extends DisplayPanel
         GuiButton quitB = new GuiButton(GameManager.WIDTH / 2 - buttonWidth / 2, creditsB.getY() + spacing, buttonWidth, buttonHeight, colorQB, 50);
     
         playB.setText("Play");
-        htpB.setText("How To Playaaa");
+        htpB.setText("How To Play");
         creditsB.setText("Credits");
         quitB.setText("Quit");
 
@@ -85,12 +102,14 @@ public class HowToPlay extends DisplayPanel
 	@Override
     public void render(Graphics2D g)
     {
+        g.drawImage(image, 0, 0, 1920, 1080, null);
+
 		super.render(g);
 		g.setFont(titleFont);
-        g.setColor(Color.black);
+        g.setColor(Color.white);
         
         Rectangle2D b = g.getFontMetrics().getStringBounds(title, g);
         int widthM = (int)b.getWidth();
-		g.drawString(title, GameManager.WIDTH / 2 - widthM / 2, 240);
+        g.drawString(title, GameManager.WIDTH / 2 - widthM / 2, 240);
 	}
 }
