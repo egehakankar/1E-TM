@@ -1,7 +1,10 @@
 package app.UserInterface;
 
-import java.awt.*;
-import java.awt.event.*;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Graphics2D;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.geom.Rectangle2D;
 
 import app.Management.GameManager;
@@ -9,8 +12,8 @@ import app.Management.GameManager;
 public class HowToPlay extends DisplayPanel
 {
     private Font titleFont = new Font("Courier New", 1, 200);
-    
     private String title = "Terra Mystica";
+
     private int buttonWidth = 400;
     private int spacing = 170;
     private int buttonHeight = 120;
@@ -23,7 +26,6 @@ public class HowToPlay extends DisplayPanel
         int colorHB[] = {255, 178, 102};
         int colorCB[] = {192, 192, 192};
         int colorQB[] = {255, 102, 102};
-
 
         GuiButton playB = new GuiButton(GameManager.WIDTH / 2 - buttonWidth / 2, 320, buttonWidth, buttonHeight, colorPB, 50);	
         GuiButton htpB = new GuiButton(GameManager.WIDTH / 2 - buttonWidth / 2, playB.getY() + spacing, buttonWidth, buttonHeight, colorHB, 50);
