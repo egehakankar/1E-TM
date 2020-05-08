@@ -1,15 +1,14 @@
 package app.UserInterface;
 
 import java.awt.Graphics2D;
+import java.awt.event.MouseEvent;
 import java.util.HashMap;
-import java.awt.event.*;
 
 public class Display
 {
     private static Display disp;
     private HashMap<String, DisplayPanel> panels;
     private String currentPanel = "";
-
 
     public Display()
     {

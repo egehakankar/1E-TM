@@ -1,7 +1,7 @@
 package app.UserInterface;
 
-import java.awt.*;
-import java.awt.event.*;
+import java.awt.Graphics2D;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
 public class DisplayPanel

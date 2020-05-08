@@ -1,17 +1,26 @@
 package app.Management;
 
+import java.awt.Color;
+import java.awt.Graphics2D;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
+import java.awt.image.BufferedImage;
+
 import javax.swing.JPanel;
 import javax.swing.plaf.DimensionUIResource;
 
-import java.awt.event.*;
-import java.awt.*;
-import java.awt.Graphics2D;
-import java.awt.image.BufferedImage;
-
-import app.UserInterface.*;
+import app.UserInterface.Credits;
+import app.UserInterface.Display;
+import app.UserInterface.HowToPlay;
+import app.UserInterface.MainMenu;
 
 public class GameManager extends JPanel implements KeyListener, MouseListener, Runnable, MouseMotionListener
 {
+    private static final long serialVersionUID = 1L;
+
     public static final int WIDTH = 1920;
     public static final int HEIGHT = 1080;
     private Thread game;
