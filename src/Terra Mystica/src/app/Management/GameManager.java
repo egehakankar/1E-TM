@@ -8,9 +8,7 @@ import java.awt.*;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
-import app.UserInterface.Display;
-import app.UserInterface.HowToPlay;
-import app.UserInterface.MainMenu;
+import app.UserInterface.*;
 
 public class GameManager extends JPanel implements KeyListener, MouseListener, Runnable, MouseMotionListener
 {
@@ -34,6 +32,7 @@ public class GameManager extends JPanel implements KeyListener, MouseListener, R
         disp = Display.getInstance();
         disp.add("Menu", new MainMenu());
         disp.add("How To Play", new HowToPlay());
+        disp.add("Credits", new Credits());
         disp.setCurrentPanel("Menu");
     }
 
