@@ -31,7 +31,7 @@ public class MainMenu extends DisplayPanel
         super();
 
         try{
-            image = ImageIO.read(getClass().getResourceAsStream("background1.jpg"));
+            image = ImageIO.read(getClass().getResourceAsStream("../images/background1.jpg"));
         }catch(IOException e)
         {
             e.printStackTrace();
