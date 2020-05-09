@@ -113,14 +113,5 @@ public class SelectionScreen extends DisplayPanel
         g.drawRoundRect((GameManager.WIDTH / 2 - widthM / 2) - 50, 220, 1050, 800, 50, 50);
 
         super.render(g);
-
-        if(!hop)
-        {
-            hop = true;
-            area = new TextField("Hello");
-            area.setBounds(50,50,150,100);
-            area.setFont(titleFont);
-            App.window.add(area);
-        }
     }
 }

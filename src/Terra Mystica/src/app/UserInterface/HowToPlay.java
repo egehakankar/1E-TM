@@ -45,7 +45,7 @@ public class HowToPlay extends DisplayPanel
                 Display.getInstance().setCurrentPanel("Selection Screen");
             }
         });
-
+        
         htpB.addActionListener(new ActionListener()
         {
             @Override
