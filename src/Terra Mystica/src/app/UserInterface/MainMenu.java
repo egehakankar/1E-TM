@@ -15,11 +15,9 @@ import app.Management.GameManager;
 
 public class MainMenu extends DisplayPanel
 {
-
     private BufferedImage image;
 
     private Font titleFont = new Font("Bitstream Vera Sans", 1, 200);
-    
     private String title = "Terra Mystica";
     private int buttonWidth = 400;
     private int spacing = 170;
@@ -45,7 +43,7 @@ public class MainMenu extends DisplayPanel
         GuiButton htpB = new GuiButton(GameManager.WIDTH / 2 - buttonWidth / 2, playB.getY() + spacing, buttonWidth, buttonHeight, colorHB, 50);
         GuiButton creditsB = new GuiButton(GameManager.WIDTH / 2 - buttonWidth / 2, htpB.getY() + spacing, buttonWidth, buttonHeight, colorCB, 50);
         GuiButton quitB = new GuiButton(GameManager.WIDTH / 2 - buttonWidth / 2, creditsB.getY() + spacing, buttonWidth, buttonHeight, colorQB, 50);
-    
+
         playB.setText("Play");
         htpB.setText("How To Play");
         creditsB.setText("Credits");
@@ -56,7 +54,7 @@ public class MainMenu extends DisplayPanel
             @Override
             public void actionPerformed(ActionEvent e) 
             {
-                Display.getInstance().setCurrentPanel("Play");
+                Display.getInstance().setCurrentPanel("Selection Screen");
             }
         });
 
@@ -94,19 +92,18 @@ public class MainMenu extends DisplayPanel
 
     @Override
     public void update()
-    {  
-
-    }
+    {}
 
 	@Override
     public void render(Graphics2D g)
     {
         g.drawImage(image, 0, 0, 1920, 1080, null);
 
-		super.render(g);
+        super.render(g);
+        
 		g.setFont(titleFont);
         g.setColor(Color.white);
-        
+
         Rectangle2D b = g.getFontMetrics().getStringBounds(title, g);
         int widthM = (int)b.getWidth();
         g.drawString(title, GameManager.WIDTH / 2 - widthM / 2, 240);

@@ -22,16 +22,26 @@ public class GuiButton
     private Rectangle clickBox;
     private ArrayList<ActionListener> actionListeners;
     private String text = "";
-    
+
     private Color released;
     private Color hover;
     private Color pressed;
     private Font font;
-    
+    private int fontSize;
+    private int color0;
+    private int color1;
+    private int color2;
+
     public GuiButton(int x, int y, int width, int height, int color[], int fontSize)
     {
         clickBox = new Rectangle(x, y, width, height);
         actionListeners = new ArrayList<ActionListener>();
+
+        this.fontSize = fontSize;
+
+        this.color0 = color[0];
+        this.color1 = color[1];
+        this.color2 = color[2];
 
         released = new Color(color[0], color[1], color[2]);
         hover = new Color(color[0] - 50, color[1] - 50, color[2] - 50);
@@ -79,12 +89,14 @@ public class GuiButton
         actionListeners.add(listener);
     }
 
-    public void mousePressed(MouseEvent e)
+    public GuiButton mousePressed(MouseEvent e)
     {
         if(clickBox.contains(e.getPoint()))
         {
             currentState = State.PRESSED;
+            return this;
         }
+        return null;
     }
 
     public void mouseDragged(MouseEvent e)
@@ -143,8 +155,35 @@ public class GuiButton
         return clickBox.height;
     }
 
+    public int getFontSize()
+    {
+        return fontSize;
+    }
+
     public void setText(String text)
     {
         this.text = text;
+    }
+
+    public String getText()
+    {
+        return this.text;
+    }
+
+    public int[] changeColorExact(int setColor[])
+    {
+        released = new Color(setColor[0], setColor[1], setColor[2]);
+        hover = new Color(setColor[0], setColor[1], setColor[2]);
+        pressed = new Color(setColor[0], setColor[1], setColor[2]);
+
+        int color[] = {color0, color1, color2};
+        return color;
+    }
+
+    public void setColor(int color[])
+    {
+        released = new Color(color[0], color[1], color[2]);
+        hover = new Color(color[0] - 50, color[1] - 50, color[2] - 50);
+        pressed = new Color(color[0] - 100, color[1] - 100, color[2] - 100);
     }
 }

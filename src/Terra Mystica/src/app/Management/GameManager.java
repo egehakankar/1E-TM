@@ -16,6 +16,7 @@ import app.UserInterface.Credits;
 import app.UserInterface.Display;
 import app.UserInterface.HowToPlay;
 import app.UserInterface.MainMenu;
+import app.UserInterface.SelectionScreen;
 
 public class GameManager extends JPanel implements KeyListener, MouseListener, Runnable, MouseMotionListener
 {
@@ -23,8 +24,13 @@ public class GameManager extends JPanel implements KeyListener, MouseListener, R
 
     public static final int WIDTH = 1920;
     public static final int HEIGHT = 1080;
+
+    //Refreshes the game.
     private Thread game;
+
+    //Checks if the game is running.
     private boolean running;
+
     private BufferedImage image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
     
     private Display disp;
@@ -38,11 +44,17 @@ public class GameManager extends JPanel implements KeyListener, MouseListener, R
         addMouseListener(this);
         addMouseMotionListener(this);
 
+        //Creates display.
         disp = Display.getInstance();
+
+        //Adds screens.
         disp.add("Menu", new MainMenu());
         disp.add("How To Play", new HowToPlay());
         disp.add("Credits", new Credits());
-        disp.setCurrentPanel("Menu");
+        disp.add("Selection Screen", new SelectionScreen());
+
+        //Sets current screen.
+        disp.setCurrentPanel("Menu"); 
     }
 
     private void update()
@@ -52,6 +64,7 @@ public class GameManager extends JPanel implements KeyListener, MouseListener, R
 
     private void render()
     {
+        //Creates a graphics2D object to use in frame.
         Graphics2D g = (Graphics2D) image.getGraphics();
         g.setColor(Color.white);
         g.fillRect(0,0, WIDTH, HEIGHT);
@@ -60,9 +73,10 @@ public class GameManager extends JPanel implements KeyListener, MouseListener, R
 
         Graphics2D g2d = (Graphics2D) getGraphics();
 		g2d.drawImage(image, 0, 0, null);
-		g2d.dispose();
+        g2d.dispose();
     }
 
+    //Refreshes the game.
     @Override
     public void run() 
     {
@@ -104,6 +118,7 @@ public class GameManager extends JPanel implements KeyListener, MouseListener, R
         }
     }
 
+    //Starts the game.
     public synchronized void start()
     {
         if(running)
@@ -115,6 +130,7 @@ public class GameManager extends JPanel implements KeyListener, MouseListener, R
         game.start();
     }
 
+    //Stops the game.
     public synchronized void stop()
     {
         if(!running)
