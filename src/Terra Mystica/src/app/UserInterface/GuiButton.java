@@ -170,7 +170,7 @@ public class GuiButton
         return this.text;
     }
 
-    public int[] changeColorExactse(int setColor[])
+    public int[] changeColorExact(int setColor[])
     {
         released = new Color(setColor[0], setColor[1], setColor[2]);
         hover = new Color(setColor[0], setColor[1], setColor[2]);
