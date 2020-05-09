@@ -31,7 +31,7 @@ public class HowToPlay extends DisplayPanel
         GuiButton htpB = new GuiButton(GameManager.WIDTH / 2 - buttonWidth / 2, playB.getY() + spacing, buttonWidth, buttonHeight, colorHB, 50);
         GuiButton creditsB = new GuiButton(GameManager.WIDTH / 2 - buttonWidth / 2, htpB.getY() + spacing, buttonWidth, buttonHeight, colorCB, 50);
         GuiButton quitB = new GuiButton(GameManager.WIDTH / 2 - buttonWidth / 2, creditsB.getY() + spacing, buttonWidth, buttonHeight, colorQB, 50);
-    
+
         playB.setText("Play");
         htpB.setText("How To Playaaa");
         creditsB.setText("Credits");
@@ -42,7 +42,7 @@ public class HowToPlay extends DisplayPanel
             @Override
             public void actionPerformed(ActionEvent e) 
             {
-                Display.getInstance().setCurrentPanel("Play");
+                Display.getInstance().setCurrentPanel("Selection Screen");
             }
         });
 

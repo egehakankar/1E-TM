@@ -14,7 +14,6 @@ import javax.imageio.ImageIO;
 
 import app.Management.GameManager;
 
-
 public class Credits extends DisplayPanel
 {
     private int buttonWidth = 400;
@@ -42,7 +41,6 @@ public class Credits extends DisplayPanel
             e.printStackTrace();
         }
 
-
         int colorBB[] = {255, 178, 102};
 
         GuiButton goBackB = new GuiButton(30, 900, buttonWidth, buttonHeight, colorBB, 50);	
@@ -63,7 +61,8 @@ public class Credits extends DisplayPanel
     {
         g.drawImage(image, 0, 0, 1920, 1080, null);
 
-		super.render(g);
+        super.render(g);
+
 		g.setFont(titleFont);
         g.setColor(new Color(240, 255, 255));
         Rectangle2D b = g.getFontMetrics().getStringBounds(title, g);
@@ -80,10 +79,10 @@ public class Credits extends DisplayPanel
 
         g.setFont(creditsFont);
         g.setColor(new Color(72, 61, 139));
-        g.drawString(creditsT1, GameManager.WIDTH / 2 - widthM / 2, 270);
-        g.drawString(creditsT2, GameManager.WIDTH / 2 - widthM / 2, 270 + spacing);
-        g.drawString(creditsT3, GameManager.WIDTH / 2 - widthM / 2, 270 + spacing*2);
-        g.drawString(creditsT4, GameManager.WIDTH / 2 - widthM / 2, 270 + spacing*3);
-        g.drawString(creditsT5, GameManager.WIDTH / 2 - widthM / 2, 270 + spacing*4);
+        g.drawString(creditsT1, GameManager.WIDTH / 2 - widthM / 2, 320);
+        g.drawString(creditsT2, GameManager.WIDTH / 2 - widthM / 2, 320 + spacing);
+        g.drawString(creditsT3, GameManager.WIDTH / 2 - widthM / 2, 320 + spacing*2);
+        g.drawString(creditsT4, GameManager.WIDTH / 2 - widthM / 2, 320 + spacing*3);
+        g.drawString(creditsT5, GameManager.WIDTH / 2 - widthM / 2, 320 + spacing*4);
 	}
 }
