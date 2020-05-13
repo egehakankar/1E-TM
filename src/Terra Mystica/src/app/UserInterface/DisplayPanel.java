@@ -4,6 +4,8 @@ import java.awt.Graphics2D;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
+import app.Management.GameManager;
+
 //Main class for all screens.
 public class DisplayPanel
 {
@@ -30,7 +32,7 @@ public class DisplayPanel
         } 
     }
 
-    public void render(Graphics2D g)
+    public void render(Graphics2D g, GameManager nG)
     {
         for(GuiButton a: buttons)
         {
