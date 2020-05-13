@@ -1,5 +1,6 @@
 package app.UserInterface;
 
+
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.awt.Graphics2D;
@@ -10,6 +11,8 @@ import java.awt.BasicStroke;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.TextField;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 
 import javax.imageio.ImageIO;
 
@@ -19,16 +22,21 @@ public class SelectionScreen extends DisplayPanel
 {
     TextField area;
 
+    Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+
+    int WIDTH = screenSize.width;
+    int HEIGHT = screenSize.height;
+
     private BufferedImage image;
 
-    private Font titleFont = new Font("Bitstream Vera Sans", 1, 150);
+    private Font titleFont = new Font("Bitstream Vera Sans", 1, WIDTH*150/1920);
     private String title = "Terra Mystica";
     
-    private int buttonWidth = 300;
-    private int buttonHeight = 120;
+    private int buttonWidth = WIDTH*300/1920;
+    private int buttonHeight = HEIGHT*120/1080;
 
-    private int countButtonWidth = 100;
-    private int countButtonHeight = 60;
+    private int countButtonWidth = WIDTH*100/1920;
+    private int countButtonHeight = HEIGHT*60/1080;
 
     public SelectionScreen(GameManager gM)
     {
@@ -44,7 +52,7 @@ public class SelectionScreen extends DisplayPanel
         int colorBB[] = {255, 178, 102};
         int colorPB[] = {102, 255, 102};
 
-        GuiButton goBackB = new GuiButton(30, 900, buttonWidth, buttonHeight, colorBB, 50);	
+        GuiButton goBackB = new GuiButton(WIDTH*30/1920, HEIGHT*900/1080, buttonWidth, buttonHeight, colorBB, 50);	
         goBackB.setText("Back");
         goBackB.addActionListener(new ActionListener()
         {
@@ -55,8 +63,7 @@ public class SelectionScreen extends DisplayPanel
             }
         });
         add(goBackB);
-
-        GuiButton playB = new GuiButton(GameManager.WIDTH - buttonWidth - 30, 900, buttonWidth, buttonHeight, colorPB, 50);	
+        GuiButton playB = new GuiButton(GameManager.WIDTH - buttonWidth - 30, HEIGHT*900/1080, buttonWidth, buttonHeight, colorPB, 50);	
         playB.setText("Play");
         playB.addActionListener(new ActionListener()
         {
@@ -69,10 +76,10 @@ public class SelectionScreen extends DisplayPanel
         add(playB);
 
         int colorSB[] = {192, 192, 192};
-        GuiButton set2 = new GuiButton(760, 350, countButtonWidth, countButtonHeight, colorSB, 50);	
-        GuiButton set3 = new GuiButton(860, 350, countButtonWidth, countButtonHeight, colorSB, 50);	
-        GuiButton set4 = new GuiButton(960, 350, countButtonWidth, countButtonHeight, colorSB, 50);	
-        GuiButton set5 = new GuiButton(1060, 350, countButtonWidth, countButtonHeight, colorSB, 50);
+        GuiButton set2 = new GuiButton(WIDTH*760/1920, HEIGHT*350/1080, countButtonWidth, countButtonHeight, colorSB, WIDTH*50/1920);	
+        GuiButton set3 = new GuiButton((WIDTH*760/1920)+countButtonWidth, HEIGHT*350/1080, countButtonWidth, countButtonHeight, colorSB, WIDTH*50/1920);	
+        GuiButton set4 = new GuiButton(WIDTH*760/1920+countButtonWidth*2, HEIGHT*350/1080, countButtonWidth, countButtonHeight, colorSB, WIDTH*50/1920);	
+        GuiButton set5 = new GuiButton(WIDTH*760/1920+countButtonWidth*3, HEIGHT*350/1080, countButtonWidth, countButtonHeight, colorSB, WIDTH*50/1920);
 
         set2.setText("2");
         set3.setText("3");
@@ -102,12 +109,12 @@ public class SelectionScreen extends DisplayPanel
         g.drawString(title, GameManager.WIDTH / 2 - widthM / 2, 160);
 
         g.setPaint(new Color(253, 245, 230));
-        g.fillRect((GameManager.WIDTH / 2 - widthM / 2) - 50, 230, 1050, 780);
+        g.fillRect(WIDTH*30/1920+buttonWidth+10, 220, WIDTH-(WIDTH*30/1920+buttonWidth)-(WIDTH-(GameManager.WIDTH - buttonWidth - 30))-25, HEIGHT-WIDTH*30/1920-buttonWidth-25);
 
         g.setColor(new Color(72, 61, 139));
         BasicStroke str = new BasicStroke(20);
         g.setStroke(str);
-        g.drawRoundRect((GameManager.WIDTH / 2 - widthM / 2) - 50, 220, 1050, 800, 50, 50);
+        g.drawRoundRect(WIDTH*30/1920+buttonWidth+10, 220, WIDTH-(WIDTH*30/1920+buttonWidth)-(WIDTH-(GameManager.WIDTH - buttonWidth - 30))-25, HEIGHT-WIDTH*30/1920-buttonWidth-25, 50, 50);
 
         super.render(g, gM);
     }

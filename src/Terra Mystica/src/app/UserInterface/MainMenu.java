@@ -1,5 +1,9 @@
 package app.UserInterface;
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
+
+
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
@@ -15,13 +19,16 @@ import app.Management.GameManager;
 
 public class MainMenu extends DisplayPanel
 {
+    Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+    int width = screenSize.width;
+    int height = screenSize.height;
     private BufferedImage image;
-
-    private Font titleFont = new Font("Bitstream Vera Sans", 1, 200);
+    //1920,1080 hakanin ekranı
+    private Font titleFont = new Font("Bitstream Vera Sans", 1, width*200/1920);
     private String title = "Terra Mystica";
-    private int buttonWidth = 400;
-    private int spacing = 170;
-    private int buttonHeight = 120;
+    private int buttonWidth = width/3;
+    private int spacing = height*170/1080-20;
+    private int buttonHeight = height*120/1080;
 
     public MainMenu()
     {
@@ -97,7 +104,7 @@ public class MainMenu extends DisplayPanel
 	@Override
     public void render(Graphics2D g, GameManager gM)
     {
-        g.drawImage(image, 0, 0, 1920, 1080, null);
+        g.drawImage(image, 0, 0, width, height, null);
 
         super.render(g, gM);
         

@@ -1,6 +1,9 @@
 package app.Management;
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.awt.Color;
+
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -23,8 +26,11 @@ public class GameManager extends JFrame implements KeyListener, MouseListener, R
 {
     private static final long serialVersionUID = 1L;
 
-    public static final int WIDTH = 1920;
-    public static final int HEIGHT = 1080;
+    public static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+
+    public static int WIDTH = screenSize.width;
+    public static int HEIGHT = screenSize.height;
+    
 
     //Refreshes the game.
     private Thread game;
@@ -49,7 +55,7 @@ public class GameManager extends JFrame implements KeyListener, MouseListener, R
 		setLocationRelativeTo(null);
 		
 		setVisible(true);
-		setSize(1920, 1080);
+		setSize(WIDTH, HEIGHT);
         setLocation(0, 0);
         
         setVisible(true);
