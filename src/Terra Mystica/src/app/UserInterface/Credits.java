@@ -57,11 +57,11 @@ public class Credits extends DisplayPanel
     }
 
     @Override
-    public void render(Graphics2D g)
+    public void render(Graphics2D g, GameManager gM)
     {
         g.drawImage(image, 0, 0, 1920, 1080, null);
 
-        super.render(g);
+        super.render(g, gM);
 
 		g.setFont(titleFont);
         g.setColor(new Color(240, 255, 255));

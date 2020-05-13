@@ -13,7 +13,6 @@ import java.awt.TextField;
 
 import javax.imageio.ImageIO;
 
-import app.App;
 import app.Management.GameManager;
 
 public class SelectionScreen extends DisplayPanel
@@ -31,9 +30,7 @@ public class SelectionScreen extends DisplayPanel
     private int countButtonWidth = 100;
     private int countButtonHeight = 60;
 
-    private boolean hop = false;
-
-    public SelectionScreen()
+    public SelectionScreen(GameManager gM)
     {
         super();
 
@@ -94,7 +91,7 @@ public class SelectionScreen extends DisplayPanel
     }
 
     @Override
-    public void render(Graphics2D g)
+    public void render(Graphics2D g, GameManager gM)
     {
         g.drawImage(image, 0, 0, 1920, 1080, null);
 
@@ -112,6 +109,6 @@ public class SelectionScreen extends DisplayPanel
         g.setStroke(str);
         g.drawRoundRect((GameManager.WIDTH / 2 - widthM / 2) - 50, 220, 1050, 800, 50, 50);
 
-        super.render(g);
+        super.render(g, gM);
     }
 }

@@ -4,6 +4,8 @@ import java.awt.Graphics2D;
 import java.awt.event.MouseEvent;
 import java.util.HashMap;
 
+import app.Management.GameManager;
+
 public class Display
 {
     private static Display disp;
@@ -32,11 +34,11 @@ public class Display
         }
     }
 
-    public void render(Graphics2D g)
+    public void render(Graphics2D g, GameManager gM)
     {
         if(panels.get(currentPanel) != null)
         {
-            panels.get(currentPanel).render(g);
+            panels.get(currentPanel).render(g, gM);
         }
     }
 
