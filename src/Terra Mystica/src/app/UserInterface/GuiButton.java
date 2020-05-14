@@ -39,13 +39,26 @@ public class GuiButton
 
         this.fontSize = fontSize;
 
-        this.color0 = color[0];
-        this.color1 = color[1];
-        this.color2 = color[2];
+        if(color[0] < 100 || color[1] < 100 || color[2] < 100)
+        {
+            this.color0 = color[0];
+            this.color1 = color[1];
+            this.color2 = color[2];
 
-        released = new Color(color[0], color[1], color[2]);
-        hover = new Color(color[0] - 50, color[1] - 50, color[2] - 50);
-        pressed = new Color(color[0] - 100, color[1] - 100, color[2] - 100);
+            released = new Color(color[0], color[1], color[2]);
+            hover = new Color(color[0] + 50 , color[1] + 50, color[2] + 50);
+            pressed = new Color(color[0] + 50, color[1] + 50, color[2] + 50);
+        }
+        else
+        {
+            this.color0 = color[0];
+            this.color1 = color[1];
+            this.color2 = color[2];
+
+            released = new Color(color[0], color[1], color[2]);
+            hover = new Color(color[0] - 50, color[1] - 50, color[2] - 50);
+            pressed = new Color(color[0] - 100, color[1] - 100, color[2] - 100);
+        }
 
         font = new Font("Courier New", 1, fontSize);
     }
@@ -170,20 +183,32 @@ public class GuiButton
         return this.text;
     }
 
-    public int[] changeColorExact(int setColor[])
+    public void changeColorExact(int setColor[])
     {
         released = new Color(setColor[0], setColor[1], setColor[2]);
         hover = new Color(setColor[0], setColor[1], setColor[2]);
         pressed = new Color(setColor[0], setColor[1], setColor[2]);
-
-        int color[] = {color0, color1, color2};
-        return color;
     }
 
     public void setColor(int color[])
     {
-        released = new Color(color[0], color[1], color[2]);
-        hover = new Color(color[0] - 50, color[1] - 50, color[2] - 50);
-        pressed = new Color(color[0] - 100, color[1] - 100, color[2] - 100);
+        if(color[0] < 100 || color[1] < 100 || color[2] < 100)
+        {
+            released = new Color(color[0], color[1], color[2]);
+            hover = new Color(color[0] + 50 , color[1] + 50, color[2] + 50);
+            pressed = new Color(color[0] + 50, color[1] + 50, color[2] + 50);
+        }
+        else
+        {
+            released = new Color(color[0], color[1], color[2]);
+            hover = new Color(color[0] - 50, color[1] - 50, color[2] - 50);
+            pressed = new Color(color[0] - 100, color[1] - 100, color[2] - 100);
+        }
+    }
+
+    public int[] getColor()
+    {
+        int color[] = {color0, color1, color2};
+        return color;
     }
 }
