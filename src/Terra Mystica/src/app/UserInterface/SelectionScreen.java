@@ -39,14 +39,14 @@ public class SelectionScreen extends DisplayPanel {
     private int countButtonWidth = WIDTH*100/1920;
     private int countButtonHeight = HEIGHT*60/1080;
 
-    private int factionButtonWidth = 70;
-    private int factionButtonHeight = 50;
-    private int factionFont = 12;
-    private int factionButtonX = 470;
-    private int factionButtonY = 500;
-    private int factionButtonSpacing = 40;
+    private int factionButtonWidth = WIDTH*70/1920;
+    private int factionButtonHeight = HEIGHT*50/1080;
+    private int factionFont = WIDTH*12/1920;
+    private int factionButtonX = WIDTH*470/1920;
+    private int factionButtonY = HEIGHT*500/1080;
+    private int factionButtonSpacing = HEIGHT*40/1080;
     private Font factionFont2 = new Font("Bitstream Vera Sans", 1, 16);
-    private int factionTitleY = 480;
+    private int factionTitleY = HEIGHT*480/1080;
 
     private int playerCount = 0;
 
@@ -66,6 +66,9 @@ public class SelectionScreen extends DisplayPanel {
     private int grayC = 0;
     private int colorBlack[] = { 0, 0, 0 };
     private int blackC = 0;
+
+    private Font chooseFont = new Font("Bitstream Vera Sans", 1, 16);
+    private String choose = "Choose How Many Players";
 
     ArrayList<GuiButton> first = new ArrayList<GuiButton>();
     ArrayList<GuiButton> second = new ArrayList<GuiButton>();
@@ -176,14 +179,14 @@ public class SelectionScreen extends DisplayPanel {
         g.setColor(Color.black);
         Rectangle2D b2 = g.getFontMetrics().getStringBounds(choose, g);
         int widthM2 = (int) b2.getWidth();
-        g.drawString(choose, GameManager.WIDTH / 2 - widthM2 / 2, 300);
+        g.drawString(choose, GameManager.WIDTH / 2 - 300 - widthM2 / 2, 280);
 
         super.render(g, gM);
 
         g.setFont(factionFont2);
         g.setColor(Color.black);
         for (int a = 0; a < playerCount; a++) {
-            g.drawString("Player " + (a + 1), GameManager.WIDTH / 2,
+            g.drawString("Player " + (a + 1), (WIDTH / 2)-,
                     factionTitleY + a * (factionButtonSpacing + factionButtonHeight));
         }
     }
