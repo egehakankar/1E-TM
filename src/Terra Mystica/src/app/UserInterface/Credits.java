@@ -76,12 +76,12 @@ public class Credits extends DisplayPanel
         g.drawString(title, GameManager.WIDTH / 2 - widthM / 2 + 30, 160);
 
         g.setPaint(new Color(253, 245, 230));
-        g.fillRect((GameManager.WIDTH / 2 - widthM / 2) - 50, 210, WIDTH*580/1080, HEIGHT*690/1080);
+        g.fillRect(((WIDTH*580/1080) / 2) - 50, 210, WIDTH*580/1080, HEIGHT*690/1080);
 
         g.setColor(new Color(72, 61, 139));
         BasicStroke str = new BasicStroke(20);
         g.setStroke(str);
-        g.drawRoundRect((GameManager.WIDTH / 2 - widthM / 2) - 60, 200, WIDTH*580/1080, HEIGHT*690/1080, 50, 50);
+        g.drawRoundRect(((WIDTH*580/1080) / 2) - 60, 200, WIDTH*580/1080 + 10, HEIGHT*690/1080 + 10, 50, 50);
 
         g.setFont(creditsFont);
         g.setColor(new Color(72, 61, 139));
