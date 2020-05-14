@@ -67,7 +67,7 @@ public class SelectionScreen extends DisplayPanel {
     private int colorBlack[] = { 0, 0, 0 };
     private int blackC = 0;
 
-    private Font chooseFont = new Font("Bitstream Vera Sans", 1, 16);
+    private Font chooseFont = new Font("Bitstream Vera Sans", 1, WIDTH*30/1920);
     private String choose = "Choose How Many Players";
 
     ArrayList<GuiButton> first = new ArrayList<GuiButton>();
@@ -179,14 +179,14 @@ public class SelectionScreen extends DisplayPanel {
         g.setColor(Color.black);
         Rectangle2D b2 = g.getFontMetrics().getStringBounds(choose, g);
         int widthM2 = (int) b2.getWidth();
-        g.drawString(choose, GameManager.WIDTH / 2 - 300 - widthM2 / 2, 280);
+        g.drawString(choose, GameManager.WIDTH / 2 - (HEIGHT*400/1080) - widthM2 / 2, (HEIGHT*350/1080) + (HEIGHT*60/1080) / 2);
 
         super.render(g, gM);
 
         g.setFont(factionFont2);
         g.setColor(Color.black);
         for (int a = 0; a < playerCount; a++) {
-            g.drawString("Player " + (a + 1), (WIDTH / 2)-,
+            g.drawString("Player " + (a + 1), WIDTH / 2,
                     factionTitleY + a * (factionButtonSpacing + factionButtonHeight));
         }
     }
