@@ -19,9 +19,9 @@ public class MainMenu extends DisplayPanel
 
     private Font titleFont = new Font("Bitstream Vera Sans", 1, 200);
     private String title = "Terra Mystica";
-    private int buttonWidth = 400;
-    private int spacing = 170;
-    private int buttonHeight = 120;
+    private int buttonWidth = 200;
+    private int spacing = 80;
+    private int buttonHeight = 60;
 
     public MainMenu()
     {

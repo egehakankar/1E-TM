@@ -12,6 +12,7 @@ import java.awt.image.BufferedImage;
 import javax.swing.JPanel;
 import javax.swing.plaf.DimensionUIResource;
 
+
 import app.UserInterface.Credits;
 import app.UserInterface.Display;
 import app.UserInterface.HowToPlay;
@@ -43,7 +44,7 @@ public class GameManager extends JPanel implements KeyListener, MouseListener, R
         addKeyListener(this);
         addMouseListener(this);
         addMouseMotionListener(this);
-
+        
         //Creates display.
         disp = Display.getInstance();
 
