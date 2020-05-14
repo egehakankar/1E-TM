@@ -41,7 +41,7 @@ public class DisplayPanel
         for(GuiButton a: radioButtons)
         {
             a.render(g);
-        } 
+        }
     }
 
     public void add(GuiButton button)
@@ -73,7 +73,8 @@ public class DisplayPanel
             if(a.mousePressed(e) != null)
             {
                 int setColor[] = {0, 0, 0};
-                int color[] = a.changeColorExact(setColor);
+                int color[] = a.getColor();
+                a.changeColorExact(setColor);
                 for(GuiButton b: radioButtons)
                 {
                     if(b != a)
@@ -119,5 +120,6 @@ public class DisplayPanel
         {
             a.mouseMoved(e);
         }
+
     }
 }
