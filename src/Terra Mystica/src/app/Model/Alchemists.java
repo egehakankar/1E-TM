@@ -2,9 +2,13 @@ package app.Model;
 
 public class Alchemists extends Faction{
 
-
+    String name;
     public Alchemists(){
+        name = "Alchemists";
+    }
 
+    public int getDwellings(){
+        return 2;
     }
     public void useSpecialAction(Player player){
 
@@ -33,6 +37,10 @@ public class Alchemists extends Faction{
         arr[1] = arr[1] + 4;
         arr[2] = arr[2] + 4;
         player.updatePower(arr);
+    }
+
+    public String getName(){
+        return name;
     }
    
 }

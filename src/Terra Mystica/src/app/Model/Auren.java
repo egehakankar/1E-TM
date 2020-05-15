@@ -5,12 +5,17 @@ public class Auren extends Faction{
     FavorTiles tiles;
     FavorTile tile;
     Player player;
+    String name;
     public Auren(){
     
         tiles = new FavorTiles();
+        name = "Auren";
 
     }
 
+    public int getDwellings(){
+        return 2;
+    }
     public void useSpecialAction( Player player){
 
         int t = (int)( Math.random() * 4) + 0;
@@ -37,6 +42,10 @@ public class Auren extends Faction{
         arr[0] = c;
         player.updatePower(arr);
 
+    }
+
+    public String getName(){
+        return name;
     }
 
 }

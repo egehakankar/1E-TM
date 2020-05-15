@@ -1,11 +1,16 @@
 package app.Model;
 
-public class Witches extends Faction{
+import java.util.ArrayList;
+
+public class Witches extends Faction {
     
     public Witches(){
         
     }
 
+    public int getDwellings(){
+        return 2;
+    }
     public void useAbility(Player player){
 
         int c = player.getPoints();
@@ -13,14 +18,11 @@ public class Witches extends Faction{
         player.updatePoints(c);
     }
     public void useSpecialAction(Player player){
-        boolean [][] arr = player.getBuildings();
+        ArrayList<ArrayList<Integer>> arr = player.getBuildings();
 
-            for ( int i = 0 ; i < arr[0].length; i++){
+            if (arr.get(0).size() < 3){
 
-                if ( arr[0][i] == false){
-                    arr[0][i] = true;
-                    break;
-                }
+                arr.get(0).add(arr.get(0).size());
             }
     }
 

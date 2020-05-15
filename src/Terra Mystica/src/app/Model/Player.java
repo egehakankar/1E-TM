@@ -11,45 +11,35 @@ public class Player {
     private int ship;
     private int coin;
     private int worker;
-    private String specialAction;
     private int dwellings;
     private int id;
     private int town;
-    private String ability;
     private ArrayList<BonusCards> bonusCards;
-    private boolean [][] buildings;
+    private ArrayList<ArrayList<Integer>> buildings;
     private int points;
     private int[] cultLevel;
     private String name;
     private int spade;
+    private ArrayList<ArrayList<Integer>> bridges;
     public Player( Faction faction, String name){
         factionType = faction;
         player = new Player(factionType, name);
-        this.power = factionType.getPower();
-        this.priest = factionType.getPriest();
-        this.shovel = factionType.getShovel();
-        this.ship = factionType.getShip();
-        this.coin = factionType.getCoin();
-        this.specialAction = factionType.getSpecialAction();
+        this.power = new int[3];
+        this.priest = 0;
+        this.shovel = 0;
+        this.ship = 0;
+        this.coin = 0;
         this.dwellings = factionType.getDwellings();
-        this.worker = factionType.getWorker();
-        this.spade = factionType.getSpade();
+        this.worker = 0;
+        this.spade = 0;
         id = 0;
-        ability = factionType.getAbility();
         bonusCards = new ArrayList<BonusCards>();
-        buildings = new boolean[4][3];
+        buildings = new ArrayList<ArrayList<Integer>>();
         points = 0;
         cultLevel = new int[4];
         this.name = name;
         town = 0;
-    }
-    public static Player getInstance(){
-
-        if (player == null){
-            
-        }
-
-        return player;
+        bridges = new ArrayList<>();
     }
 
     public void updatePower(int[]power){
@@ -88,10 +78,10 @@ public class Player {
     public ArrayList<BonusCards> getBonusCards(){
         return bonusCards;
     }
-    public void updateBuildings(boolean[][] placesWithBuildings){
+    public void updateBuildings(ArrayList<ArrayList<Integer>> placesWithBuildings){
         this.buildings = placesWithBuildings;
     }
-    public boolean[][] getBuildings(){
+    public ArrayList<ArrayList<Integer>> getBuildings(){
         return buildings;
     }
     public void updatePoints(int point){
@@ -128,6 +118,14 @@ public class Player {
     }
     public void updateSpade( int spade){
         this.spade = spade;
+    }
+
+    public ArrayList<ArrayList<Integer>> getBridges(){
+        return bridges;
+    }
+
+    public void updateBridges(ArrayList<ArrayList<Integer>> bridges){
+        this.bridges = bridges;
     }
 
 }

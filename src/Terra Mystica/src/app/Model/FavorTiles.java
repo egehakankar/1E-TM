@@ -37,14 +37,17 @@ public class FavorTiles {
         pack.add( advThreeWater);
         pack.add( advThreeEarth);
         pack.add( advThreeFire);
-        pack.add( foundTown6Pow);
-        pack.add( threeCoin);
-        pack.add( oneCult);
-        pack.add( threeVicP);
-        pack.add( fourPower);
-        pack.add( threeVicForTradingH);
-        pack.add( workerPower);
-        pack.add( twoVicPDwell);
+
+        for ( int i = 0; i < 3; i++){
+            pack.add( foundTown6Pow);
+            pack.add( threeCoin);
+            pack.add( oneCult);
+            pack.add( threeVicP);
+            pack.add( fourPower);
+            pack.add( threeVicForTradingH);
+            pack.add( workerPower);
+            pack.add( twoVicPDwell);
+        }
     }
     
     public ArrayList<FavorTile> getFavorTiles(){

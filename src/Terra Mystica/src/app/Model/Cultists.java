@@ -2,10 +2,18 @@ package app.Model;
 
 public class Cultists extends Faction{
     
-    public  Cultists(){}
+    String name;
+    public  Cultists(){
+        name = "Cultists";
+    }
+
+    public int getDwellings(){
+        return 2;
+    }
     public void useSpecialAction( Player player){
 
     }
+
     public void useAbility( Player player){
         int c = (int) (Math.random() + 4);
         int [] arr = player.getCultLevel();
@@ -23,6 +31,10 @@ public class Cultists extends Faction{
     }
     public void useAfterStrongHold( Player player){
         player.updatePoints(player.getPoints() + 7);
+    }
+
+    public String getName(){
+        return name;
     }
 
 }

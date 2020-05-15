@@ -2,9 +2,14 @@ package app.Model;
 
 public class Darklings extends Faction{
     
-   
-    public Darklings(){}   
+    String name;
+    public Darklings(){
+        name = "Darklings";
+    }   
 
+    public int getDwellings(){
+        return 2;
+    }
     public void useSpecialAction(Player player){
 
     }
@@ -28,6 +33,10 @@ public class Darklings extends Faction{
             player.updateWorker(worker);
         }
         
+    }
+
+    public String getName(){
+        return name;
     }
 
 
