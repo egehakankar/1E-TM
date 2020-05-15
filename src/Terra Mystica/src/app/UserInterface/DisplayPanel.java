@@ -11,6 +11,7 @@ public class DisplayPanel
 {
     private ArrayList<GuiButton> buttons;
     private ArrayList<GuiButton> radioButtons;
+    private ArrayList<BonusCard> bonusCards;
 
     int black[] = {0, 0, 0};
 
@@ -18,6 +19,7 @@ public class DisplayPanel
     {
         buttons = new ArrayList<GuiButton>();
         radioButtons = new ArrayList<GuiButton>();
+        bonusCards = new ArrayList<BonusCard>();
     }
 
     public void update()
@@ -29,6 +31,10 @@ public class DisplayPanel
         for(GuiButton a: radioButtons)
         {
             a.update();
+        } 
+        for(BonusCard b: bonusCards)
+        {
+            b.update();
         } 
     }
 
@@ -42,6 +48,10 @@ public class DisplayPanel
         {
             a.render(g);
         }
+        for(BonusCard b: bonusCards )
+        {
+            b.render(g);
+        }
     }
 
     public void add(GuiButton button)
@@ -52,6 +62,10 @@ public class DisplayPanel
     {
         radioButtons.add(button);
     }
+    public void addBonusCard(BonusCard b)
+    {
+        bonusCards.add(b);
+    }
     
     public void remove(GuiButton button)
     {
@@ -61,12 +75,21 @@ public class DisplayPanel
     {
         radioButtons.remove(button);
     }
+    public void removeBonusCard( BonusCard b )
+    {
+        bonusCards.remove(b);
+    }
 
     public void mousePressed(MouseEvent e)
     {
         for(GuiButton a: buttons)
         {
             a.mousePressed(e);
+        }
+
+        for(BonusCard b: bonusCards)
+        {
+            b.mousePressed(e);
         }
         for(GuiButton a: radioButtons)
         {
@@ -96,6 +119,11 @@ public class DisplayPanel
         {
             a.mouseReleased(e);
         }
+
+        for(BonusCard b: bonusCards)
+        {
+            b.mouseReleased(e);
+        }
     }
 
     public void mouseDragged(MouseEvent e)
@@ -108,6 +136,11 @@ public class DisplayPanel
         {
             a.mouseDragged(e);
         }
+
+        for(BonusCard b: bonusCards)
+        {
+            b.mouseDragged(e);
+        }
     }
 
     public void mouseMoved(MouseEvent e)
@@ -119,6 +152,10 @@ public class DisplayPanel
         for(GuiButton a: radioButtons)
         {
             a.mouseMoved(e);
+        }
+        for(BonusCard b: bonusCards)
+        {
+            b.mouseMoved(e);
         }
 
     }
