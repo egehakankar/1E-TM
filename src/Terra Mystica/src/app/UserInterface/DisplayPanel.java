@@ -11,6 +11,7 @@ public class DisplayPanel
 {
     private ArrayList<GuiButton> buttons;
     private ArrayList<GuiButton> radioButtons;
+    private ArrayList<Terrain> terrains;
 
     int black[] = {0, 0, 0};
 
@@ -18,6 +19,7 @@ public class DisplayPanel
     {
         buttons = new ArrayList<GuiButton>();
         radioButtons = new ArrayList<GuiButton>();
+        terrains = new ArrayList<Terrain>();
     }
 
     public void update()
@@ -27,6 +29,10 @@ public class DisplayPanel
             a.update();
         }
         for(GuiButton a: radioButtons)
+        {
+            a.update();
+        } 
+        for(Terrain a: terrains)
         {
             a.update();
         } 
@@ -42,6 +48,10 @@ public class DisplayPanel
         {
             a.render(g);
         }
+        for(Terrain a: terrains)
+        {
+            a.render(g);
+        } 
     }
 
     public void add(GuiButton button)
@@ -52,6 +62,10 @@ public class DisplayPanel
     {
         radioButtons.add(button);
     }
+    public void addTerrain(Terrain button)
+    {
+        terrains.add(button);
+    }
     
     public void remove(GuiButton button)
     {
@@ -60,6 +74,10 @@ public class DisplayPanel
     public void removeRadio(GuiButton button)
     {
         radioButtons.remove(button);
+    }
+    public void removeTerrain(Terrain button)
+    {
+        terrains.remove(button);
     }
 
     public void mousePressed(MouseEvent e)
@@ -84,6 +102,10 @@ public class DisplayPanel
                 }
             }
         }
+        for(Terrain a: terrains)
+        {
+            a.mousePressed(e);
+        }
     }
 
     public void mouseReleased(MouseEvent e)
@@ -93,6 +115,10 @@ public class DisplayPanel
             a.mouseReleased(e);
         }
         for(GuiButton a: radioButtons)
+        {
+            a.mouseReleased(e);
+        }
+        for(Terrain a: terrains)
         {
             a.mouseReleased(e);
         }
@@ -108,6 +134,10 @@ public class DisplayPanel
         {
             a.mouseDragged(e);
         }
+        for(Terrain a: terrains)
+        {
+            a.mouseDragged(e);
+        }
     }
 
     public void mouseMoved(MouseEvent e)
@@ -120,6 +150,9 @@ public class DisplayPanel
         {
             a.mouseMoved(e);
         }
-
+        for(Terrain a: terrains)
+        {
+            a.mouseMoved(e);
+        }
     }
 }

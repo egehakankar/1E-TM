@@ -18,6 +18,7 @@ import javax.swing.plaf.DimensionUIResource;
 
 import app.UserInterface.Credits;
 import app.UserInterface.Display;
+import app.UserInterface.GameStartScreen;
 import app.UserInterface.HowToPlay;
 import app.UserInterface.MainMenu;
 import app.UserInterface.SelectionScreen;
@@ -72,6 +73,7 @@ public class GameManager extends JFrame implements KeyListener, MouseListener, R
         disp.add("How To Play", new HowToPlay());
         disp.add("Credits", new Credits());
         disp.add("Selection Screen", new SelectionScreen(this));
+        disp.add("GameStart", new GameStartScreen());
 
         //Sets current screen.
         disp.setCurrentPanel("Menu"); 
