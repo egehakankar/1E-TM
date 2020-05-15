@@ -85,9 +85,9 @@ public class HowToPlay extends DisplayPanel
     }
 
 	@Override
-    public void render(Graphics2D g)
+    public void render(Graphics2D g, GameManager gM)
     {
-		super.render(g);
+		super.render(g, gM);
 		g.setFont(titleFont);
         g.setColor(Color.black);
         

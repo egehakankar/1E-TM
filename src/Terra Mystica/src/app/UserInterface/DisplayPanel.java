@@ -4,11 +4,14 @@ import java.awt.Graphics2D;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
+import app.Management.GameManager;
+
 //Main class for all screens.
 public class DisplayPanel
 {
     private ArrayList<GuiButton> buttons;
     private ArrayList<GuiButton> radioButtons;
+    private ArrayList<Terrain> terrains;
 
     int black[] = {0, 0, 0};
 
@@ -16,6 +19,7 @@ public class DisplayPanel
     {
         buttons = new ArrayList<GuiButton>();
         radioButtons = new ArrayList<GuiButton>();
+        terrains = new ArrayList<Terrain>();
     }
 
     public void update()
@@ -28,15 +32,23 @@ public class DisplayPanel
         {
             a.update();
         } 
+        for(Terrain a: terrains)
+        {
+            a.update();
+        } 
     }
 
-    public void render(Graphics2D g)
+    public void render(Graphics2D g, GameManager nG)
     {
         for(GuiButton a: buttons)
         {
             a.render(g);
         }
         for(GuiButton a: radioButtons)
+        {
+            a.render(g);
+        }
+        for(Terrain a: terrains)
         {
             a.render(g);
         } 
@@ -50,6 +62,10 @@ public class DisplayPanel
     {
         radioButtons.add(button);
     }
+    public void addTerrain(Terrain button)
+    {
+        terrains.add(button);
+    }
     
     public void remove(GuiButton button)
     {
@@ -58,6 +74,10 @@ public class DisplayPanel
     public void removeRadio(GuiButton button)
     {
         radioButtons.remove(button);
+    }
+    public void removeTerrain(Terrain button)
+    {
+        terrains.remove(button);
     }
 
     public void mousePressed(MouseEvent e)
@@ -71,7 +91,8 @@ public class DisplayPanel
             if(a.mousePressed(e) != null)
             {
                 int setColor[] = {0, 0, 0};
-                int color[] = a.changeColorExact(setColor);
+                int color[] = a.getColor();
+                a.changeColorExact(setColor);
                 for(GuiButton b: radioButtons)
                 {
                     if(b != a)
@@ -80,6 +101,10 @@ public class DisplayPanel
                     }
                 }
             }
+        }
+        for(Terrain a: terrains)
+        {
+            a.mousePressed(e);
         }
     }
 
@@ -90,6 +115,10 @@ public class DisplayPanel
             a.mouseReleased(e);
         }
         for(GuiButton a: radioButtons)
+        {
+            a.mouseReleased(e);
+        }
+        for(Terrain a: terrains)
         {
             a.mouseReleased(e);
         }
@@ -105,6 +134,10 @@ public class DisplayPanel
         {
             a.mouseDragged(e);
         }
+        for(Terrain a: terrains)
+        {
+            a.mouseDragged(e);
+        }
     }
 
     public void mouseMoved(MouseEvent e)
@@ -114,6 +147,10 @@ public class DisplayPanel
             a.mouseMoved(e);
         }
         for(GuiButton a: radioButtons)
+        {
+            a.mouseMoved(e);
+        }
+        for(Terrain a: terrains)
         {
             a.mouseMoved(e);
         }

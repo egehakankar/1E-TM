@@ -1,6 +1,9 @@
 package app.Management;
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.awt.Color;
+
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -8,23 +11,28 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.awt.image.BufferedImage;
+import java.awt.FlowLayout;
 
-import javax.swing.JPanel;
+import javax.swing.JFrame;
 import javax.swing.plaf.DimensionUIResource;
 
 
 import app.UserInterface.Credits;
 import app.UserInterface.Display;
+import app.UserInterface.GameStartScreen;
 import app.UserInterface.HowToPlay;
 import app.UserInterface.MainMenu;
 import app.UserInterface.SelectionScreen;
 
-public class GameManager extends JPanel implements KeyListener, MouseListener, Runnable, MouseMotionListener
+public class GameManager extends JFrame implements KeyListener, MouseListener, Runnable, MouseMotionListener
 {
     private static final long serialVersionUID = 1L;
 
-    public static final int WIDTH = 1920;
-    public static final int HEIGHT = 1080;
+    public static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+
+    public static int WIDTH = screenSize.width;
+    public static int HEIGHT = screenSize.height;
+    
 
     //Refreshes the game.
     private Thread game;
@@ -38,8 +46,21 @@ public class GameManager extends JPanel implements KeyListener, MouseListener, R
 
     public GameManager()
     {
-        setFocusable(true);
+        super("Terra Mystica");
+        setLayout(new FlowLayout());
+
         setPreferredSize(new DimensionUIResource(WIDTH, HEIGHT));
+
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setResizable(false);
+		pack();
+		setLocationRelativeTo(null);
+		
+		setVisible(true);
+		setSize(WIDTH, HEIGHT);
+        setLocation(0, 0);
+        
+        setVisible(true);
 
         addKeyListener(this);
         addMouseListener(this);
@@ -52,7 +73,8 @@ public class GameManager extends JPanel implements KeyListener, MouseListener, R
         disp.add("Menu", new MainMenu());
         disp.add("How To Play", new HowToPlay());
         disp.add("Credits", new Credits());
-        disp.add("Selection Screen", new SelectionScreen());
+        disp.add("Selection Screen", new SelectionScreen(this));
+        disp.add("GameStart", new GameStartScreen());
 
         //Sets current screen.
         disp.setCurrentPanel("Menu"); 
@@ -69,7 +91,7 @@ public class GameManager extends JPanel implements KeyListener, MouseListener, R
         Graphics2D g = (Graphics2D) image.getGraphics();
         g.setColor(Color.white);
         g.fillRect(0,0, WIDTH, HEIGHT);
-        disp.render(g);
+        disp.render(g, this);
         g.dispose();
 
         Graphics2D g2d = (Graphics2D) getGraphics();
