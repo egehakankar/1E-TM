@@ -7,6 +7,11 @@ public abstract class Faction {
     public abstract void useAfterStrongHold( Player player);
     public abstract int getDwellings();
     public abstract String getName();
+    public abstract int getPriests();
+    public abstract int getCoins();
+    public abstract int getWorkers();
+    public abstract int[] getCult();
+    public abstract int[] getPower();
 
     
 }

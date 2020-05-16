@@ -17,6 +17,7 @@ import javax.swing.JFrame;
 import javax.swing.plaf.DimensionUIResource;
 
 
+import app.UserInterface.BonusCardScreen;
 import app.UserInterface.Credits;
 import app.UserInterface.Display;
 import app.UserInterface.GameStartScreen;
@@ -75,6 +76,7 @@ public class GameManager extends JFrame implements KeyListener, MouseListener, R
         disp.add("Credits", new Credits());
         disp.add("Selection Screen", new SelectionScreen(this));
         disp.add("GameStart", new GameStartScreen());
+        disp.add("Bonus Card Screen", new BonusCardScreen());
 
         //Sets current screen.
         disp.setCurrentPanel("Menu"); 

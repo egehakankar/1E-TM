@@ -32,4 +32,31 @@ public class Engineers extends Faction {
         return name;
     }
 
+    public int getPriests(){
+        return 0;
+    }
+    public int getCoins(){
+        return 10;
+    }
+    public int getWorkers(){
+        return 2;
+    }
+    public int[] getCult(){
+        int [] cult = new int[4];
+        cult[0] = 0;
+        cult[1] = 0;
+        cult[2] = 0;
+        cult[3] = 0;
+        return cult;
+    }
+
+    public  int[] getPower(){
+
+        int[] power = new int[3];
+        power[0] = 3;
+        power[1] = 9;
+        power[2] = 0;
+        return power;
+    }
+
 }
