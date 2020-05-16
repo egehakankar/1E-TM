@@ -136,12 +136,6 @@ public class GamePlayManager {
 
     public static ArrayList<Player> getPlayerList()
     {
-        return playerList;
+         return playerList;
     }
-
-    
-
-
-
-    
 }
