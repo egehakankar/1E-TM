@@ -17,6 +17,7 @@ import java.awt.FlowLayout;
 import javax.swing.JFrame;
 import javax.swing.plaf.DimensionUIResource;
 
+import app.Model.Auren;
 import app.Model.Faction;
 import app.UserInterface.BonusCardScreen;
 import app.UserInterface.Credits;
@@ -45,10 +46,17 @@ public class GameManager extends JFrame implements KeyListener, MouseListener, R
     private Display disp;
 
     private static GamePlayManager gameP;
+    private static ArrayList<Faction> factionTemp;
 
     public GameManager() {
         super("Terra Mystica");
         setLayout(new FlowLayout());
+
+        factionTemp = new ArrayList<Faction>();
+        Auren auren = new Auren();
+        factionTemp.add(auren);
+
+        gameP = new GamePlayManager(factionTemp);
 
         setPreferredSize(new DimensionUIResource(WIDTH, HEIGHT));
 
@@ -79,11 +87,16 @@ public class GameManager extends JFrame implements KeyListener, MouseListener, R
         disp.add("Bonus Card Screen", new BonusCardScreen());
 
 <<<<<<< HEAD
+<<<<<<< HEAD
         //Sets current screen.
         disp.setCurrentPanel("Bonus Card Screen"); 
 =======
         // Sets current screen.
         disp.setCurrentPanel("Menu");
+>>>>>>> Hakomako
+=======
+        //Sets current screen.
+        disp.setCurrentPanel("Menu"); 
 >>>>>>> Hakomako
     }
 

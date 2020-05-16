@@ -32,9 +32,13 @@ public class Player {
     private int [] templeTrack;
     private int [] sanctuaryTrack;
     private int [] strongholdTrack;
+<<<<<<< HEAD
 
     public Player( Faction faction, String name){
         bonusCardNumber = -1;
+=======
+    public Player( Faction faction){
+>>>>>>> Hakomako
         factionType = faction;
         this.power = faction.getPower();
         this.priest = faction.getPriests();
@@ -245,7 +249,7 @@ public class Player {
         }
         else if(bonusCardNumber == 8)
         {
-            coins += 2;
+            coin += 2;
             //TODO
         }
 

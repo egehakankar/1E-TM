@@ -3,7 +3,6 @@ import app.Model.Player;
 import app.Management.GamePlayManager;
 import java.awt.Dimension;
 import java.awt.Toolkit;
-import app.Model.*;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -21,9 +20,8 @@ import app.Management.GameManager;
 
 public class BonusCardScreen extends DisplayPanel {
 
-    private ArrayList<Player> players = GamePlayManager.getPlayerList();
-    
-    private int noOfBonusCards = players.size();
+    private static ArrayList<Player> players = GamePlayManager.getPlayerList();
+    private static int noOfBonusCards = players.size();
     private int turnOfPlayer = 0;
 
     private Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -43,6 +41,8 @@ public class BonusCardScreen extends DisplayPanel {
 
     private int spacing = 10;
 
+    private boolean addButtons = false;
+
     public BonusCardScreen() {
         super();
 
@@ -51,7 +51,38 @@ public class BonusCardScreen extends DisplayPanel {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
 
+    @Override
+    public void update() {
+
+    }
+
+    @Override
+    public void render(Graphics2D g, GameManager gM) {
+
+        g.drawImage(image, 0, 0, width, height, null);
+
+        super.render(g, gM);
+
+        g.setFont(titleFont);
+        g.setColor(Color.white);
+
+        Rectangle2D b = g.getFontMetrics().getStringBounds(title, g);
+        int widthM = (int) b.getWidth();
+        g.drawString(title, GameManager.WIDTH / 2 - widthM / 2 + 20, 120);
+
+        players = GamePlayManager.getPlayerList();
+        noOfBonusCards = players.size();
+
+        if(!addButtons)
+            addBon();
+
+        addButtons = true;
+    }
+
+    public void addBon()
+    {
         bonusCardNumbers = new ArrayList<Integer>();
         bonusCards = new ArrayList<BonusCard>();
 
@@ -64,7 +95,6 @@ public class BonusCardScreen extends DisplayPanel {
                 i--;
             else
                 bonusCardNumbers.add(randomNumber);
-
         }
 
         int x = 80;
@@ -90,28 +120,7 @@ public class BonusCardScreen extends DisplayPanel {
                         Display.getInstance().setCurrentPanel("Credits");
                 }
             });
-
         }
-
-    }
-
-    @Override
-    public void update() {
-
-    }
-
-    @Override
-    public void render(Graphics2D g, GameManager gM) {
-        g.drawImage(image, 0, 0, width, height, null);
-
-        super.render(g, gM);
-
-        g.setFont(titleFont);
-        g.setColor(Color.white);
-
-        Rectangle2D b = g.getFontMetrics().getStringBounds(title, g);
-        int widthM = (int) b.getWidth();
-        g.drawString(title, GameManager.WIDTH / 2 - widthM / 2 + 20, 120);
     }
 
 }
