@@ -11,10 +11,11 @@ public class Player {
     private int ship;
     private int coin;
     private int worker;
-    private int dwellings;
+    private int startingDwellings;
     private int id;
     private int town;
     private ArrayList<BonusCards> bonusCards;
+    // dwelling, trading, temple, sanctuary, 
     private ArrayList<ArrayList<Integer>> buildings;
     private int points;
     // air, water, fire, earth
@@ -22,6 +23,13 @@ public class Player {
     private String name;
     private int spade;
     private ArrayList<ArrayList<Integer>> bridges;
+
+    // 0 element of array show empty places, 1 show number of placed structure
+    private int [] dwellingsTrack;
+    private int [] tradingHouseTrack;
+    private int [] templeTrack;
+    private int [] sanctuaryTrack;
+    private int [] strongholdTrack;
     public Player( Faction faction, String name){
         factionType = faction;
         player = new Player(factionType, name);
@@ -37,7 +45,7 @@ public class Player {
         }
         
         this.coin = faction.getCoins();
-        this.dwellings = factionType.getDwellings();
+        this.startingDwellings = factionType.getDwellings();
         this.worker = faction.getWorkers();
         this.spade = 0;
         id = 0;
@@ -48,6 +56,26 @@ public class Player {
         this.name = name;
         town = 0;
         bridges = new ArrayList<>();
+
+        dwellingsTrack = new int[2];
+        dwellingsTrack[0] = 9;
+        dwellingsTrack[1] = 0;
+        tradingHouseTrack = new int[2];
+        tradingHouseTrack[0] = 4;
+        tradingHouseTrack[1] = 0;
+        templeTrack = new int[2];
+        templeTrack[0] = 3;
+        templeTrack[1] = 0;
+        sanctuaryTrack = new int[2];
+        sanctuaryTrack[0] = 1;
+        sanctuaryTrack[1] = 1;
+        strongholdTrack = new int[2];
+        strongholdTrack[0] = 1;
+        strongholdTrack[1] = 0;
+    }
+
+    public Faction getFaction(){
+        return factionType;
     }
 
     public void updatePower(int[]power){
@@ -134,6 +162,37 @@ public class Player {
 
     public void updateBridges(ArrayList<ArrayList<Integer>> bridges){
         this.bridges = bridges;
+    }
+
+    public void updateDwellingTrack( int arr[]){
+        dwellingsTrack = arr;
+    }
+    public int[] getDwellingTrack(){
+        return dwellingsTrack;
+    }
+    public void updateTradingTrack( int arr[]){
+        tradingHouseTrack = arr;
+    }
+    public int[] getTradingTrack(){
+        return tradingHouseTrack;
+    }
+    public void updateTempleTrack( int arr[]){
+        templeTrack = arr;
+    }
+    public int[] getTempleTrack(){
+        return templeTrack;
+    }
+    public void updateSanctuaryTrack( int arr[]){
+        sanctuaryTrack = arr;
+    }
+    public int[] getSanctuaryTrack(){
+        return sanctuaryTrack;
+    }
+    public void updateStrongholdTrack( int arr[]){
+        strongholdTrack = arr;
+    }
+    public int[] getStrongholdTrack(){
+        return strongholdTrack;
     }
 
 }

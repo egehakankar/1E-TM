@@ -33,10 +33,14 @@ public class Alchemists extends Faction{
     }
     public void useAfterStrongHold(Player player){
         int [] arr = player.getPower();
-        arr[0] = arr[0] + 4;
-        arr[1] = arr[1] + 4;
-        arr[2] = arr[2] + 4;
+        int c = 12;
+        arr[1] = arr[1] + arr[0];
+        c = c - arr[0];
+        arr[0] = 0;
+        arr[2] = arr[2] + c;
+        arr[1] = arr[1] - c;
         player.updatePower(arr);
+
     }
 
     public String getName(){
