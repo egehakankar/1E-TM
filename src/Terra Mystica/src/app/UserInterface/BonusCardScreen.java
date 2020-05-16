@@ -38,55 +38,50 @@ public class BonusCardScreen extends DisplayPanel {
     private Font titleFont = new Font("Bitstream Vera Sans", 1, width*100/1920);
     private String title = "Select a bonus card for " + players.get(turnOfPlayer).getFaction().getName();
     private int buttonWidth = 150;
-    
+
     private int buttonHeight = 500;
 
     private int spacing = 10;
 
-    public BonusCardScreen()
-    {
+    public BonusCardScreen() {
         super();
 
-        try{
+        try {
             image = ImageIO.read(getClass().getResourceAsStream("../images/background1.jpg"));
-        }catch(IOException e)
-        {
+        } catch (IOException e) {
             e.printStackTrace();
         }
 
         bonusCardNumbers = new ArrayList<Integer>();
         bonusCards = new ArrayList<BonusCard>();
-        playersCards = new ArrayList<Integer>();
 
         // creating random numbers to select bonus cards
         for(int i = 0; i < noOfBonusCards ; i ++ )
         {
             int randomNumber = (int)(Math.random()*9);
 
-            if(bonusCardNumbers.contains(randomNumber))
-                i --;
+            if (bonusCardNumbers.contains(randomNumber))
+                i--;
             else
                 bonusCardNumbers.add(randomNumber);
 
         }
-        
+
         int x = 80;
         int y = 150;
 
-        //create bonus cards
-        for(int i = 0; i < noOfBonusCards; i ++)
-            bonusCards.add(new BonusCard(x+i*buttonWidth+i*spacing, y, buttonWidth, buttonHeight, bonusCardNumbers.get(i)));
-        
+        // create bonus cards
+        for (int i = 0; i < noOfBonusCards; i++)
+            bonusCards.add(new BonusCard(x + i * buttonWidth + i * spacing, y, buttonWidth, buttonHeight,
+                    bonusCardNumbers.get(i)));
+
         // add bonus cards
-        for(int i = 0; i < noOfBonusCards; i ++)
-        {
+        for (int i = 0; i < noOfBonusCards; i++) {
             addBonusCard(bonusCards.get(i));
             final int a = i;
-            bonusCards.get(i).addActionListener(new ActionListener()
-            {
+            bonusCards.get(i).addActionListener(new ActionListener() {
                 @Override
-                public void actionPerformed(ActionEvent e) 
-                {
+                public void actionPerformed(ActionEvent e) {
                     bonusCards.get(a).changeColorExact();
                     players.get(turnOfPlayer).setBonusCardNumber(bonusCards.get(a).getCardNumer());
                     players.get(turnOfPlayer).updateByBonuscardNumber();
@@ -95,21 +90,18 @@ public class BonusCardScreen extends DisplayPanel {
                         Display.getInstance().setCurrentPanel("Credits");
                 }
             });
-    
+
         }
-        
 
     }
 
     @Override
-    public void update()
-    {
+    public void update() {
 
     }
 
-	@Override
-    public void render(Graphics2D g, GameManager gM)
-    {
+    @Override
+    public void render(Graphics2D g, GameManager gM) {
         g.drawImage(image, 0, 0, width, height, null);
 
         super.render(g, gM);
@@ -118,10 +110,8 @@ public class BonusCardScreen extends DisplayPanel {
         g.setColor(Color.white);
 
         Rectangle2D b = g.getFontMetrics().getStringBounds(title, g);
-        int widthM = (int)b.getWidth();
-        g.drawString(title, GameManager.WIDTH / 2 - widthM / 2+20, 120);
+        int widthM = (int) b.getWidth();
+        g.drawString(title, GameManager.WIDTH / 2 - widthM / 2 + 20, 120);
     }
-    
 
-    
 }

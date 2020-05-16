@@ -1,6 +1,6 @@
 package app.Model;
 
-public class Nomads {
+public class Nomads extends Faction{
 
     String name;
     public Nomads(){

@@ -36,7 +36,6 @@ public class Player {
     public Player( Faction faction, String name){
         bonusCardNumber = -1;
         factionType = faction;
-        player = new Player(factionType, name);
         this.power = faction.getPower();
         this.priest = faction.getPriests();
         this.shovel = 0;
@@ -57,7 +56,6 @@ public class Player {
         buildings = new ArrayList<ArrayList<Integer>>();
         points = 0;
         cultLevel = faction.getCult();
-        this.name = name;
         town = 0;
         bridges = new ArrayList<>();
 
