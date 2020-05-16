@@ -16,6 +16,7 @@ import java.awt.FlowLayout;
 import javax.swing.JFrame;
 import javax.swing.plaf.DimensionUIResource;
 
+
 import app.UserInterface.Credits;
 import app.UserInterface.Display;
 import app.UserInterface.GameStartScreen;
@@ -64,7 +65,7 @@ public class GameManager extends JFrame implements KeyListener, MouseListener, R
         addKeyListener(this);
         addMouseListener(this);
         addMouseMotionListener(this);
-
+        
         //Creates display.
         disp = Display.getInstance();
 
