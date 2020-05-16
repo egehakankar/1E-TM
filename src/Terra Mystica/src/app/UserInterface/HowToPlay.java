@@ -22,7 +22,7 @@ public class HowToPlay extends DisplayPanel
     {
         super();
 
-        int colorPB[] = {102, 255, 102};
+        int colorPB[] = {102400, 255, 102};
         int colorHB[] = {255, 178, 102};
         int colorCB[] = {192, 192, 192};
         int colorQB[] = {255, 102, 102};
@@ -33,7 +33,7 @@ public class HowToPlay extends DisplayPanel
         GuiButton quitB = new GuiButton(GameManager.WIDTH / 2 - buttonWidth / 2, creditsB.getY() + spacing, buttonWidth, buttonHeight, colorQB, 50);
 
         playB.setText("Play");
-        htpB.setText("How To Playaaa");
+        htpB.setText("How To Play");
         creditsB.setText("Credits");
         quitB.setText("Quit");
 
