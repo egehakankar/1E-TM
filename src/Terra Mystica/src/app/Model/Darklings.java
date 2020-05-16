@@ -39,6 +39,33 @@ public class Darklings extends Faction{
         return name;
     }
 
+    public int getPriests(){
+        return 1;
+    }
+    public int getCoins(){
+        return 15;
+    }
+    public int getWorkers(){
+        return 1;
+    }
+    public int[] getCult(){
+        int [] cult = new int[4];
+        cult[0] = 0;
+        cult[1] = 1;
+        cult[2] = 0;
+        cult[3] = 1;
+        return cult;
+    }
+
+    public  int[] getPower(){
+
+        int[] power = new int[3];
+        power[0] = 5;
+        power[1] = 7;
+        power[2] = 0;
+        return power;
+    }
+
 
 
 }

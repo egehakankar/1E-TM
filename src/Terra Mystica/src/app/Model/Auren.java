@@ -48,4 +48,31 @@ public class Auren extends Faction{
         return name;
     }
 
+    public int getPriests(){
+        return 0;
+    }
+    public int getCoins(){
+        return 15;
+    }
+    public int getWorkers(){
+        return 3;
+    }
+    public int[] getCult(){
+        int [] cult = new int[4];
+        cult[0] = 1;
+        cult[1] = 1;
+        cult[2] = 0;
+        cult[3] = 0;
+        return cult;
+    }
+
+    public  int[] getPower(){
+
+        int[] power = new int[3];
+        power[0] = 5;
+        power[1] = 7;
+        power[2] = 0;
+        return power;
+    }
+
 }

@@ -17,6 +17,7 @@ public class Player {
     private ArrayList<BonusCards> bonusCards;
     private ArrayList<ArrayList<Integer>> buildings;
     private int points;
+    // air, water, fire, earth
     private int[] cultLevel;
     private String name;
     private int spade;
@@ -24,19 +25,26 @@ public class Player {
     public Player( Faction faction, String name){
         factionType = faction;
         player = new Player(factionType, name);
-        this.power = new int[3];
-        this.priest = 0;
+        this.power = faction.getPower();
+        this.priest = faction.getPriests();
         this.shovel = 0;
-        this.ship = 0;
-        this.coin = 0;
+
+        if ( faction.getName().equals("Mermaids")){
+            this.ship = 1;
+        }
+        else{
+            this.ship = 0;
+        }
+        
+        this.coin = faction.getCoins();
         this.dwellings = factionType.getDwellings();
-        this.worker = 0;
+        this.worker = faction.getWorkers();
         this.spade = 0;
         id = 0;
         bonusCards = new ArrayList<BonusCards>();
         buildings = new ArrayList<ArrayList<Integer>>();
         points = 0;
-        cultLevel = new int[4];
+        cultLevel = faction.getCult();
         this.name = name;
         town = 0;
         bridges = new ArrayList<>();
