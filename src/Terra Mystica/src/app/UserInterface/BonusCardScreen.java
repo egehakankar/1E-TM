@@ -1,7 +1,9 @@
 package app.UserInterface;
-
+import app.Model.Player;
+import app.Management.GamePlayManager;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import app.Model.*;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -19,8 +21,10 @@ import app.Management.GameManager;
 
 public class BonusCardScreen extends DisplayPanel {
 
-    private int noOfBonusCards = 8;
-    private int turnOfPlayer = 1;
+    private ArrayList<Player> players = GamePlayManager.getPlayerList();
+    
+    private int noOfBonusCards = players.size();
+    private int turnOfPlayer = 0;
 
     private Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
     private int width = screenSize.width;
@@ -32,7 +36,7 @@ public class BonusCardScreen extends DisplayPanel {
 
     //1920,1080
     private Font titleFont = new Font("Bitstream Vera Sans", 1, width*100/1920);
-    private String title = "Select a bonus card for player" + turnOfPlayer;
+    private String title = "Select a bonus card for " + players.get(turnOfPlayer).getFaction().getName();
     private int buttonWidth = 150;
     
     private int buttonHeight = 500;
@@ -52,11 +56,12 @@ public class BonusCardScreen extends DisplayPanel {
 
         bonusCardNumbers = new ArrayList<Integer>();
         bonusCards = new ArrayList<BonusCard>();
+        playersCards = new ArrayList<Integer>();
 
         // creating random numbers to select bonus cards
         for(int i = 0; i < noOfBonusCards ; i ++ )
         {
-            int randomNumber = (int)(Math.random()*10);
+            int randomNumber = (int)(Math.random()*9);
 
             if(bonusCardNumbers.contains(randomNumber))
                 i --;
@@ -83,6 +88,11 @@ public class BonusCardScreen extends DisplayPanel {
                 public void actionPerformed(ActionEvent e) 
                 {
                     bonusCards.get(a).changeColorExact();
+                    players.get(turnOfPlayer).setBonusCardNumber(bonusCards.get(a).getCardNumer());
+                    players.get(turnOfPlayer).updateByBonuscardNumber();
+                    turnOfPlayer ++;
+                    if( players.size() == turnOfPlayer )
+                        Display.getInstance().setCurrentPanel("Credits");
                 }
             });
     

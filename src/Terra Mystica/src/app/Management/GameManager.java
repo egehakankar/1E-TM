@@ -79,7 +79,7 @@ public class GameManager extends JFrame implements KeyListener, MouseListener, R
         disp.add("Bonus Card Screen", new BonusCardScreen());
 
         //Sets current screen.
-        disp.setCurrentPanel("Menu"); 
+        disp.setCurrentPanel("Bonus Card Screen"); 
     }
 
     private void update()

@@ -6,7 +6,7 @@ import app.Model.*;
 
 public class GamePlayManager {
 
-    ArrayList<Player> playerList;
+    static ArrayList<Player> playerList;
     public GamePlayManager( ArrayList<Faction> factionList, ArrayList<String> names){
 
         for ( int i = 0; i < names.size(); i++){
@@ -131,6 +131,11 @@ public class GamePlayManager {
         player.updatePower(power);
         player.updatePriest(player.getPriest() + tmp[0]);
         
+    }
+
+    public static ArrayList<Player> getPlayerList()
+    {
+        return playerList;
     }
 
     

@@ -18,7 +18,7 @@ public class BonusCard {
         nSelected,
         hover
     }
-
+    private int bonusCardNumber;
     private State currentState;
     private Rectangle clickBox;
     private ArrayList<ActionListener> actionListeners;
@@ -129,6 +129,11 @@ public class BonusCard {
         currentState = State.nSelected;
     }
     //get methods
+
+    public int getCardNumer()
+    {
+        return bonusCardNumber;
+    }
 
     public int getX()
     {
