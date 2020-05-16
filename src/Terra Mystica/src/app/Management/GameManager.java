@@ -16,9 +16,11 @@ import java.awt.FlowLayout;
 import javax.swing.JFrame;
 import javax.swing.plaf.DimensionUIResource;
 
+
 import app.UserInterface.BonusCardScreen;
 import app.UserInterface.Credits;
 import app.UserInterface.Display;
+import app.UserInterface.GameStartScreen;
 import app.UserInterface.HowToPlay;
 import app.UserInterface.MainMenu;
 import app.UserInterface.SelectionScreen;
@@ -64,7 +66,7 @@ public class GameManager extends JFrame implements KeyListener, MouseListener, R
         addKeyListener(this);
         addMouseListener(this);
         addMouseMotionListener(this);
-
+        
         //Creates display.
         disp = Display.getInstance();
 
@@ -73,6 +75,7 @@ public class GameManager extends JFrame implements KeyListener, MouseListener, R
         disp.add("How To Play", new HowToPlay());
         disp.add("Credits", new Credits());
         disp.add("Selection Screen", new SelectionScreen(this));
+        disp.add("GameStart", new GameStartScreen());
         disp.add("Bonus Card Screen", new BonusCardScreen());
 
         //Sets current screen.

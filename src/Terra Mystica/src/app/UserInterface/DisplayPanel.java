@@ -11,6 +11,7 @@ public class DisplayPanel
 {
     private ArrayList<GuiButton> buttons;
     private ArrayList<GuiButton> radioButtons;
+    private ArrayList<Terrain> terrains;
     private ArrayList<BonusCard> bonusCards;
 
     int black[] = {0, 0, 0};
@@ -20,6 +21,8 @@ public class DisplayPanel
         buttons = new ArrayList<GuiButton>();
         radioButtons = new ArrayList<GuiButton>();
         bonusCards = new ArrayList<BonusCard>();
+        terrains = new ArrayList<Terrain>();
+
     }
 
     public void update()
@@ -48,6 +51,10 @@ public class DisplayPanel
         {
             a.render(g);
         }
+        for(Terrain a: terrains)
+        {
+            a.render(g);
+        } 
         for(BonusCard b: bonusCards )
         {
             b.render(g);
@@ -62,6 +69,10 @@ public class DisplayPanel
     {
         radioButtons.add(button);
     }
+    public void addTerrain(Terrain button)
+    {
+        terrains.add(button);
+    }
     public void addBonusCard(BonusCard b)
     {
         bonusCards.add(b);
@@ -74,6 +85,10 @@ public class DisplayPanel
     public void removeRadio(GuiButton button)
     {
         radioButtons.remove(button);
+    }
+    public void removeTerrain(Terrain button)
+    {
+        terrains.remove(button);
     }
     public void removeBonusCard( BonusCard b )
     {
@@ -107,6 +122,10 @@ public class DisplayPanel
                 }
             }
         }
+        for(Terrain a: terrains)
+        {
+            a.mousePressed(e);
+        }
     }
 
     public void mouseReleased(MouseEvent e)
@@ -116,6 +135,10 @@ public class DisplayPanel
             a.mouseReleased(e);
         }
         for(GuiButton a: radioButtons)
+        {
+            a.mouseReleased(e);
+        }
+        for(Terrain a: terrains)
         {
             a.mouseReleased(e);
         }
@@ -136,6 +159,10 @@ public class DisplayPanel
         {
             a.mouseDragged(e);
         }
+        for(Terrain a: terrains)
+        {
+            a.mouseDragged(e);
+        }
 
         for(BonusCard b: bonusCards)
         {
@@ -150,6 +177,10 @@ public class DisplayPanel
             a.mouseMoved(e);
         }
         for(GuiButton a: radioButtons)
+        {
+            a.mouseMoved(e);
+        }
+        for(Terrain a: terrains)
         {
             a.mouseMoved(e);
         }
