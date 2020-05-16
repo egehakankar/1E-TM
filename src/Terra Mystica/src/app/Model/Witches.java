@@ -4,8 +4,9 @@ import java.util.ArrayList;
 
 public class Witches extends Faction {
     
+    String name;
     public Witches(){
-        
+        name = "Witches";
     }
 
     public int getDwellings(){
@@ -28,6 +29,10 @@ public class Witches extends Faction {
 
     public void useAfterStrongHold(Player player){
         useSpecialAction(player);
+    }
+
+    public String getName(){
+        return name;
     }
 
 }

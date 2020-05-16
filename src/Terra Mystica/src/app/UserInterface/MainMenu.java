@@ -3,6 +3,7 @@ package app.UserInterface;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 
+
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
@@ -25,15 +26,11 @@ public class MainMenu extends DisplayPanel
     //1920,1080 hakanin ekranı
     private Font titleFont = new Font("Bitstream Vera Sans", 1, width*200/1920);
     private String title = "Terra Mystica";
-<<<<<<< HEAD
-    private int buttonWidth = 200;
-    private int spacing = 80;
-    private int buttonHeight = 60;
-=======
+
+
     private int buttonWidth = width/3;
     private int spacing = height*170/1080-20;
     private int buttonHeight = height*120/1080;
->>>>>>> origin/Hakomako
 
     public MainMenu()
     {

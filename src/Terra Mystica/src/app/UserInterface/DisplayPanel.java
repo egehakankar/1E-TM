@@ -11,11 +11,8 @@ public class DisplayPanel
 {
     private ArrayList<GuiButton> buttons;
     private ArrayList<GuiButton> radioButtons;
-<<<<<<< HEAD
     private ArrayList<Terrain> terrains;
-=======
     private ArrayList<BonusCard> bonusCards;
->>>>>>> origin/Berdan
 
     int black[] = {0, 0, 0};
 
@@ -23,11 +20,9 @@ public class DisplayPanel
     {
         buttons = new ArrayList<GuiButton>();
         radioButtons = new ArrayList<GuiButton>();
-<<<<<<< HEAD
-        terrains = new ArrayList<Terrain>();
-=======
         bonusCards = new ArrayList<BonusCard>();
->>>>>>> origin/Berdan
+        terrains = new ArrayList<Terrain>();
+
     }
 
     public void update()
@@ -40,15 +35,9 @@ public class DisplayPanel
         {
             a.update();
         } 
-<<<<<<< HEAD
-        for(Terrain a: terrains)
-        {
-            a.update();
-=======
         for(BonusCard b: bonusCards)
         {
             b.update();
->>>>>>> origin/Berdan
         } 
     }
 
@@ -62,17 +51,14 @@ public class DisplayPanel
         {
             a.render(g);
         }
-<<<<<<< HEAD
         for(Terrain a: terrains)
         {
             a.render(g);
         } 
-=======
         for(BonusCard b: bonusCards )
         {
             b.render(g);
         }
->>>>>>> origin/Berdan
     }
 
     public void add(GuiButton button)
@@ -83,15 +69,13 @@ public class DisplayPanel
     {
         radioButtons.add(button);
     }
-<<<<<<< HEAD
     public void addTerrain(Terrain button)
     {
         terrains.add(button);
-=======
+    }
     public void addBonusCard(BonusCard b)
     {
         bonusCards.add(b);
->>>>>>> origin/Berdan
     }
     
     public void remove(GuiButton button)
@@ -102,15 +86,13 @@ public class DisplayPanel
     {
         radioButtons.remove(button);
     }
-<<<<<<< HEAD
     public void removeTerrain(Terrain button)
     {
         terrains.remove(button);
-=======
+    }
     public void removeBonusCard( BonusCard b )
     {
         bonusCards.remove(b);
->>>>>>> origin/Berdan
     }
 
     public void mousePressed(MouseEvent e)
@@ -156,16 +138,14 @@ public class DisplayPanel
         {
             a.mouseReleased(e);
         }
-<<<<<<< HEAD
         for(Terrain a: terrains)
         {
             a.mouseReleased(e);
-=======
+        }
 
         for(BonusCard b: bonusCards)
         {
             b.mouseReleased(e);
->>>>>>> origin/Berdan
         }
     }
 
@@ -179,16 +159,14 @@ public class DisplayPanel
         {
             a.mouseDragged(e);
         }
-<<<<<<< HEAD
         for(Terrain a: terrains)
         {
             a.mouseDragged(e);
-=======
+        }
 
         for(BonusCard b: bonusCards)
         {
             b.mouseDragged(e);
->>>>>>> origin/Berdan
         }
     }
 
@@ -202,17 +180,14 @@ public class DisplayPanel
         {
             a.mouseMoved(e);
         }
-<<<<<<< HEAD
         for(Terrain a: terrains)
         {
             a.mouseMoved(e);
         }
-=======
         for(BonusCard b: bonusCards)
         {
             b.mouseMoved(e);
         }
 
->>>>>>> origin/Berdan
     }
 }
