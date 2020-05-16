@@ -15,7 +15,7 @@ public class BonusCard {
     private enum State {
         selected, nSelected, hover
     }
-
+    private int bonusCardNumber;
     private State currentState;
     private Rectangle clickBox;
     private ArrayList<ActionListener> actionListeners;
@@ -102,7 +102,13 @@ public class BonusCard {
     }
     // get methods
 
-    public int getX() {
+    public int getCardNumer()
+    {
+        return bonusCardNumber;
+    }
+
+    public int getX()
+    {
         return clickBox.x;
     }
 

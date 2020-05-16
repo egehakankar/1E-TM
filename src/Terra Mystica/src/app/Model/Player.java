@@ -6,6 +6,7 @@ public class Player {
     private Player player;
     private Faction factionType;
     private int[] power;
+    private int powerInt; //BErdan ekledi
     private int priest;
     private int shovel;
     private int ship;
@@ -15,6 +16,7 @@ public class Player {
     private int id;
     private int town;
     private ArrayList<BonusCards> bonusCards;
+    private int bonusCardNumber;
     // dwelling, trading, temple, sanctuary, 
     private ArrayList<ArrayList<Integer>> buildings;
     private int points;
@@ -191,6 +193,60 @@ public class Player {
     }
     public int[] getStrongholdTrack(){
         return strongholdTrack;
+    }
+    
+    // Berdan Yazdı
+    public void setBonusCardNumber(int number){
+        bonusCardNumber = number;
+    }
+
+    // this method updates player's abilities according to their bonus card
+    public void updateByBonuscardNumber()
+    {
+        if( bonusCardNumber == 0 )
+        {
+            coin += 2;
+            //TODO
+        }
+        else if(bonusCardNumber == 1)
+        {
+            coin += 4;
+            // TODO
+        }
+        else if(bonusCardNumber == 2)
+        {
+            coin += 6;
+        }
+        else if(bonusCardNumber == 3)
+        {
+            powerInt += 3;
+            //TODO
+        }
+        else if(bonusCardNumber == 4)
+        {
+            powerInt += 3;
+            worker += 1;
+        }
+        else if(bonusCardNumber == 5)
+        {
+            worker += 2;
+            //TODO
+        }
+        else if(bonusCardNumber == 6)
+        {
+            worker += 1;
+            //TODO
+        }
+        else if(bonusCardNumber == 7)
+        {
+            priest += 1;
+        }
+        else if(bonusCardNumber == 8)
+        {
+            coin += 2;
+            //TODO
+        }
+
     }
 
 }
