@@ -19,6 +19,7 @@ public class FavorTiles {
     private FavorTile twoVicPDwell;
 
     public FavorTiles(){
+        pack = new ArrayList<FavorTile>();
 
         advThreeAir = new FavorTile(3, 0, 0, null, 0, 0, 0);
         advThreeWater = new FavorTile(3, 0, 0, null, 0, 0, 0);

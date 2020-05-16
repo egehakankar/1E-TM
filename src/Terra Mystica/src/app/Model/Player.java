@@ -30,9 +30,8 @@ public class Player {
     private int [] templeTrack;
     private int [] sanctuaryTrack;
     private int [] strongholdTrack;
-    public Player( Faction faction, String name){
+    public Player( Faction faction){
         factionType = faction;
-        player = new Player(factionType, name);
         this.power = faction.getPower();
         this.priest = faction.getPriests();
         this.shovel = 0;
@@ -53,7 +52,6 @@ public class Player {
         buildings = new ArrayList<ArrayList<Integer>>();
         points = 0;
         cultLevel = faction.getCult();
-        this.name = name;
         town = 0;
         bridges = new ArrayList<>();
 

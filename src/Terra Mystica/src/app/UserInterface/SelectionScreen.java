@@ -1,6 +1,5 @@
 package app.UserInterface;
 
-
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -18,7 +17,8 @@ import java.awt.Toolkit;
 
 import javax.imageio.ImageIO;
 
-import app.Management.GameManager;
+import app.Model.*;
+import app.Management.*;
 
 public class SelectionScreen extends DisplayPanel {
     TextField area;
@@ -30,23 +30,23 @@ public class SelectionScreen extends DisplayPanel {
 
     private BufferedImage image;
 
-    private Font titleFont = new Font("Bitstream Vera Sans", 1, WIDTH*150/1920);
+    private Font titleFont = new Font("Bitstream Vera Sans", 1, WIDTH * 150 / 1920);
     private String title = "Terra Mystica";
-    
-    private int buttonWidth = WIDTH*300/1920;
-    private int buttonHeight = HEIGHT*120/1080;
 
-    private int countButtonWidth = WIDTH*100/1920;
-    private int countButtonHeight = HEIGHT*60/1080;
+    private int buttonWidth = WIDTH * 300 / 1920;
+    private int buttonHeight = HEIGHT * 120 / 1080;
 
-    private int factionButtonWidth = WIDTH*70/1920;
-    private int factionButtonHeight = HEIGHT*50/1080;
-    private int factionFont = WIDTH*12/1920;
-    private int factionButtonX = WIDTH*470/1920;
-    private int factionButtonY = HEIGHT*500/1080;
-    private int factionButtonSpacing = HEIGHT*40/1080;
+    private int countButtonWidth = WIDTH * 100 / 1920;
+    private int countButtonHeight = HEIGHT * 60 / 1080;
+
+    private int factionButtonWidth = WIDTH * 70 / 1920;
+    private int factionButtonHeight = HEIGHT * 50 / 1080;
+    private int factionFont = WIDTH * 12 / 1920;
+    private int factionButtonX = WIDTH * 470 / 1920;
+    private int factionButtonY = HEIGHT * 500 / 1080;
+    private int factionButtonSpacing = HEIGHT * 40 / 1080;
     private Font factionFont2 = new Font("Bitstream Vera Sans", 1, 16);
-    private int factionTitleY = HEIGHT*480/1080;
+    private int factionTitleY = HEIGHT * 480 / 1080;
 
     private int playerCount = 0;
 
@@ -67,7 +67,7 @@ public class SelectionScreen extends DisplayPanel {
     private int colorBlack[] = { 0, 0, 0 };
     private int blackC = 0;
 
-    private Font chooseFont = new Font("Bitstream Vera Sans", 1, WIDTH*30/1920);
+    private Font chooseFont = new Font("Bitstream Vera Sans", 1, WIDTH * 30 / 1920);
     private String choose = "Choose How Many Players";
 
     ArrayList<GuiButton> first = new ArrayList<GuiButton>();
@@ -76,11 +76,26 @@ public class SelectionScreen extends DisplayPanel {
     ArrayList<GuiButton> forth = new ArrayList<GuiButton>();
     ArrayList<GuiButton> fifth = new ArrayList<GuiButton>();
 
-    private String[] players;
+    private ArrayList<Faction> playerFactions;
+    Auren auren = new Auren();
+    Witches witches = new Witches();
+    Alchemists alchemists = new Alchemists();
+    Darklings darklings = new Darklings();
+    Mermaids mermaids = new Mermaids();
+    Swarmlings swarmlings = new Swarmlings();
+    Engineers engineers = new Engineers();
+    Dwarves dwarves = new Dwarves();
+    Giants giants = new Giants();
+    ChaosMagicians chaosMagicians = new ChaosMagicians();
+    Halflings halflings = new Halflings();
+    Cultists cultists = new Cultists();
+    Fakirs fakirs = new Fakirs();
+    Nomads nomads = new Nomads();
 
     public SelectionScreen(GameManager gM) {
         super();
 
+        playerFactions = new ArrayList<Faction>();
         buttonsA = new ArrayList<ArrayList<GuiButton>>();
 
         try {
@@ -92,7 +107,8 @@ public class SelectionScreen extends DisplayPanel {
         int colorBB[] = { 255, 178, 102 };
         int colorPB[] = { 102, 255, 102 };
 
-        GuiButton goBackB = new GuiButton(WIDTH*30/1920, HEIGHT*900/1080, buttonWidth, buttonHeight, colorBB, 50);	
+        GuiButton goBackB = new GuiButton(WIDTH * 30 / 1920, HEIGHT * 900 / 1080, buttonWidth, buttonHeight, colorBB,
+                50);
         goBackB.setText("Back");
         goBackB.addActionListener(new ActionListener() {
             @Override
@@ -101,21 +117,27 @@ public class SelectionScreen extends DisplayPanel {
             }
         });
         add(goBackB);
-        GuiButton playB = new GuiButton(GameManager.WIDTH - buttonWidth - 30, HEIGHT*900/1080, buttonWidth, buttonHeight, colorPB, 50);	
+        GuiButton playB = new GuiButton(GameManager.WIDTH - buttonWidth - 30, HEIGHT * 900 / 1080, buttonWidth,
+                buttonHeight, colorPB, 50);
         playB.setText("Play");
         playB.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Display.getInstance().setCurrentPanel("Selection Screen");
+                GameManager.setPlay(playerFactions);
+                Display.getInstance().setCurrentPanel("Bonus Card Screen");
             }
         });
         add(playB);
 
-        int colorSB[] = {192, 192, 192};
-        GuiButton set2 = new GuiButton(WIDTH*760/1920, HEIGHT*350/1080, countButtonWidth, countButtonHeight, colorSB, WIDTH*50/1920);	
-        GuiButton set3 = new GuiButton((WIDTH*760/1920)+countButtonWidth, HEIGHT*350/1080, countButtonWidth, countButtonHeight, colorSB, WIDTH*50/1920);	
-        GuiButton set4 = new GuiButton(WIDTH*760/1920+countButtonWidth*2, HEIGHT*350/1080, countButtonWidth, countButtonHeight, colorSB, WIDTH*50/1920);	
-        GuiButton set5 = new GuiButton(WIDTH*760/1920+countButtonWidth*3, HEIGHT*350/1080, countButtonWidth, countButtonHeight, colorSB, WIDTH*50/1920);
+        int colorSB[] = { 192, 192, 192 };
+        GuiButton set2 = new GuiButton(WIDTH * 760 / 1920, HEIGHT * 350 / 1080, countButtonWidth, countButtonHeight,
+                colorSB, WIDTH * 50 / 1920);
+        GuiButton set3 = new GuiButton((WIDTH * 760 / 1920) + countButtonWidth, HEIGHT * 350 / 1080, countButtonWidth,
+                countButtonHeight, colorSB, WIDTH * 50 / 1920);
+        GuiButton set4 = new GuiButton(WIDTH * 760 / 1920 + countButtonWidth * 2, HEIGHT * 350 / 1080, countButtonWidth,
+                countButtonHeight, colorSB, WIDTH * 50 / 1920);
+        GuiButton set5 = new GuiButton(WIDTH * 760 / 1920 + countButtonWidth * 3, HEIGHT * 350 / 1080, countButtonWidth,
+                countButtonHeight, colorSB, WIDTH * 50 / 1920);
 
         set2.setText("2");
         set3.setText("3");
@@ -168,18 +190,23 @@ public class SelectionScreen extends DisplayPanel {
         g.drawString(title, GameManager.WIDTH / 2 - widthM / 2, 160);
 
         g.setPaint(new Color(253, 245, 230));
-        g.fillRect(WIDTH*30/1920+buttonWidth+10, 220, WIDTH-(WIDTH*30/1920+buttonWidth)-(WIDTH-(GameManager.WIDTH - buttonWidth - 30))-25, HEIGHT-WIDTH*30/1920-buttonWidth-25);
+        g.fillRect(WIDTH * 30 / 1920 + buttonWidth + 10, 220,
+                WIDTH - (WIDTH * 30 / 1920 + buttonWidth) - (WIDTH - (GameManager.WIDTH - buttonWidth - 30)) - 25,
+                HEIGHT - WIDTH * 30 / 1920 - buttonWidth - 25);
 
         g.setColor(new Color(72, 61, 139));
         BasicStroke str = new BasicStroke(20);
         g.setStroke(str);
-        g.drawRoundRect(WIDTH*30/1920+buttonWidth+10, 220, WIDTH-(WIDTH*30/1920+buttonWidth)-(WIDTH-(GameManager.WIDTH - buttonWidth - 30))-25, HEIGHT-WIDTH*30/1920-buttonWidth-25, 50, 50);
+        g.drawRoundRect(WIDTH * 30 / 1920 + buttonWidth + 10, 220,
+                WIDTH - (WIDTH * 30 / 1920 + buttonWidth) - (WIDTH - (GameManager.WIDTH - buttonWidth - 30)) - 25,
+                HEIGHT - WIDTH * 30 / 1920 - buttonWidth - 25, 50, 50);
 
         g.setFont(chooseFont);
         g.setColor(Color.black);
         Rectangle2D b2 = g.getFontMetrics().getStringBounds(choose, g);
         int widthM2 = (int) b2.getWidth();
-        g.drawString(choose, GameManager.WIDTH / 2 - (HEIGHT*400/1080) - widthM2 / 2, (HEIGHT*350/1080) + (HEIGHT*60/1080) / 2);
+        g.drawString(choose, GameManager.WIDTH / 2 - (HEIGHT * 400 / 1080) - widthM2 / 2,
+                (HEIGHT * 350 / 1080) + (HEIGHT * 60 / 1080) / 2);
 
         super.render(g, gM);
 
@@ -378,6 +405,35 @@ public class SelectionScreen extends DisplayPanel {
     }
 
     private void playerEditor(GuiButton a, int newColor[], int col, int pl, ArrayList<GuiButton> wh) {
+        if (a.getText() == "Auren")
+            playerFactions.set(pl - 1, auren);
+        else if (a.getText() == "Witch")
+            playerFactions.set(pl - 1, witches);
+        else if (a.getText() == "Alchemist")
+            playerFactions.set(pl - 1, alchemists);
+        else if (a.getText() == "Darklings")
+            playerFactions.set(pl - 1, darklings);
+        else if (a.getText() == "Mermaid")
+            playerFactions.set(pl - 1, mermaids);
+        else if (a.getText() == "Swarmling")
+            playerFactions.set(pl - 1, swarmlings);
+        else if (a.getText() == "Engineer")
+            playerFactions.set(pl - 1, engineers);
+        else if (a.getText() == "Dwarve")
+            playerFactions.set(pl - 1, dwarves);
+        else if (a.getText() == "Giant")
+            playerFactions.set(pl - 1, giants);
+        else if (a.getText() == "Chaos")
+            playerFactions.set(pl - 1, chaosMagicians);
+        else if (a.getText() == "Halfling")
+            playerFactions.set(pl - 1, halflings);
+        else if (a.getText() == "Cultist")
+            playerFactions.set(pl - 1, cultists);
+        else if (a.getText() == "Fakir")
+            playerFactions.set(pl - 1, fakirs);
+        else if (a.getText() == "Nomad")
+            playerFactions.set(pl - 1, nomads);
+
         if (a.getColor()[0] == colorBlack[0] && a.getColor()[1] == colorBlack[1] && a.getColor()[2] == colorBlack[2]) {
             blackC = pl;
             if (greenC == pl) {
@@ -498,7 +554,6 @@ public class SelectionScreen extends DisplayPanel {
                 b.setColor(b.getColor());
             }
         }
-        players[pl] = a.getText();
     }
 
     private void addOption(int count) {
@@ -507,6 +562,12 @@ public class SelectionScreen extends DisplayPanel {
             for (GuiButton b : temp) {
                 remove(b);
             }
+        }
+
+        playerFactions = new ArrayList<Faction>();
+
+        for (int a = 0; a < count; a++) {
+            playerFactions.add(null);
         }
 
         buttonsA.clear();

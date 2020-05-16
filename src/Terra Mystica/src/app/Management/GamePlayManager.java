@@ -7,10 +7,10 @@ import app.Model.*;
 public class GamePlayManager {
 
     ArrayList<Player> playerList;
-    public GamePlayManager( ArrayList<Faction> factionList, ArrayList<String> names){
-
-        for ( int i = 0; i < names.size(); i++){
-            Player player = new Player( factionList.get(i), names.get(i));
+    public GamePlayManager( ArrayList<Faction> factionList){
+        playerList = new ArrayList<Player>();
+        for ( int i = 0; i < factionList.size(); i++){
+            Player player = new Player(factionList.get(i));
             playerList.add(player);
         }
     }
