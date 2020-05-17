@@ -12,6 +12,6 @@ public abstract class Faction {
     public abstract int getWorkers();
     public abstract int[] getCult();
     public abstract int[] getPower();
-    public abstract String getColor();
+    public abstract int[] getColor();
     
 }

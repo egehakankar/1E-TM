@@ -9,9 +9,10 @@ public class Witches extends Faction {
         name = "Witches";
     }
 
-    public String getColor()
+    public int[] getColor()
     {
-        return "Green";
+        int colorGreen[] = { 112, 194, 115 };
+        return colorGreen;
     }
 
     public int getDwellings(){

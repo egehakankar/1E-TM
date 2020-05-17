@@ -9,9 +9,10 @@ public class Swarmlings extends Faction{
         name = "Swarmlings";
     }
 
-    public String getColor()
+    public int[] getColor()
     {
-        return "Blue";
+        int colorBlue[] = { 112, 155, 219 };
+        return colorBlue;
     }
     
     public int getDwellings(){

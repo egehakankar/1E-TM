@@ -7,9 +7,10 @@ public class Halflings extends Faction{
         name = "Halflings";
     }
 
-    public String getColor()
+    public int[] getColor()
     {
-        return "Brown";
+        int colorBrown[] = { 140, 104, 100 };
+        return colorBrown;
     }
 
     public int getDwellings(){

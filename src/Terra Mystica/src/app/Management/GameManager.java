@@ -86,7 +86,7 @@ public class GameManager extends JFrame implements KeyListener, MouseListener, R
         disp.add("Selection Screen", new SelectionScreen(this));
         disp.add("GameStart", new GameStartScreen());
         disp.add("Bonus Card Screen", new BonusCardScreen());
-        disp.add( "Cult Screen", new CultScreen() );
+        disp.add("Cult Screen", new CultScreen() );
 
         //Sets current screen.
         disp.setCurrentPanel("Cult Screen"); 

@@ -7,9 +7,10 @@ public class Alchemists extends Faction{
         name = "Alchemists";
     }
 
-    public String getColor()
+    public int[] getColor()
     {
-        return "Black";
+        int colorBlack[] = { 0, 0, 0 };
+        return colorBlack;
     }
 
     public int getDwellings(){
