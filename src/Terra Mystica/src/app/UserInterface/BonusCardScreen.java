@@ -124,7 +124,11 @@ public class BonusCardScreen extends DisplayPanel {
             bonusCards.get(i).addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    bonusCards.get(a).changeColorExact();
+                    
+                    int[] cll= players.get(turnOfPlayer).getFaction().getColor();
+                    Color c = new Color(cll[0],cll[1], cll[2]);
+                    
+                    bonusCards.get(a).changeColorExact(c);
                     players.get(turnOfPlayer).setBonusCardNumber(bonusCards.get(a).getCardNumer());
                     players.get(turnOfPlayer).updateByBonuscardNumber(bonusCards.get(a).getCardNumer());
                     turnOfPlayer ++;
