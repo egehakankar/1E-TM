@@ -25,6 +25,7 @@ public class CultScreen extends DisplayPanel{
     //1920,1080
     //1366x768
     private Font numberFont = new Font("Bitstream Vera Sans", 1, 50);
+    private Font powerFont = new Font("Bitstream Vera Sans", 1, 30);
 
     private int buttonWidthB = width * 400 / 1920;
     private int buttonHeightB = height * 120 / 1080;
@@ -41,6 +42,7 @@ public class CultScreen extends DisplayPanel{
     private Color blue = new Color( 112, 155, 219 );
     private Color brown = new Color ( 140, 104, 100 );
     private Color gray = new Color ( 192, 192, 192 );
+    private Color purple = new Color(189, 19, 149);
 
     BasicStroke str = new BasicStroke(10);
     BasicStroke str2 = new BasicStroke(5);
@@ -129,7 +131,6 @@ public class CultScreen extends DisplayPanel{
         
         
         g.setColor(Color.RED);
-        //g.fillRoundRect(150, 100, 100, cultHeight,13,13);
         g.setStroke(str);
         g.setFont(numberFont);
         int n = 0;
@@ -150,13 +151,31 @@ public class CultScreen extends DisplayPanel{
                 g.fillRoundRect(x+j*cultWidth, y+i*cultHeight+i*spacing2, cultWidth, cultHeight, 13, 13);
                 g.setColor(Color.BLACK);
                 g.drawRoundRect(x+j*cultWidth, y+i*cultHeight+i*spacing2, cultWidth, cultHeight, 13, 13);
+                
+                if(j == 1 || j == 4 || j == 6 || j == 8)
+                {
+                    Color temp = g.getColor();
+                    g.setColor(purple);
+                    g.drawLine( x+j*cultWidth, y+i*cultHeight+i*spacing2, x+j*cultWidth, y+i*cultHeight+i*spacing2+cultHeight);
+                    g.setFont(powerFont);
+                    //if( i ==0 )
+                    {
+                        if( j == 8 )
+                            g.drawString( "1", x+j*cultWidth-cultWidth/8, y+i*cultHeight+i*spacing2-12 );
+                        else if( j == 1 )
+                            g.drawString( "3", x+j*cultWidth-cultWidth/8, y+i*cultHeight+i*spacing2-12 );
+                        else
+                            g.drawString( "2", x+j*cultWidth-cultWidth/8, y+i*cultHeight+i*spacing2-12 );
+                    }
+                    g.setFont(numberFont);
+                    g.setColor(temp);
+                }
+                
                 if(j == 0)
                     n = 0;
                 else
                     n = cultWidth/5;
                 g.drawString(""+(10-j), x+j*cultWidth + n, y+i*cultHeight+(i+2)*spacing2);
-                
-                //Drawing button round rects
 
                 
                 

@@ -130,4 +130,10 @@ public class BonusCard {
         colorS = new Color(0, 0, 0);
     }
 
+    public void changeColorExact(Color c) {
+        colorNS = c;
+        colorHover = c;
+        colorS = c;
+    }
+
 }
