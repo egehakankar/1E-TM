@@ -8,7 +8,8 @@ public class Player {
     private Player player;
     private Faction factionType;
     private int[] power;
-    private int powerInt; // BErdan ekledi
+    //private int powerInt; // BErdan ekledi
+    private int key; //Number of keys. Berdan ekledi.
     private int priest;
     private int shovel;
     private int ship;
@@ -304,6 +305,11 @@ public class Player {
         BonusCards bcards = new BonusCards();
         ArrayList<BonusCard> allCards = bcards.getCards();
         bc = allCards.get(number);
+    }
+
+    public int getKeyNumber()
+    {
+        return key;
     }
 
 }

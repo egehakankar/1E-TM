@@ -1,5 +1,6 @@
 package app.UserInterface;
 
+import java.util.ArrayList;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.BasicStroke;
@@ -14,6 +15,8 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 import app.Management.GameManager;
+import app.Management.GamePlayManager;
+import app.Model.Player;
 
 public class CultScreen extends DisplayPanel{
 
@@ -27,16 +30,16 @@ public class CultScreen extends DisplayPanel{
     private Font numberFont = new Font("Bitstream Vera Sans", 1, 50);
     private Font powerFont = new Font("Bitstream Vera Sans", 1, 30);
 
-    private int buttonWidthB = width * 400 / 1920;
+    private int buttonWidthB = width * 300 / 1920;
     private int buttonHeightB = height * 120 / 1080;
 
-    private int spacing = 150;
-    private int spacing2 = 40;
+    private int spacing = height*150/768;
+    private int spacing2 = height*40/768;
     private int cultHeight = (height-spacing*2)/4;
-    private int cultWidth = 70;
+    private int cultWidth = width*70/1366;
 
-    private int x = 350;
-    private int y = 100;
+    private int x = width*350/1366;
+    private int y = height*100/768;
 
     private Color red = new Color( 255, 106, 107 );
     private Color blue = new Color( 112, 155, 219 );
@@ -50,6 +53,9 @@ public class CultScreen extends DisplayPanel{
 
     int[][] colors = {{ 255, 106, 107}, {112, 155, 219}, {140, 104, 100}, {192, 192, 192}};
     int colorBB[] = { 255, 178, 102 };
+
+    private static ArrayList<Player> players;
+    private int turnOfPlayer = 1;
     
 
     public CultScreen() {
@@ -105,14 +111,14 @@ public class CultScreen extends DisplayPanel{
                 c++;
             }
         }
-
-        GuiButton goBackB = new GuiButton(30, height * 900 / 1080, buttonWidthB, buttonHeightB, colorBB, 50);
+        //1366x768
+        GuiButton goBackB = new GuiButton( width*125/1366, height-spacing , buttonWidthB, buttonHeightB, colorBB, 50);
         goBackB.setText("Back");
 
         goBackB.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Display.getInstance().setCurrentPanel("Menu");
+                Display.getInstance().setCurrentPanel("MainGameScreen");
             }
         });
         add(goBackB);
@@ -127,10 +133,15 @@ public class CultScreen extends DisplayPanel{
     public void render(Graphics2D g, GameManager gM) {
 
         //title = "Select a cult for " + players.get(turnOfPlayer).getFaction().getName();
-
+        players = GamePlayManager.getPlayerList();
         g.drawImage(image, 0, 0, width, height, null);
         g.drawImage(image2, 100, 50, width-150, height-100, null);
         g.drawImage( key, 140, 80, 160,90, null );
+        //temp = g
+        g.setFont(numberFont);
+        int[] colorOfPlayer = players.get(turnOfPlayer).getFaction().getColor();
+        g.setColor( new Color(colorOfPlayer[0], colorOfPlayer[1], colorOfPlayer[2]) );
+        g.drawString("" + players.get(turnOfPlayer).getKeyNumber(), 220, 180);
 
         g.setStroke(str3);
         g.setColor(new Color(72, 61, 139));
