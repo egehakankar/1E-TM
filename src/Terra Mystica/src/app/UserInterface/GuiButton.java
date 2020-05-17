@@ -18,7 +18,7 @@ public class GuiButton {
     private State currentState = State.RELEASED;
     private Rectangle clickBox;
     private ArrayList<ActionListener> actionListeners;
-    private String text = "";
+    private String text = " ";
 
     private Color released;
     private Color hover;
@@ -30,6 +30,7 @@ public class GuiButton {
     private int color2;
 
     public GuiButton(int x, int y, int width, int height, int color[], int fontSize) {
+        
         if (color[0] != -1) {
             clickBox = new Rectangle(x, y, width, height);
             actionListeners = new ArrayList<ActionListener>();

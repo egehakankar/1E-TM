@@ -1,6 +1,8 @@
 package app.Model;
 
 import java.util.ArrayList;
+import app.Model.BonusCards;
+import app.Model.BonusCard;
 
 public class Player {
     private Player player;
@@ -15,7 +17,7 @@ public class Player {
     private int startingDwellings;
     private int id;
     private int town;
-    private ArrayList<BonusCards> bonusCards;
+    private BonusCard bc;
     private int bonusCardNumber;
     // dwelling, trading, temple, sanctuary,
     private ArrayList<ArrayList<ArrayList<Boolean>>>  buildings;
@@ -49,7 +51,6 @@ public class Player {
         this.worker = faction.getWorkers();
         this.spade = 0;
         id = 0;
-        bonusCards = new ArrayList<BonusCards>();
         
         points = 0;
         cultLevel = faction.getCult();
@@ -143,13 +144,8 @@ public class Player {
     public int getCoin() {
         return coin;
     }
-
-    public void updateBonusCards(ArrayList<BonusCards> bonusCards) {
-        this.bonusCards = bonusCards;
-    }
-
-    public ArrayList<BonusCards> getBonusCards() {
-        return bonusCards;
+    public BonusCard getBonusCard(){
+        return bc;
     }
 
     public void updateBuildings(ArrayList<ArrayList<ArrayList<Boolean>>> placesWithBuildings) {
@@ -254,34 +250,11 @@ public class Player {
     }
 
     // this method updates player's abilities according to their bonus card
-    public void updateByBonuscardNumber() {
-        if (bonusCardNumber == 0) {
-            coin += 2;
-            // TODO
-        } else if (bonusCardNumber == 1) {
-            coin += 4;
-            // TODO
-        } else if (bonusCardNumber == 2) {
-            coin += 6;
-        } else if (bonusCardNumber == 3) {
-            powerInt += 3;
-            // TODO
-        } else if (bonusCardNumber == 4) {
-            powerInt += 3;
-            worker += 1;
-        } else if (bonusCardNumber == 5) {
-            worker += 2;
-            // TODO
-        } else if (bonusCardNumber == 6) {
-            worker += 1;
-            // TODO
-        } else if (bonusCardNumber == 7) {
-            priest += 1;
-        } else if (bonusCardNumber == 8) {
-            coin += 2;
-            // TODO
-        }
-
+    public void updateByBonuscardNumber( int number)
+    {
+        BonusCards bcards = new BonusCards();
+        ArrayList<BonusCard> allCards = bcards.getCards();
+        bc = allCards.get(number);
     }
 
 }

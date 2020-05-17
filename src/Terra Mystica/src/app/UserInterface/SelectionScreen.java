@@ -29,6 +29,7 @@ public class SelectionScreen extends DisplayPanel {
     int HEIGHT = screenSize.height;
 
     private BufferedImage image;
+    private BufferedImage image2;
 
     private Font titleFont = new Font("Bitstream Vera Sans", 1, WIDTH * 150 / 1920);
     private String title = "Terra Mystica";
@@ -104,11 +105,16 @@ public class SelectionScreen extends DisplayPanel {
             e.printStackTrace();
         }
 
+        try {
+            image2 = ImageIO.read(getClass().getResourceAsStream("../images/background2.jpg"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         int colorBB[] = { 255, 178, 102 };
         int colorPB[] = { 102, 255, 102 };
 
-        GuiButton goBackB = new GuiButton(WIDTH * 30 / 1920, HEIGHT * 900 / 1080, buttonWidth, buttonHeight, colorBB,
-                50);
+        GuiButton goBackB = new GuiButton(WIDTH * 30 / 1920, HEIGHT * 900 / 1080, buttonWidth, buttonHeight, colorBB,50);
         goBackB.setText("Back");
         goBackB.addActionListener(new ActionListener() {
             @Override
@@ -194,6 +200,9 @@ public class SelectionScreen extends DisplayPanel {
                 WIDTH - (WIDTH * 30 / 1920 + buttonWidth) - (WIDTH - (GameManager.WIDTH - buttonWidth - 30)) - 25,
                 HEIGHT - WIDTH * 30 / 1920 - buttonWidth - 25);
 
+        g.drawImage(image2, WIDTH * 30 / 1920 + buttonWidth + 10, 220,
+        WIDTH - (WIDTH * 30 / 1920 + buttonWidth) - (WIDTH - (GameManager.WIDTH - buttonWidth - 30)) - 25,
+        HEIGHT - WIDTH * 30 / 1920 - buttonWidth - 25, null);
         g.setColor(new Color(72, 61, 139));
         BasicStroke str = new BasicStroke(20);
         g.setStroke(str);
