@@ -89,7 +89,7 @@ public class GameManager extends JFrame implements KeyListener, MouseListener, R
         disp.add("Cult Screen", new CultScreen() );
 
         //Sets current screen.
-        disp.setCurrentPanel("Cult Screen"); 
+        disp.setCurrentPanel("Menu"); 
     }
 
     public static void setPlay(ArrayList<Faction> factions)

@@ -566,7 +566,7 @@ public class SelectionScreen extends DisplayPanel {
     }
 
     private void addOption(int count) {
-        for (ArrayList a : buttonsA) {
+        for (ArrayList<GuiButton> a : buttonsA) {
             ArrayList<GuiButton> temp = a;
             for (GuiButton b : temp) {
                 remove(b);
@@ -596,7 +596,7 @@ public class SelectionScreen extends DisplayPanel {
             buttonsA.add(first);
             buttonsA.add(second);
 
-            for (ArrayList a : buttonsA) {
+            for (ArrayList<GuiButton> a : buttonsA) {
                 ArrayList<GuiButton> temp = a;
                 for (GuiButton b : temp) {
                     add(b);
@@ -613,7 +613,7 @@ public class SelectionScreen extends DisplayPanel {
             buttonsA.add(second);
             buttonsA.add(third);
 
-            for (ArrayList a : buttonsA) {
+            for (ArrayList<GuiButton> a : buttonsA) {
                 ArrayList<GuiButton> temp = a;
                 for (GuiButton b : temp) {
                     add(b);
@@ -632,7 +632,7 @@ public class SelectionScreen extends DisplayPanel {
             buttonsA.add(third);
             buttonsA.add(forth);
 
-            for (ArrayList a : buttonsA) {
+            for (ArrayList<GuiButton> a : buttonsA) {
                 ArrayList<GuiButton> temp = a;
                 for (GuiButton b : temp) {
                     add(b);
@@ -653,7 +653,7 @@ public class SelectionScreen extends DisplayPanel {
             buttonsA.add(forth);
             buttonsA.add(fifth);
 
-            for (ArrayList a : buttonsA) {
+            for (ArrayList<GuiButton> a : buttonsA) {
                 ArrayList<GuiButton> temp = a;
                 for (GuiButton b : temp) {
                     add(b);
