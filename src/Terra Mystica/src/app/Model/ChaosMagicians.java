@@ -6,6 +6,11 @@ public class ChaosMagicians extends Faction{
     public ChaosMagicians(){
         name = "ChaosMagicians";
     }
+
+    public String getColor()
+    {
+        return "Red";
+    }
     
     public int getDwellings(){
         return 1;

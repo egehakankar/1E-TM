@@ -6,6 +6,12 @@ public class Nomads extends Faction{
     public Nomads(){
         name = "Nomads";
     }
+
+    public String getColor()
+    {
+        return "Yellow";
+    }
+
     public int getDwellings(){
         return 3;
     }

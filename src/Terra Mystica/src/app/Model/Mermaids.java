@@ -6,6 +6,11 @@ public class Mermaids extends Faction{
     public Mermaids(){
         name = "Mermaids";
     }
+
+    public String getColor()
+    {
+        return "Blue";
+    }
     
     public int getDwellings(){
         return 2;

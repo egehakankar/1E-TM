@@ -6,6 +6,12 @@ public class Fakirs extends Faction{
     public Fakirs(){
         name = "Fakirs";
     }
+
+    public String getColor()
+    {
+        return "Yellow";
+    }
+
     public int getDwellings(){
         return 2;
     }

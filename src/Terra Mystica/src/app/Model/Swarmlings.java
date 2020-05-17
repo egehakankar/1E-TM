@@ -8,17 +8,21 @@ public class Swarmlings extends Faction{
     public Swarmlings(){
         name = "Swarmlings";
     }
+
+    public String getColor()
+    {
+        return "Blue";
+    }
     
     public int getDwellings(){
         return 2;
     }
     public void useSpecialAction( Player player){
-        ArrayList<ArrayList<Integer>> buildings = player.getBuildings();
+        /*ArrayList<ArrayList<Integer>> buildings = player.getBuildings();
         if( buildings.get(0).size() > 0){
             buildings.get(1).add(buildings.get(1).size());
             player.updateBuildings(buildings);
-        }
-
+        }*/
     }
     public void useAbility( Player player){
         player.updateWorker(player.getWorker() + 3);

@@ -130,7 +130,7 @@ public class SelectionScreen extends DisplayPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 GameManager.setPlay(playerFactions);
-                Display.getInstance().setCurrentPanel("Bonus Card Screen");
+                Display.getInstance().setCurrentPanel("GameStart");
             }
         });
         add(playB);

@@ -35,7 +35,9 @@ public class BonusCardScreen extends DisplayPanel {
     //1920,1080
     //1366x768
     private Font titleFont = new Font("Bitstream Vera Sans", 1, width*50/1366);
-    private String title = "Select a bonus card for " + players.get(turnOfPlayer).getFaction().getName();
+    private String title = "Select a bonus card for ";
+    private String faction;
+    
     private int buttonWidth = width*150/1366;
 
     private int buttonHeight = height*500/768;
@@ -62,7 +64,7 @@ public class BonusCardScreen extends DisplayPanel {
     @Override
     public void render(Graphics2D g, GameManager gM) {
 
-        title = "Select a bonus card for " + players.get(turnOfPlayer).getFaction().getName();
+        faction = players.get(turnOfPlayer).getFaction().getName();
 
         g.drawImage(image, 0, 0, width, height, null);
 
@@ -74,6 +76,9 @@ public class BonusCardScreen extends DisplayPanel {
         Rectangle2D b = g.getFontMetrics().getStringBounds(title, g);
         int widthM = (int) b.getWidth();
         g.drawString(title, GameManager.WIDTH / 2 - widthM / 2 + 20, width*100/1366);
+        int[] colorOfCurrentPlayer = players.get(turnOfPlayer).getFaction().getColor();
+        g.setColor(new Color(colorOfCurrentPlayer[0],colorOfCurrentPlayer[1], colorOfCurrentPlayer[2]));
+        g.drawString(faction, GameManager.WIDTH / 2 - widthM / 2 + 20, width*100/1366);
 
         players = GamePlayManager.getPlayerList();
         noOfBonusCards = players.size() +3;
