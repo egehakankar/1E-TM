@@ -8,10 +8,6 @@ public class GameUpdater {
 
     public GameUpdater(){
 
-        
-
     }
 
-
-    
 }

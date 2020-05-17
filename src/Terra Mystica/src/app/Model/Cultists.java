@@ -7,6 +7,12 @@ public class Cultists extends Faction{
         name = "Cultists";
     }
 
+    public int[] getColor()
+    {
+        int colorBrown[] = { 140, 104, 100 };
+        return colorBrown;
+    }
+
     public int getDwellings(){
         return 2;
     }

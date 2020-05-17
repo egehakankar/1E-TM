@@ -1,6 +1,5 @@
 package app.UserInterface;
 
-public class GuiRadioButton 
-{
-    
+public class GuiRadioButton {
+
 }

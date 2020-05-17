@@ -9,6 +9,12 @@ public class Witches extends Faction {
         name = "Witches";
     }
 
+    public int[] getColor()
+    {
+        int colorGreen[] = { 112, 194, 115 };
+        return colorGreen;
+    }
+
     public int getDwellings(){
         return 2;
     }
@@ -19,12 +25,12 @@ public class Witches extends Faction {
         player.updatePoints(c);
     }
     public void useSpecialAction(Player player){
-        ArrayList<ArrayList<Integer>> arr = player.getBuildings();
+        /*ArrayList<ArrayList<Integer>> arr = player.getBuildings();
 
             if (arr.get(0).size() < 3){
 
                 arr.get(0).add(arr.get(0).size());
-            }
+            }*/
     }
 
     public void useAfterStrongHold(Player player){

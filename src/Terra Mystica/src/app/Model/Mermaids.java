@@ -6,6 +6,12 @@ public class Mermaids extends Faction{
     public Mermaids(){
         name = "Mermaids";
     }
+
+    public int[] getColor()
+    {
+        int colorBlue[] = { 112, 155, 219 };
+        return colorBlue;
+    }
     
     public int getDwellings(){
         return 2;

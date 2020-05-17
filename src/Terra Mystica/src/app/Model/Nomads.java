@@ -1,11 +1,18 @@
 package app.Model;
 
-public class Nomads {
+public class Nomads extends Faction{
 
     String name;
     public Nomads(){
         name = "Nomads";
     }
+
+    public int[] getColor()
+    {
+        int colorYellow[] = { 250, 218, 100 };
+        return colorYellow;
+    }
+
     public int getDwellings(){
         return 3;
     }

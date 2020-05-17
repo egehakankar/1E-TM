@@ -6,6 +6,13 @@ public class Fakirs extends Faction{
     public Fakirs(){
         name = "Fakirs";
     }
+
+    public int[] getColor()
+    {
+        int colorYellow[] = { 250, 218, 100 };
+        return colorYellow;
+    }
+
     public int getDwellings(){
         return 2;
     }

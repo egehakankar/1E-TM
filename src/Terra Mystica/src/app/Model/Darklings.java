@@ -7,6 +7,12 @@ public class Darklings extends Faction{
         name = "Darklings";
     }   
 
+    public int[] getColor()
+    {
+        int colorBlack[] = { 0, 0, 0 };
+        return colorBlack;
+    }
+
     public int getDwellings(){
         return 2;
     }

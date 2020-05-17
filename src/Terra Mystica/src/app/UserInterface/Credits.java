@@ -16,20 +16,19 @@ import javax.imageio.ImageIO;
 
 import app.Management.GameManager;
 
-public class Credits extends DisplayPanel
-{
+public class Credits extends DisplayPanel {
     Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
     int WIDTH = screenSize.width;
     int HEIGHT = screenSize.height;
-    //1920,1080
-    private int buttonWidth = WIDTH*400/1920;
-    private int spacing = HEIGHT*100/1080;
-    private int buttonHeight = HEIGHT*120/1080;
+    // 1920,1080
+    private int buttonWidth = WIDTH * 400 / 1920;
+    private int spacing = HEIGHT * 100 / 1080;
+    private int buttonHeight = HEIGHT * 120 / 1080;
 
-    private Font titleFont = new Font("Bitstream Vera Sans", 1, WIDTH*120/1920);
+    private Font titleFont = new Font("Bitstream Vera Sans", 1, WIDTH * 120 / 1920);
     private String title = "Credits";
 
-    private Font creditsFont = new Font("Arial", 1, WIDTH*50/1920);
+    private Font creditsFont = new Font("Arial", 1, WIDTH * 50 / 1920);
     private String creditsT1 = "Ege Hakan Karaağaç";
     private String creditsT2 = "Berdan Akyürek";
     private String creditsT3 = "Ömer Olkun";
@@ -37,25 +36,27 @@ public class Credits extends DisplayPanel
     private String creditsT5 = "Fırat Yönak";
 
     private BufferedImage image;
+    private BufferedImage image2;
 
-    public Credits()
-    {
-        try{
+    public Credits() {
+        try {
             image = ImageIO.read(getClass().getResourceAsStream("../images/background1.jpg"));
-        }catch(IOException e)
-        {
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try {
+            image2 = ImageIO.read(getClass().getResourceAsStream("../images/background2.jpg"));
+        } catch (IOException e) {
             e.printStackTrace();
         }
 
-        int colorBB[] = {255, 178, 102};
+        int colorBB[] = { 255, 178, 102 };
 
-        GuiButton goBackB = new GuiButton(30, HEIGHT*900/1080, buttonWidth, buttonHeight, colorBB, 50);	
+        GuiButton goBackB = new GuiButton(30, HEIGHT * 900 / 1080, buttonWidth, buttonHeight, colorBB, 50);
         goBackB.setText("Back");
-        goBackB.addActionListener(new ActionListener()
-        {
+        goBackB.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) 
-            {
+            public void actionPerformed(ActionEvent e) {
                 Display.getInstance().setCurrentPanel("Menu");
             }
         });
@@ -63,32 +64,33 @@ public class Credits extends DisplayPanel
     }
 
     @Override
-    public void render(Graphics2D g, GameManager gM)
-    {
+    public void render(Graphics2D g, GameManager gM) {
         g.drawImage(image, 0, 0, WIDTH, HEIGHT, null);
 
         super.render(g, gM);
 
-		g.setFont(titleFont);
+        g.setFont(titleFont);
         g.setColor(new Color(240, 255, 255));
         Rectangle2D b = g.getFontMetrics().getStringBounds(title, g);
-        int widthM = (int)b.getWidth();
+        int widthM = (int) b.getWidth();
         g.drawString(title, GameManager.WIDTH / 2 - widthM / 2 + 30, 160);
 
         g.setPaint(new Color(253, 245, 230));
-        g.fillRect(((WIDTH*580/1080) / 2) - 50, 210, WIDTH*580/1080, HEIGHT*690/1080);
+        g.fillRect(((WIDTH * 580 / 1080) / 2) - 50, 210, WIDTH * 580 / 1080, HEIGHT * 690 / 1080);
 
+        g.drawImage(image2, ((WIDTH * 580 / 1080) / 2) - 60, 200, WIDTH * 580 / 1080 + 10, HEIGHT * 690 / 1080 + 10, null);
         g.setColor(new Color(72, 61, 139));
         BasicStroke str = new BasicStroke(20);
         g.setStroke(str);
-        g.drawRoundRect(((WIDTH*580/1080) / 2) - 60, 200, WIDTH*580/1080 + 10, HEIGHT*690/1080 + 10, 50, 50);
+        g.drawRoundRect(((WIDTH * 580 / 1080) / 2) - 60, 200, WIDTH * 580 / 1080 + 10, HEIGHT * 690 / 1080 + 10, 50,
+                50);
 
         g.setFont(creditsFont);
         g.setColor(new Color(72, 61, 139));
-        g.drawString(creditsT1, GameManager.WIDTH / 2 - widthM / 2, HEIGHT*320/1080 + 30);
-        g.drawString(creditsT2, GameManager.WIDTH / 2 - widthM / 2, HEIGHT*320/1080 + 30+spacing);
-        g.drawString(creditsT3, GameManager.WIDTH / 2 - widthM / 2, HEIGHT*320/1080 + 30+spacing*2);
-        g.drawString(creditsT4, GameManager.WIDTH / 2 - widthM / 2, HEIGHT*320/1080 + 30+spacing*3);
-        g.drawString(creditsT5, GameManager.WIDTH / 2 - widthM / 2, HEIGHT*320/1080 + 30+spacing*4);
-	}
+        g.drawString(creditsT1, GameManager.WIDTH / 2 - widthM / 2, HEIGHT * 320 / 1080 + 30);
+        g.drawString(creditsT2, GameManager.WIDTH / 2 - widthM / 2, HEIGHT * 320 / 1080 + 30 + spacing);
+        g.drawString(creditsT3, GameManager.WIDTH / 2 - widthM / 2, HEIGHT * 320 / 1080 + 30 + spacing * 2);
+        g.drawString(creditsT4, GameManager.WIDTH / 2 - widthM / 2, HEIGHT * 320 / 1080 + 30 + spacing * 3);
+        g.drawString(creditsT5, GameManager.WIDTH / 2 - widthM / 2, HEIGHT * 320 / 1080 + 30 + spacing * 4);
+    }
 }

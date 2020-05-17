@@ -7,6 +7,13 @@ String name;
     public Giants(){
         name = "Giants";
     }
+
+    public int[] getColor()
+    {
+        int colorRed[] = { 255, 106, 107 };
+        return colorRed;
+    }
+
     public void useSpecialAction( Player player){
         player.updateSpade(player.getSpade() + 2);
     }

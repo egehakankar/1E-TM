@@ -13,14 +13,31 @@ public class Auren extends Faction{
 
     }
 
+    public int[] getColor()
+    {
+        int colorGreen[] = { 112, 194, 115 };
+        return colorGreen;
+    }
+
     public int getDwellings(){
         return 2;
     }
     public void useSpecialAction( Player player){
 
-        int t = (int)( Math.random() * 4) + 0;
         int [] temp = player.getCultLevel();
-        temp[t] = temp[t] + 2;
+        if ( temp[0] > 7 && temp[0] < 10){
+            temp[0] = temp[0] + 2;
+        }
+        else if ( temp[1] > 7 && temp[1] < 10){
+            temp[1] = temp[1] + 2;
+        }
+        else if ( temp[2] > 7 && temp[2] < 10){
+            temp[2] = temp[2] + 2;
+        }
+        else if ( temp[3] > 7 && temp[3] < 10){
+            temp[3] = temp[3] + 2;
+        }
+        
         player.updateCultLevel(temp);
     }
     public void useAbility(Player player){
