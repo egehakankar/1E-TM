@@ -20,7 +20,7 @@ public class CultScreen extends DisplayPanel{
     private Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
     private int width = screenSize.width;
     private int height = screenSize.height;
-    private BufferedImage image, image2;
+    private BufferedImage image, image2, key;
 
     //1920,1080
     //1366x768
@@ -63,6 +63,12 @@ public class CultScreen extends DisplayPanel{
 
         try {
             image2 = ImageIO.read(getClass().getResourceAsStream("../images/background2.jpg"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            key = ImageIO.read(getClass().getResourceAsStream("../images/key.png"));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -124,6 +130,7 @@ public class CultScreen extends DisplayPanel{
 
         g.drawImage(image, 0, 0, width, height, null);
         g.drawImage(image2, 100, 50, width-150, height-100, null);
+        g.drawImage( key, 140, 80, 160,90, null );
 
         g.setStroke(str3);
         g.setColor(new Color(72, 61, 139));
