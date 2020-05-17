@@ -19,12 +19,17 @@ public class Player {
     private int town;
     private BonusCard bc;
     private int bonusCardNumber;
-    // dwelling, trading, temple, sanctuary,
+    // dwelling, trading, temple, stronghold, sanctuary
     private ArrayList<ArrayList<ArrayList<Boolean>>>  buildings;
     private int points;
     // air, water, fire, earth
     private int[] cultLevel;
+    // 0 -> 3 space, others 2 space
+    private int [][] cultSpaces;
+    private String name;
     private int spade;
+    //0 -> spade costs 3 workers, 1 -> spade costs 2 workers, 2-> spade costs 1 worker
+    private int spadeLevel;
     private ArrayList<ArrayList<Integer>> bridges;
 
     // 0 element of array show empty places, 1 show number of placed structure
@@ -50,10 +55,18 @@ public class Player {
         this.startingDwellings = factionType.getDwellings();
         this.worker = faction.getWorkers();
         this.spade = 0;
+        spadeLevel = 0;
         id = 0;
         
         points = 0;
         cultLevel = faction.getCult();
+        cultSpaces = new int[4][4];
+        for( int i = 0; i < 4; i++){
+            for( int j = 0; j < 4; j++){
+                cultSpaces[i][j] = 0;
+            }
+        }
+        this.name = name;
         town = 0;
         bridges = new ArrayList<>();
 
@@ -191,9 +204,16 @@ public class Player {
     public int getSpade() {
         return spade;
     }
+    
 
     public void updateSpade(int spade) {
         this.spade = spade;
+    }
+    public int getSpadeLevel(){
+        return spadeLevel;
+    }
+    public void updateSpadeLevel( int spadeLevel){
+        this.spadeLevel = spadeLevel;
     }
 
     public ArrayList<ArrayList<Integer>> getBridges() {
@@ -244,6 +264,12 @@ public class Player {
         return strongholdTrack;
     }
 
+    public void updateCultSpace( int [][] cultSpaces){
+        this.cultSpaces = cultSpaces;
+    }
+    public int[][] getCultSpaces(){
+        return cultSpaces;
+    }
     // Berdan Yazdı
     public void setBonusCardNumber(int number) {
         bonusCardNumber = number;
