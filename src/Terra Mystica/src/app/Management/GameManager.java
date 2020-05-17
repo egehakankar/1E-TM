@@ -18,13 +18,17 @@ import javax.swing.JFrame;
 import javax.swing.plaf.DimensionUIResource;
 
 import app.Model.Auren;
+import app.Model.ChaosMagicians;
 import app.Model.Faction;
+import app.Model.Fakirs;
 import app.UserInterface.BonusCardScreen;
 import app.UserInterface.Credits;
 import app.UserInterface.Display;
 import app.UserInterface.GameStartScreen;
 import app.UserInterface.HowToPlay;
+import app.UserInterface.MainGameScreen;
 import app.UserInterface.MainMenu;
+import app.UserInterface.PhaseIncome;
 import app.UserInterface.SelectionScreen;
 import app.UserInterface.CultScreen;
 
@@ -54,8 +58,12 @@ public class GameManager extends JFrame implements KeyListener, MouseListener, R
         setLayout(new FlowLayout());
 
         factionTemp = new ArrayList<Faction>();
+        ChaosMagicians ch = new ChaosMagicians();
+        //factionTemp.add(ch);
         Auren auren = new Auren();
         factionTemp.add(auren);
+        Fakirs fakir = new Fakirs();
+        factionTemp.add(fakir);
 
         gameP = new GamePlayManager(factionTemp);
 
@@ -87,6 +95,8 @@ public class GameManager extends JFrame implements KeyListener, MouseListener, R
         disp.add("GameStart", new GameStartScreen());
         disp.add("Bonus Card Screen", new BonusCardScreen());
         disp.add("Cult Screen", new CultScreen() );
+        disp.add("MainGameScreen", new MainGameScreen() );
+        disp.add("PhaseIncome", new PhaseIncome() );
 
         //Sets current screen.
         disp.setCurrentPanel("Menu"); 

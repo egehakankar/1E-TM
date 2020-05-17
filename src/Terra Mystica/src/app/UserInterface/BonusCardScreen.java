@@ -133,7 +133,7 @@ public class BonusCardScreen extends DisplayPanel {
                     players.get(turnOfPlayer).updateByBonuscardNumber(bonusCards.get(a).getCardNumer());
                     turnOfPlayer ++;
                     if( players.size() == turnOfPlayer )
-                        Display.getInstance().setCurrentPanel("Credits");
+                        Display.getInstance().setCurrentPanel("PhaseIncome");
                 }
             });
         }

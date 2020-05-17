@@ -10,7 +10,21 @@ public class GamePlayManager {
     private int round;
     private static ArrayList<Player> playerList;
     private static ArrayList<Player> passingPlayerList;
+    private static ArrayList<Integer> scoringTiles;
+
     public GamePlayManager( ArrayList<Faction> factionList){
+        scoringTiles = new ArrayList<Integer>();
+
+        for(int i = 0; i < 6 ; i ++)
+        {
+            int randomNumber = (int)(Math.random()*8);
+
+            if (scoringTiles.contains(randomNumber))
+                i--;
+            else
+                scoringTiles.add(randomNumber);
+        }
+
         playerList = new ArrayList<Player>();
         for ( int i = 0; i < factionList.size(); i++){
             Player player = new Player(factionList.get(i));
@@ -18,126 +32,157 @@ public class GamePlayManager {
         }
         playerCount = playerList.size();
         passingPlayerList = new ArrayList<Player>();
-        round = 1;
+        round = 0;
     }
 
     //Phase1 Income
-    public void receiveIncome ( Player player){
-
+    public static int[] receiveIncome ( Player player){
         int [] dw = player.getDwellingTrack();
         int [] tr = player.getTradingTrack();
         int [] tmp = player.getTempleTrack();
-
+        
+        int all[] = new int[4];
+        int addedCoin = 0;
+        int power01 = 0;
+        int power12 = 0;
+        int addedPriest = 0;
         
         if( dw [0] == 9){
-            
-            player.updateWorker( player.getWorker() + dw[0] - 1 );
+            player.updateWorker( player.getWorker() + dw[1] - 1 );
+            addedCoin += dw[1] - 1;
         }
         else if ( dw[0] > 1){
-            player.updateWorker( player.getWorker() + dw[0]);
+            player.updateWorker( player.getWorker() + dw[1]);
+            addedCoin += dw[1];
         }
         else{}
 
         int [] power = player.getPower();
         int c = 0;
-        if ( tr[0] == 4){
+        if ( tr[1] == 4){
             
             if( player.getFaction().getName().equals("Swarmlings")){
                 player.updateCoin( player.getCoin() + 9);
+                addedCoin += 9;
                 c = 8;
             }
             else if( player.getFaction().getName().equals("Dwarves")){
                 player.updateCoin( player.getCoin() + 10);
+                addedCoin += 10;
                 c = 6;
             }
             else if( player.getFaction().getName().equals("Nomads") || player.getFaction().getName().equals("Alchemists")){
                 player.updateCoin( player.getCoin() + 11);
+                addedCoin += 11;
                 c = 4;
             }
             else{
                 player.updateCoin( player.getCoin() + 8);
+                addedCoin += 8;
                 c = 6;
             }
         }
-        else if ( tr[0] == 3){
+        else if ( tr[1] == 3){
             if( player.getFaction().getName().equals("Swarmlings")){
                 player.updateCoin( player.getCoin() + 6);
+                addedCoin += 6;
                 c = 6;
             }
             else if( player.getFaction().getName().equals("Dwarves")){
                 player.updateCoin( player.getCoin() + 7);
+                addedCoin += 7;
                 c = 4;
             }
             else if( player.getFaction().getName().equals("Nomads") || player.getFaction().getName().equals("Alchemists")){
                 player.updateCoin( player.getCoin() + 7);
+                addedCoin += 7;
                 c = 3;
             }
             else{
                 player.updateCoin( player.getCoin() + 6);
+                addedCoin += 6;
                 c = 4;
             }
         }
-        else if ( tr[0] == 2){
+        else if ( tr[1] == 2){
             if( player.getFaction().getName().equals("Swarmlings")){
                 player.updateCoin( player.getCoin() + 4);
+                addedCoin += 4;
                 c = 4;
             }
             else if( player.getFaction().getName().equals("Dwarves")){
                 player.updateCoin( player.getCoin() + 5);
+                addedCoin += 5;
                 c = 2;
             }
             else if( player.getFaction().getName().equals("Nomads") || player.getFaction().getName().equals("Alchemists")){
                 player.updateCoin( player.getCoin() + 4);
+                addedCoin += 4;
                 c = 2;
             }
             else{
                 player.updateCoin( player.getCoin() + 4);
+                addedCoin += 4;
                 c = 2;
             }
         }
-        else if ( tr[0] == 1){
+        else if ( tr[1] == 1){
             if( player.getFaction().getName().equals("Swarmlings")){
                 player.updateCoin( player.getCoin() + 2);
+                addedCoin += 2;
                 c = 2;
             }
             else if( player.getFaction().getName().equals("Dwarves")){
                 player.updateCoin( player.getCoin() + 3);
+                addedCoin += 3;
                 c = 1;
             }
             else if( player.getFaction().getName().equals("Nomads") || player.getFaction().getName().equals("Alchemists")){
                 player.updateCoin( player.getCoin() + 2);
+                addedCoin += 2;
                 c = 1;
             }
             else{
                 player.updateCoin( player.getCoin() + 2);
+                addedCoin += 2;
                 c = 1;
             }
         }
         else{}
-        if ( c > power[0]){
+        if (c > power[0])
+        {
             power[1] = power[0] + power[1];
+            power01 += power[0];
             c = c - power[0];
             power[0] = 0;
            
             if( c > power[1]){
+                power12 += c;
                 power[2] = 12;
                 power[1] = 0;
                 c = 0;
             }
             else{
+                power12 += c;
                 power[2] = power[2] + c;
                 power[1] = power[1] - c;
             }
-
         }
         else{
+            power01 += c;
             power[1] = power[1] + c;
             power[0] = power[0] - c;
         }
 
         player.updatePower(power);
-        player.updatePriest(player.getPriest() + tmp[0]);
-        
+        player.updatePriest(player.getPriest() + tmp[1]);
+
+        addedPriest += tmp[1];
+        all[0] = addedCoin;
+        all[1] = addedPriest;
+        all[2] = power01;
+        all[3] = power12;
+        return all;
     }
 
     //Action1 Transform and build
@@ -502,9 +547,24 @@ public class GamePlayManager {
 
     }
 
+    public static ArrayList<Integer> getScoringTiles()
+    {
+        return scoringTiles;
+    }
+
 
     public static ArrayList<Player> getPlayerList()
     {
          return playerList;
+    }
+
+    public int getRound()
+    {
+        return round;
+    }
+
+    public void addRound()
+    {
+        round++;
     }
 }

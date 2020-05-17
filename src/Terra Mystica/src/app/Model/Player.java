@@ -26,7 +26,6 @@ public class Player {
     private int[] cultLevel;
     // 0 -> 3 space, others 2 space
     private int [][] cultSpaces;
-    private String name;
     private int spade;
     //0 -> spade costs 3 workers, 1 -> spade costs 2 workers, 2-> spade costs 1 worker
     private int spadeLevel;
@@ -66,7 +65,6 @@ public class Player {
                 cultSpaces[i][j] = 0;
             }
         }
-        this.name = name;
         town = 0;
         bridges = new ArrayList<>();
 
@@ -139,6 +137,31 @@ public class Player {
 
     public void addBuilding(int b, int x, int y)
     {
+        if(b == 0)
+        {
+            dwellingsTrack[0]--;
+            dwellingsTrack[1]++;
+        }
+        else if(b == 1)
+        {
+            tradingHouseTrack[0]--;
+            tradingHouseTrack[1]++;
+        }
+        else if(b == 2)
+        {
+            templeTrack[0]--;
+            templeTrack[1]++;
+        }
+        else if(b == 3)
+        {
+            sanctuaryTrack[0]--;
+            sanctuaryTrack[1]++;
+        }
+        else
+        {
+            strongholdTrack[0]--;
+            strongholdTrack[1]++;
+        }
         buildings.get(b).get(x).add(y, true);
     }
 

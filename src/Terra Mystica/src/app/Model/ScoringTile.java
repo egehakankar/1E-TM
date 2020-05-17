@@ -11,8 +11,9 @@ public class ScoringTile {
     private int spade;
     private int worker;
     private int coin;
+    private int number;
 
-    public ScoringTile( int victoryP, int priest, int power, int space, String condition, String cult, int spade, int worker, int coin){
+    public ScoringTile( int victoryP, int priest, int power, int space, String condition, String cult, int spade, int worker, int coin, int number){
         this.victoryP = victoryP;
         this.priest = priest;
         this.space = space;
@@ -22,8 +23,13 @@ public class ScoringTile {
         this.worker = worker;
         this.coin = coin;
         this.power = power;
+        this.number = number;
     }
-
+    
+    public int getNumber()
+    {
+        return number;
+    }
     public int getVictoryP(){
         return victoryP;
     }
