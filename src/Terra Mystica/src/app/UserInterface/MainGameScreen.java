@@ -29,6 +29,8 @@ public class MainGameScreen extends DisplayPanel
     private int scoringWidth = WIDTH*200/1920;
     private int scoringHeight = HEIGHT*100/1080;
 
+
+
     private Font titleFont = new Font("Bitstream Vera Sans", 1, WIDTH * 35 / 1920);
     private String title = "";
 
@@ -45,13 +47,31 @@ public class MainGameScreen extends DisplayPanel
     private BufferedImage image;
     private String imageLoc;
 
+    private BufferedImage bImage;
+
+    private int buttonWidth = WIDTH * 200 / 1920;
+    private int buttonHeight = HEIGHT * 90 / 1080;
+    private int buttonSpacing = WIDTH * 5 / 1920;
+
     public MainGameScreen()
     {
+        try {
+            bImage = ImageIO.read(getClass().getResourceAsStream("../images/background2.jpg"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         drawMap();
+
+        addActionButtons();
+        
     }
 
     @Override
     public void render(Graphics2D g, GameManager gM) {
+        g.drawImage(bImage, 0, 0, WIDTH, HEIGHT, null);
+
+
         allPlayerDwellings = new ArrayList<ArrayList<ArrayList<ArrayList<Boolean>>>>();
         players = GamePlayManager.getPlayerList();
         playerCount = players.size();
@@ -92,7 +112,7 @@ public class MainGameScreen extends DisplayPanel
         for (int a = 0; a < 9; a++) {
             terrains.add(new ArrayList<Terrain>());
             for (int b = 0; b < 13; b++) {
-                terrains.get(a).add(new Terrain(a, b, WIDTH*310/1920, HEIGHT*90/1080, colors, 0, ""));
+                terrains.get(a).add(new Terrain(a, b, WIDTH*310/1920, HEIGHT*100/1080, colors, 0, ""));
                 if (a % 2 == 0 || b != 12) {
                     addTerrain(terrains.get(a).get(b));
                     final int k = a;
@@ -148,5 +168,104 @@ public class MainGameScreen extends DisplayPanel
             g.drawImage(image, scoringStartWidth, scoringStartHeight + a * scoringHeight, scoringWidth, scoringHeight, null);
         }
         
+    }
+
+    private void addActionButtons()
+    {
+        int[] colorPB = {100, 100, 100};
+        GuiButton transformOrBuild = new GuiButton((WIDTH / 2 - buttonWidth / 2 ) - buttonWidth * 3 , HEIGHT * 930 / 1080, buttonWidth,
+            buttonHeight, colorPB, 17);
+        transformOrBuild.setText("Transform & Build");
+        transformOrBuild.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //transformOrBuild(e);
+            }
+        });
+
+        //int[] colorPB = {0, 0, 0};
+        GuiButton advanceShipping = new GuiButton((WIDTH / 2 - buttonWidth / 2  + buttonSpacing) - buttonWidth * 2 , HEIGHT * 930 / 1080, buttonWidth,
+            buttonHeight, colorPB, 20);
+        advanceShipping.setText("Advance Shipping");
+        advanceShipping.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //transformOrBuild(e);
+            }
+        });
+
+        //int[] colorPB = {0, 0, 0};
+        GuiButton upgradeSpade = new GuiButton((WIDTH / 2 - buttonWidth / 2 + buttonSpacing * 2) - buttonWidth * 1, HEIGHT * 930 / 1080, buttonWidth,
+            buttonHeight, colorPB, 20);
+        upgradeSpade.setText("Upgrade Spade");
+        upgradeSpade.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //transformOrBuild(e);
+            }
+        });
+
+        //int[] colorPB = {0, 0, 0};
+        GuiButton upgradeStructure = new GuiButton((WIDTH / 2 - buttonWidth / 2 + buttonSpacing* 3), HEIGHT * 930 / 1080, buttonWidth,
+            buttonHeight, colorPB, 17);
+        upgradeStructure.setText("Upgrade Structure");
+        upgradeStructure.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //transformOrBuild(e);
+            }
+        });
+
+        //int[] colorPB = {0, 0, 0};
+        GuiButton sendPriest = new GuiButton((WIDTH / 2 - buttonWidth / 2 + buttonSpacing*4) + buttonWidth * 1, HEIGHT * 930 / 1080, buttonWidth,
+            buttonHeight, colorPB, 20);
+        sendPriest.setText("Send Priest");
+        sendPriest.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //transformOrBuild(e);
+            }
+        });
+
+        //int[] colorPB = {0, 0, 0};
+        GuiButton powerAction = new GuiButton((WIDTH / 2 - buttonWidth / 2 + buttonSpacing*5) + buttonWidth * 2 , HEIGHT * 930 / 1080, buttonWidth,
+            buttonHeight, colorPB, 20);
+        powerAction.setText("Power Action");
+        powerAction.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //transformOrBuild(e);
+            }
+        });
+
+        //int[] colorPB = {0, 0, 0};
+        GuiButton specialAction = new GuiButton((WIDTH / 2 - buttonWidth / 2 + buttonSpacing*6) + buttonWidth * 3, HEIGHT * 930 / 1080, buttonWidth,
+            buttonHeight, colorPB, 20);
+        specialAction.setText("Special Action");
+        specialAction.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //transformOrBuild(e);
+            }
+        });
+
+        //int[] colorPB = {0, 0, 0};
+        GuiButton pass = new GuiButton((WIDTH / 2 - buttonWidth / 2 + buttonSpacing*7) + buttonWidth * 4, HEIGHT * 930 / 1080, buttonWidth,
+            buttonHeight, colorPB, 20);
+        pass.setText("Pass");
+        pass.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //transformOrBuild(e);
+            }
+        });
+        add(upgradeSpade);
+        add(pass);
+        add(upgradeStructure);
+        add(specialAction);
+        add(powerAction);
+        add(sendPriest);
+        add(advanceShipping);
+        add(transformOrBuild);
     }
 }
