@@ -26,6 +26,7 @@ import app.UserInterface.GameStartScreen;
 import app.UserInterface.HowToPlay;
 import app.UserInterface.MainMenu;
 import app.UserInterface.SelectionScreen;
+import app.UserInterface.CultScreen;
 
 public class GameManager extends JFrame implements KeyListener, MouseListener, Runnable, MouseMotionListener {
     private static final long serialVersionUID = 1L;
@@ -85,19 +86,10 @@ public class GameManager extends JFrame implements KeyListener, MouseListener, R
         disp.add("Selection Screen", new SelectionScreen(this));
         disp.add("GameStart", new GameStartScreen());
         disp.add("Bonus Card Screen", new BonusCardScreen());
+        disp.add( "Cult Screen", new CultScreen() );
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-        //Sets current screen.
-        disp.setCurrentPanel("Bonus Card Screen"); 
-=======
-        // Sets current screen.
-        disp.setCurrentPanel("Menu");
->>>>>>> Hakomako
-=======
         //Sets current screen.
         disp.setCurrentPanel("Menu"); 
->>>>>>> Hakomako
     }
 
     public static void setPlay(ArrayList<Faction> factions)
