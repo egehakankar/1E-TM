@@ -9,6 +9,12 @@ public class Engineers extends Faction {
     public Engineers(){
         name = "Engineers";
     }
+
+    public String getColor()
+    {
+        return "Gray";
+    }
+
     public void useSpecialAction( Player player){
 
     }

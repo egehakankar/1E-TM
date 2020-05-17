@@ -74,6 +74,7 @@ public class BonusCardScreen extends DisplayPanel {
 
         players = GamePlayManager.getPlayerList();
         noOfBonusCards = players.size();
+        title = "Select a bonus card for " + players.get(turnOfPlayer).getFaction().getName();
 
         if(!addButtons)
             addBon();

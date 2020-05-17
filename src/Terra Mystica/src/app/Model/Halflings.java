@@ -6,6 +6,12 @@ public class Halflings extends Faction{
     public Halflings(){
         name = "Halflings";
     }
+
+    public String getColor()
+    {
+        return "Brown";
+    }
+
     public int getDwellings(){
         return 2;
     }

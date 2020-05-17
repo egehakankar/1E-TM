@@ -117,7 +117,6 @@ public class DisplayPanel {
         for (Terrain a : terrains) {
             a.mouseReleased(e);
         }
-
         for (BonusCard b : bonusCards) {
             b.mouseReleased(e);
         }

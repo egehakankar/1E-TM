@@ -7,6 +7,12 @@ String name;
     public Giants(){
         name = "Giants";
     }
+
+    public String getColor()
+    {
+        return "Red";
+    }
+
     public void useSpecialAction( Player player){
         player.updateSpade(player.getSpade() + 2);
     }

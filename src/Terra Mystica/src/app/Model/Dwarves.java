@@ -6,6 +6,12 @@ public class Dwarves extends Faction{
     public Dwarves(){
         name = "Dwarves";
     }
+
+    public String getColor()
+    {
+        return "Gray";
+    }
+
     public String getName(){
         return name;
     }

@@ -13,6 +13,11 @@ public class Auren extends Faction{
 
     }
 
+    public String getColor()
+    {
+        return "Green";
+    }
+
     public int getDwellings(){
         return 2;
     }
