@@ -9,8 +9,8 @@ public class Alchemists extends Faction{
 
     public int[] getColor()
     {
-        int colorBlue[] = { 112, 155, 219 };
-        return colorBlue;
+        int colorBlack[] = { 0, 0, 0 };
+        return colorBlack;
     }
 
     public int getDwellings(){
