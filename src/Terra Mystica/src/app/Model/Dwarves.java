@@ -7,9 +7,10 @@ public class Dwarves extends Faction{
         name = "Dwarves";
     }
 
-    public String getColor()
+    public int[] getColor()
     {
-        return "Gray";
+        int colorGray[] = { 192, 192, 192 };
+        return colorGray;
     }
 
     public String getName(){

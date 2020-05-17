@@ -8,9 +8,10 @@ String name;
         name = "Giants";
     }
 
-    public String getColor()
+    public int[] getColor()
     {
-        return "Red";
+        int colorRed[] = { 255, 106, 107 };
+        return colorRed;
     }
 
     public void useSpecialAction( Player player){

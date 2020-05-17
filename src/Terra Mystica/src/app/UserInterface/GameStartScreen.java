@@ -32,12 +32,12 @@ public class GameStartScreen extends DisplayPanel {
     private ArrayList<ArrayList<ArrayList<ArrayList<Boolean>>>> allPlayerDwellings;
     private int playerCount = 0;
 
-    private static ArrayList<Player> players;
-    private static int turnPlayer;
+    private static ArrayList<Player> players = GamePlayManager.getPlayerList();
+    private static int turnPlayer = 0;
     private int[] currentPlayerD = {0,0,0,0,0};
     private int[] dwC = {0,0,0,0,0};
 
-    
+    int[] colorT = players.get(turnPlayer).getFaction().getColor();
 
     public GameStartScreen() {
         try {
@@ -66,12 +66,16 @@ public class GameStartScreen extends DisplayPanel {
             allPlayerDwellings.add(players.get(a).getBuildings());
         }
 
-        title = players.get(turnPlayer).getFaction().getName() + " choose Dwelling Places " + (currentPlayerD[turnPlayer] - dwC[turnPlayer]);
-
         g.drawImage(image, 0, 0, WIDTH, HEIGHT, null);
-
+        
+        if(turnPlayer != playerCount)
+        {
+            colorT = players.get(turnPlayer).getFaction().getColor();
+            title = players.get(turnPlayer).getFaction().getName() + " choose Dwelling Places " + (currentPlayerD[turnPlayer] - dwC[turnPlayer]);
+        }
+        
         g.setFont(titleFont);
-        g.setColor(Color.white);
+        g.setColor(new Color(colorT[0], colorT[1], colorT[2]));
 
         Rectangle2D b = g.getFontMetrics().getStringBounds(title, g);
         int widthM = (int) b.getWidth();
@@ -133,7 +137,7 @@ public class GameStartScreen extends DisplayPanel {
     {
         if(dwC[turnPlayer] < currentPlayerD[turnPlayer])
         {
-            if(players.get(turnPlayer).getFaction().getColor() == nT.getColor())
+            if(players.get(turnPlayer).getFaction().getColor()[0] == nT.getColor()[0] && players.get(turnPlayer).getFaction().getColor()[1] == nT.getColor()[1])
             {
                 int build = 0;
                 if(nT.getText() == " ")

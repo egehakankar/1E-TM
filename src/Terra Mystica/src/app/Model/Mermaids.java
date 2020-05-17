@@ -7,9 +7,10 @@ public class Mermaids extends Faction{
         name = "Mermaids";
     }
 
-    public String getColor()
+    public int[] getColor()
     {
-        return "Blue";
+        int colorBlue[] = { 112, 155, 219 };
+        return colorBlue;
     }
     
     public int getDwellings(){

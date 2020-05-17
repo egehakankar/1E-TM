@@ -189,35 +189,35 @@ public class Terrain {
         text = newT;
     }
 
-    public String getColor()
+    public int[] getColor()
     {
         if(color1 == colorGreen[1])
         {
-            return "Green";
+            return colorGreen;
         }
         else if(color1 == colorBlue[1])
         {
-            return "Blue";
+            return colorBlue;
         }
         else if(color1 == colorRed[1])
         {
-            return "Red";
+            return colorRed;
         }
         else if(color1 == colorBlack[1])
         {
-            return "Black";
+            return colorBlack;
         }
         else if(color1 == colorYellow[1])
         {
-            return "Yellow";
+            return colorYellow;
         }
         else if(color1 == colorBrown[1])
         {
-            return "Brown";
+            return colorBrown;
         }
         else
         {
-            return "Gray";
+            return colorGray;
         }
 
     }

@@ -7,9 +7,10 @@ public class Fakirs extends Faction{
         name = "Fakirs";
     }
 
-    public String getColor()
+    public int[] getColor()
     {
-        return "Yellow";
+        int colorYellow[] = { 250, 218, 100 };
+        return colorYellow;
     }
 
     public int getDwellings(){
