@@ -59,7 +59,7 @@ public class GameManager extends JFrame implements KeyListener, MouseListener, R
 
         factionTemp = new ArrayList<Faction>();
         ChaosMagicians ch = new ChaosMagicians();
-        //factionTemp.add(ch);
+        factionTemp.add(ch);
         Auren auren = new Auren();
         factionTemp.add(auren);
         Fakirs fakir = new Fakirs();
@@ -94,12 +94,12 @@ public class GameManager extends JFrame implements KeyListener, MouseListener, R
         disp.add("Selection Screen", new SelectionScreen(this));
         disp.add("GameStart", new GameStartScreen());
         disp.add("Bonus Card Screen", new BonusCardScreen());
-        disp.add("Cult Screen", new CultScreen() );
-        disp.add("MainGameScreen", new MainGameScreen() );
-        disp.add("PhaseIncome", new PhaseIncome() );
+        disp.add("Cult Screen", new CultScreen());
+        disp.add("MainGameScreen", new MainGameScreen());
+        disp.add("PhaseIncome", new PhaseIncome());
 
         //Sets current screen.
-        disp.setCurrentPanel("MainGameScreen"); 
+        disp.setCurrentPanel("Menu"); 
     }
 
     public static void setPlay(ArrayList<Faction> factions)

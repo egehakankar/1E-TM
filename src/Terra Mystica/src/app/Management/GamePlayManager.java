@@ -11,9 +11,11 @@ public class GamePlayManager {
     private static ArrayList<Player> playerList;
     private static ArrayList<Player> passingPlayerList;
     private static ArrayList<Integer> scoringTiles;
+    private int turnPlayer;
 
     public GamePlayManager( ArrayList<Faction> factionList){
         scoringTiles = new ArrayList<Integer>();
+        turnPlayer = 0;
 
         for(int i = 0; i < 6 ; i ++)
         {
@@ -566,5 +568,22 @@ public class GamePlayManager {
     public void addRound()
     {
         round++;
+    }
+
+    public int getTurnPlayer()
+    {
+        return turnPlayer;
+    }
+
+    public void addTurnPlayer()
+    {
+        if(turnPlayer == playerCount - 1)
+        {
+            turnPlayer = 0;
+        }
+        else
+        {
+            turnPlayer++;
+        }
     }
 }

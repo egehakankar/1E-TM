@@ -8,14 +8,14 @@ public class Player {
     private Player player;
     private Faction factionType;
     private int[] power;
-    private int powerInt; // BErdan ekledi
+    //private int powerInt; // BErdan ekledi
+    private int key; //Number of keys. Berdan ekledi.
     private int priest;
     private int shovel;
     private int ship;
     private int coin;
     private int worker;
     private int startingDwellings;
-    private int id;
     private int town;
     private BonusCard bc;
     private int bonusCardNumber;
@@ -55,7 +55,6 @@ public class Player {
         this.worker = faction.getWorkers();
         this.spade = 0;
         spadeLevel = 0;
-        id = 0;
         
         points = 0;
         cultLevel = faction.getCult();
@@ -197,7 +196,7 @@ public class Player {
     }
 
     public int getPoints() {
-        return coin;
+        return points;
     }
 
     public void updateCultLevel(int[] cultLevel) {
@@ -304,6 +303,11 @@ public class Player {
         BonusCards bcards = new BonusCards();
         ArrayList<BonusCard> allCards = bcards.getCards();
         bc = allCards.get(number);
+    }
+
+    public int getKeyNumber()
+    {
+        return key;
     }
 
 }
