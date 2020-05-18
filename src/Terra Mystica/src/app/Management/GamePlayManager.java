@@ -165,9 +165,9 @@ public class GamePlayManager {
         }
 
         player.updatePower(power);
-        player.updatePriest(player.getPriest() + tmp[1]);
+        player.updatePriest(player.getPriest() + tmp[0]);
 
-        addedPriest += tmp[1];
+        addedPriest += tmp[0];
         all[0] = addedCoin;
         all[1] = addedPriest;
         all[2] = power01;
@@ -296,8 +296,8 @@ public class GamePlayManager {
 
     // Action3
     public static boolean increaseSpadeLevel(Player player) {
-        if (player.getSpade() < 2 && player.getWorker() >= 2 && player.getCoin() >= 5 && player.getPriest() >= 1) {
-            player.updateSpade(player.getSpade() + 1);
+        if (player.getSpadeLevel() > 1 && player.getWorker() >= 2 && player.getCoin() >= 5 && player.getPriest() >= 1) {
+            player.updateSpadeLevel(player.getSpadeLevel() - 1);
             player.updateWorker(player.getWorker() - 2);
             player.updateCoin(player.getCoin() - 5);
             player.updatePriest(player.getPriest() - 1);
@@ -323,6 +323,8 @@ public class GamePlayManager {
             player.addBuilding(1, x, y);
             buildings.get(0).get(x).set(y, false);
             player.updateBuildings(buildings);
+            player.updateCoin(player.getCoin() - reqCoin);
+            player.updateWorker(player.getWorker() - reqWorker);
             return true;
         }
 
@@ -345,6 +347,8 @@ public class GamePlayManager {
             player.addBuilding(2, x, y);
             buildings.get(1).get(x).set(y, false);
             player.updateBuildings(buildings);
+            player.updateCoin(player.getCoin() - reqCoin);
+            player.updateWorker(player.getWorker() - reqWorker);
             return true;
         }
 
@@ -374,6 +378,8 @@ public class GamePlayManager {
             player.addBuilding(4, x, y);
             buildings.get(2).get(x).set(y, false);
             player.updateBuildings(buildings);
+            player.updateCoin(player.getCoin() - reqCoin);
+            player.updateWorker(player.getWorker() - reqWorker);
             return true;
         }
 
@@ -403,6 +409,8 @@ public class GamePlayManager {
             player.addBuilding(3, x, y);
             buildings.get(1).get(x).set(y, false);
             player.updateBuildings(buildings);
+            player.updateCoin(player.getCoin() - reqCoin);
+            player.updateWorker(player.getWorker() - reqWorker);
             return true;
         }
 
@@ -466,7 +474,7 @@ public class GamePlayManager {
                         power[1] = power[1] + c;
                         power[0] = power[0] - c;
                     }
-
+                    player.updatePriest(player.getPriest() - 1);
                     return true;
                 }
             }
@@ -608,7 +616,6 @@ public class GamePlayManager {
     }
 
     public static void addTurnPlayer() {
-        System.out.println("ha");
         if (turnPlayer == playerCount - 1) {
             turnPlayer = 0;
         } else {
@@ -618,6 +625,14 @@ public class GamePlayManager {
 
     public static void addPassedPlayer(Player p) {
         playerPassed.add(p);
+        playerList.remove(p);
+
+        playerCount = playerList.size();
+        if(turnPlayer != 0)
+        {
+            turnPlayer --;
+        }
+        
     }
 
     public static ArrayList<Player> getPassedPlayers() {
@@ -629,6 +644,10 @@ public class GamePlayManager {
     }
 
     public static void setPlayerList(ArrayList<Player> newPlayers) {
-        playerList = newPlayers;
+        for(int a = 0; a < newPlayers.size(); a++)
+        {
+            playerList.add(newPlayers.get(a));
+        }
+        playerPassed.clear();
     }
 }

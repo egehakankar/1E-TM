@@ -139,8 +139,6 @@ public class MainGameScreen extends DisplayPanel {
     @Override
     public void render(Graphics2D g, GameManager gM) {
 
-        currenAction = players.get(turnPlayer).getAction();
-
         g.drawImage(bImage, 0, 0, WIDTH, HEIGHT, null);
 
         super.render(g, gM);
@@ -150,47 +148,70 @@ public class MainGameScreen extends DisplayPanel {
         players = GamePlayManager.getPlayerList();
         playerCount = players.size();
         turnPlayer = GamePlayManager.getTurnPlayer();
-        allPlayerDwellings = new ArrayList<ArrayList<ArrayList<ArrayList<Boolean>>>>();
-        for (int a = 0; a < playerCount; a++) {
-            allPlayerDwellings.add(players.get(a).getBuildings());
-        }
-        if (checkMap) {
-            drawMap();
-            checkMap = false;
-        }
 
-        if(cultOpt)
-        {
-            cultOptS();
-            cultOpt = false;
-        }
+        if (playerCount != 0) {
+            currenAction = players.get(turnPlayer).getAction();
+            allPlayerDwellings = new ArrayList<ArrayList<ArrayList<ArrayList<Boolean>>>>();
+            for (int a = 0; a < playerCount; a++) {
+                allPlayerDwellings.add(players.get(a).getBuildings());
+            }
+            if (checkMap) {
+                drawMap();
+                checkMap = false;
+            }
 
-        addInfoCur(g);
-        addInfoOther(g);
+            if (cultOpt) {
+                cultOptS();
+                cultOpt = false;
+            }
+
+            resources.clear();
+            for (int a = 0; a < playerCount; a++) {
+                resources.add(new ArrayList<Integer>());
+                /*
+                 * 0: power1 1: power2 2: power3 3: key 4: priest 5: shovel 6: ship 7: coin 8:
+                 * worker 9: townCount 10: point 11: spade 12: spade level
+                 */
+                resources.get(a).add(players.get(a).getPower()[0]);
+                resources.get(a).add(players.get(a).getPower()[1]);
+                resources.get(a).add(players.get(a).getPower()[2]);
+                resources.get(a).add(players.get(a).getKeyNumber());
+                resources.get(a).add(players.get(a).getPriest());
+                resources.get(a).add(players.get(a).getShovel());
+                resources.get(a).add(players.get(a).getShip());
+                resources.get(a).add(players.get(a).getCoin());
+                resources.get(a).add(players.get(a).getWorker());
+                resources.get(a).add(players.get(a).getTown());
+                resources.get(a).add(players.get(a).getPoints());
+                resources.get(a).add(players.get(a).getSpade());
+                resources.get(a).add(players.get(a).getSpadeLevel());
+            }
+
+            addInfoCur(g);
+            addInfoOther(g);
+
+        }
     }
 
-    private void cultOptS()
-    {
-        int[] colorAB = { 102,255,255 };
-        cultA = new GuiButton((WIDTH / 2 - buttonWidth / 2) - buttonWidth * 3, HEIGHT * 900 / 1080,
-                buttonWidth, buttonHeight / 2, colorAB, 17);
+    private void cultOptS() {
+        int[] colorAB = { 102, 255, 255 };
+        cultA = new GuiButton((WIDTH / 2 - buttonWidth / 2) - buttonWidth * 3, HEIGHT * 900 / 1080, buttonWidth,
+                buttonHeight / 2, colorAB, 17);
         cultA.setText("Air");
-        
 
-        int []colorWB = {0,0,139};
-        cultW = new GuiButton((WIDTH / 2 - buttonWidth / 2 + buttonSpacing) - buttonWidth * 2 + 10,
-                HEIGHT * 900 / 1080, buttonWidth, buttonHeight / 2, colorWB, 20);
+        int[] colorWB = { 0, 0, 139 };
+        cultW = new GuiButton((WIDTH / 2 - buttonWidth / 2 + buttonSpacing) - buttonWidth * 2 + 10, HEIGHT * 900 / 1080,
+                buttonWidth, buttonHeight / 2, colorWB, 20);
         cultW.setText("Water");
 
-        int[] colorRB = {255, 106, 107};
-        cultF = new GuiButton((WIDTH / 2 - buttonWidth / 2 + buttonSpacing) - buttonWidth * 1 + 20,
-                HEIGHT * 900 / 1080, buttonWidth, buttonHeight / 2, colorRB, 20);
+        int[] colorRB = { 255, 106, 107 };
+        cultF = new GuiButton((WIDTH / 2 - buttonWidth / 2 + buttonSpacing) - buttonWidth * 1 + 20, HEIGHT * 900 / 1080,
+                buttonWidth, buttonHeight / 2, colorRB, 20);
         cultF.setText("Fire");
-        
 
-        int[] colorEB = {139,69,19};
-        cultE = new GuiButton((WIDTH / 2 - buttonWidth / 2 + buttonSpacing * 3 + 30),
-                HEIGHT * 900 / 1080, buttonWidth, buttonHeight / 2, colorEB, 17);
+        int[] colorEB = { 139, 69, 19 };
+        cultE = new GuiButton((WIDTH / 2 - buttonWidth / 2 + buttonSpacing * 3 + 30), HEIGHT * 900 / 1080, buttonWidth,
+                buttonHeight / 2, colorEB, 17);
         cultE.setText("Earth");
 
         cultW.addActionListener(new ActionListener() {
@@ -228,27 +249,6 @@ public class MainGameScreen extends DisplayPanel {
     }
 
     private void drawMap() {
-        resources.clear();
-        for (int a = 0; a < playerCount; a++) {
-            resources.add(new ArrayList<Integer>());
-            /*
-             * 0: power1 1: power2 2: power3 3: key 4: priest 5: shovel 6: ship 7: coin 8:
-             * worker 9: townCount 10: point 11: spade 12: spade level
-             */
-            resources.get(a).add(players.get(a).getPower()[0]);
-            resources.get(a).add(players.get(a).getPower()[1]);
-            resources.get(a).add(players.get(a).getPower()[2]);
-            resources.get(a).add(players.get(a).getKeyNumber());
-            resources.get(a).add(players.get(a).getPriest());
-            resources.get(a).add(players.get(a).getShovel());
-            resources.get(a).add(players.get(a).getShip());
-            resources.get(a).add(players.get(a).getCoin());
-            resources.get(a).add(players.get(a).getWorker());
-            resources.get(a).add(players.get(a).getTown());
-            resources.get(a).add(players.get(a).getPoints());
-            resources.get(a).add(players.get(a).getSpade());
-            resources.get(a).add(players.get(a).getSpadeLevel());
-        }
 
         for (int a = 0; a < 9; a++) {
             allMapColor.add(new ArrayList<int[]>());
@@ -388,10 +388,12 @@ public class MainGameScreen extends DisplayPanel {
             public void actionPerformed(ActionEvent e) {
 
                 GamePlayManager.addPassedPlayer(GamePlayManager.getPlayerList().get(GamePlayManager.getTurnPlayer()));
-                if (GamePlayManager.getPassedPlayers().size() == GamePlayManager.getPlayerList().size()) {
-                    GamePlayManager.setPlayerList(GamePlayManager.getPassedPlayers());
+                if (GamePlayManager.getPlayerList().size() == 0) {
+                    System.out.println(turnPlayer);
+                    ArrayList<Player> newP = GamePlayManager.getPassedPlayers();
                     Display.remB();
                     Display.getInstance().setCurrentPanel("Bonus Card Screen");
+                    GamePlayManager.setPlayerList(newP);
                 } else {
                     GamePlayManager.addTurnPlayer();
                 }
@@ -518,17 +520,14 @@ public class MainGameScreen extends DisplayPanel {
         }
     }
 
-    private void sendPriest()
-    {
-        players.get(turnPlayer).setAction(5);
+    private void sendPriest() {
+        players.get(turnPlayer).setAction(4);
         cultOpt = true;
     }
 
-    private void sendPriest(String name, GuiButton a, GuiButton b, GuiButton c, GuiButton d)
-    {
-        
-        if (GamePlayManager.sendPriestCult(players.get(turnPlayer), name)) 
-        {
+    private void sendPriest(String name, GuiButton a, GuiButton b, GuiButton c, GuiButton d) {
+
+        if (GamePlayManager.sendPriestCult(players.get(turnPlayer), name)) {
             remove(cultA);
             remove(cultE);
             remove(cultF);
@@ -536,16 +535,16 @@ public class MainGameScreen extends DisplayPanel {
             players.get(turnPlayer).resetAction();
             GamePlayManager.addTurnPlayer();
             drawMap();
-            
+
             name = "";
         }
     }
 
     private void upgradeSpade() {
         remove(cultA);
-            remove(cultE);
-            remove(cultF);
-            remove(cultW);
+        remove(cultE);
+        remove(cultF);
+        remove(cultW);
         players.get(turnPlayer).setAction(2);
         if (GamePlayManager.increaseSpadeLevel(players.get(turnPlayer))) {
             players.get(turnPlayer).resetAction();
@@ -579,6 +578,7 @@ public class MainGameScreen extends DisplayPanel {
         if (currenAction[0] == 1) {
             if (GamePlayManager.isAdjOrHomeOrNot(players.get(turnPlayer), k, g, allMapColor) == 1) {
                 if (GamePlayManager.transformTerrainToHome(players.get(turnPlayer))) {
+                    GamePlayManager.buildDwelling(players.get(turnPlayer), k, g);
                     t.setColor(players.get(turnPlayer).getFaction().getColor());
                     allMapColor.get(k).set(g, players.get(turnPlayer).getFaction().getColor());
                     players.get(turnPlayer).resetAction();
@@ -600,11 +600,12 @@ public class MainGameScreen extends DisplayPanel {
         remove(cultE);
         remove(cultF);
         remove(cultW);
-        players.get(turnPlayer).setAction(4);
+        players.get(turnPlayer).setAction(3);
     }
 
     private void upgradeStructure(Terrain t, int k, int g) {
         if (currenAction[3] == 1) {
+            System.out.println("hop");
             if (GamePlayManager.upgradeToTradingHouse(players.get(turnPlayer), k, g)) {
                 drawMap();
                 players.get(turnPlayer).resetAction();
