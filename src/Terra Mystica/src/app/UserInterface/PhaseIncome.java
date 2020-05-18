@@ -36,11 +36,11 @@ public class PhaseIncome extends DisplayPanel {
     private Font titleFont = new Font("Bitstream Vera Sans", 1, WIDTH * 80 / 1920);
     private String title = "";
 
-    private Font curFont = new Font("Bitstream Vera Sans", 1, WIDTH * 70 / 1920);
+    private Font curFont = new Font("Bitstream Vera Sans", 1, WIDTH * 40 / 1920);
     private String curP = "";
 
     private boolean check = true;
-    private int[][] incomes = {{0,0,0,0},{0,0,0,0},{0,0,0,0},{0,0,0,0},{0,0,0,0}};
+    private int[][] incomes = {{0,0,0,0,0},{0,0,0,0,0},{0,0,0,0,0},{0,0,0,0,0},{0,0,0,0,0}};
     
     private int nameX = WIDTH * 100 / 1920;
     private int nameY = HEIGHT * 300 / 1920;
@@ -61,6 +61,7 @@ public class PhaseIncome extends DisplayPanel {
         nextB.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                check = true;
                 Display.getInstance().setCurrentPanel("MainGameScreen");
             }
         });
@@ -102,10 +103,10 @@ public class PhaseIncome extends DisplayPanel {
  
             g.setFont(curFont);
             g.setColor(Color.white);
-            curP = "Coins added: "+ incomes[a][0] + " Priests added: " + incomes[a][1]; 
-            g.drawString(curP, nameX + widthM +  WIDTH * 100 / 1920, nameY - HEIGHT * 30 / 1080 + a * spacing);
+            curP = "Workers added: " + incomes[a][4] + " Coins added: "+ incomes[a][0] + " Priests added: " + incomes[a][1]; 
+            g.drawString(curP, nameX + widthM +  WIDTH * 50 / 1920, nameY - HEIGHT * 30 / 1080 + a * spacing);
             curP = "Power 0-1: " + incomes[a][2] + " Power 1-2: "+ incomes[a][3]; 
-            g.drawString(curP, nameX + widthM + WIDTH * 100 / 1920, nameY + HEIGHT * 30 / 1080 + a * spacing);
+            g.drawString(curP, nameX + widthM + WIDTH * 50 / 1920, nameY + HEIGHT * 30 / 1080 + a * spacing);
 
         }
     }

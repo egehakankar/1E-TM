@@ -17,10 +17,12 @@ import java.awt.FlowLayout;
 import javax.swing.JFrame;
 import javax.swing.plaf.DimensionUIResource;
 
+import app.Model.Alchemists;
 import app.Model.Auren;
 import app.Model.ChaosMagicians;
 import app.Model.Faction;
 import app.Model.Fakirs;
+import app.Model.Swarmlings;
 import app.UserInterface.BonusCardScreen;
 import app.UserInterface.Credits;
 import app.UserInterface.Display;
@@ -66,6 +68,10 @@ public class GameManager extends JFrame implements KeyListener, MouseListener, R
         factionTemp.add(auren);
         Fakirs fakir = new Fakirs();
         factionTemp.add(fakir);
+        Alchemists alchemists = new Alchemists();
+        factionTemp.add(alchemists);
+        /*Swarmlings sw = new Swarmlings();
+        factionTemp.add(sw);*/
 
         gameP = new GamePlayManager(factionTemp);
         
@@ -102,7 +108,7 @@ public class GameManager extends JFrame implements KeyListener, MouseListener, R
         disp.add("Game Over Screen", new GameOverScreen());
 
         //Sets current screen.
-        disp.setCurrentPanel("Menu"); 
+        disp.setCurrentPanel("MainGameScreen"); 
     }
 
     public static void setPlay(ArrayList<Faction> factions)

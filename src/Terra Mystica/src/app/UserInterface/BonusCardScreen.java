@@ -88,7 +88,9 @@ public class BonusCardScreen extends DisplayPanel {
         noOfBonusCards = players.size() +3;
 
         if(!addButtons)
+        {
             addBon();
+        }
 
         addButtons = true;
     }
@@ -101,7 +103,6 @@ public class BonusCardScreen extends DisplayPanel {
     {
         bonusCardNumbers = new ArrayList<Integer>();
         bonusCards = new ArrayList<BonusCard>();
-
         // creating random numbers to select bonus cards
         for(int i = 0; i < noOfBonusCards ; i ++ )
         {
@@ -138,15 +139,10 @@ public class BonusCardScreen extends DisplayPanel {
                     turnOfPlayer ++;
                     if( players.size() == turnOfPlayer )
                     {
-                        turnOfPlayer = 0;
-                        //addBon();
-                        addButtons = !addButtons;
-                        
                         Display.getInstance().setCurrentPanel("PhaseIncome");
                     }
                 }
             });
         }
     }
-
 }

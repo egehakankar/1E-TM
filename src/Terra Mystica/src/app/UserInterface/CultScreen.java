@@ -51,6 +51,8 @@ public class CultScreen extends DisplayPanel{
     BasicStroke str2 = new BasicStroke(5);
     BasicStroke str3 = new BasicStroke(20);
 
+    private GuiButton[] buttons;
+
     int[][] colors = {{ 255, 106, 107}, {112, 155, 219}, {140, 104, 100}, {192, 192, 192}};
     int colorBB[] = { 255, 178, 102 };
 
@@ -78,39 +80,7 @@ public class CultScreen extends DisplayPanel{
         } catch (IOException e) {
             e.printStackTrace();
         }
-
         
-
-        GuiButton[] buttons = new GuiButton[16];
-        int c = 0;
-        //drawing buttons
-        for(int i = 0; i < 4 ; i ++)
-        {
-            for(int j = 0; j < 4 ; j ++ )
-            {
-                if( j>1)
-                    y += cultHeight/2;
-                if( i %2 == 1 )
-                    y -= cultHeight/2;
-                buttons[c] = new GuiButton(x+11*cultWidth+(j % 2)*cultHeight/2, y+i*(cultHeight+spacing2)+(i % 2)*cultHeight/2, cultHeight/2, cultHeight/2, colors[i], 35);
-                add(buttons[c]);
-                
-                //buttons[c].setText(""+i+j);
-
-                if(j == 2)
-                    buttons[c].setText("3");
-                else
-                    buttons[c].setText("2");
-
-                if( j>1)
-                    y -= cultHeight/2;
-                if( i %2 == 1 )
-                    y += cultHeight/2;
-                
-                
-                c++;
-            }
-        }
         //1366x768
         GuiButton goBackB = new GuiButton( width*125/1366, height-spacing , buttonWidthB, buttonHeightB, colorBB, 50);
         goBackB.setText("Back");
@@ -131,6 +101,42 @@ public class CultScreen extends DisplayPanel{
 
     @Override
     public void render(Graphics2D g, GameManager gM) {
+        boolean b = true;
+        if(b)
+        {
+            buttons = new GuiButton[16];
+            int c = 0;
+            //drawing buttons
+            for(int i = 0; i < 4 ; i ++)
+            {
+                for(int j = 0; j < 4 ; j ++ )
+                {
+                    if( j>1)
+                        y += cultHeight/2;
+                    if( i %2 == 1 )
+                        y -= cultHeight/2;
+                    buttons[c] = new GuiButton(x+11*cultWidth+(j % 2)*cultHeight/2, y+i*(cultHeight+spacing2)+(i % 2)*cultHeight/2, cultHeight/2, cultHeight/2, colors[i], 35);
+                    add(buttons[c]);
+                    
+                    //buttons[c].setText(""+i+j);
+
+                    if(j == 2)
+                        buttons[c].setText("3");
+                    else
+                        buttons[c].setText("2");
+
+                    if( j>1)
+                        y -= cultHeight/2;
+                    if( i %2 == 1 )
+                        y += cultHeight/2;
+                    
+                    
+                    c++;
+                }
+            }
+        }
+        b = false;
+
 
         //title = "Select a cult for " + players.get(turnOfPlayer).getFaction().getName();
         players = GamePlayManager.getPlayerList();
@@ -199,6 +205,25 @@ public class CultScreen extends DisplayPanel{
                 
             }
             
+        }
+
+        for(int k = 0; k < players.size(); k ++)
+        {
+            int c = 0;
+            for(int i = 0; i < 4 ; i ++)
+            {
+                for(int j = 0; j < 4 ; j ++)
+                {
+                    if(players.get(i).getCultSpaces()[i][j] == 1 )
+                    {
+                        System.out.println("Here");
+                        int [] clr = players.get(i).getFaction().getColor();
+                        //int [] clr = {0,0,0};
+                        buttons[c].setColor(clr);
+                    }
+                    c ++;
+                }
+            }
         }
         super.render(g, gM);
         g.setColor(Color.BLACK);

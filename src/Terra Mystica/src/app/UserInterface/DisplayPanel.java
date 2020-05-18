@@ -8,7 +8,7 @@ import app.Management.GameManager;
 
 //Main class for all screens.
 public class DisplayPanel {
-    private ArrayList<GuiButton> buttons;
+    protected ArrayList<GuiButton> buttons;
     private ArrayList<GuiButton> radioButtons;
     private ArrayList<Terrain> terrains;
     private ArrayList<BonusCard> bonusCards;
