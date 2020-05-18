@@ -20,7 +20,7 @@ public class Alchemists extends Faction{
 
         
     }
-
+    
     public void useAbility2(Player player){
         int temp = player.getPoints();
         int coin = player.getCoin();

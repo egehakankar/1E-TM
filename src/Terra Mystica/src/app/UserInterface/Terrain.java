@@ -47,7 +47,7 @@ public class Terrain {
     private int centerXOf00;
     private int centerYOf00;
 
-    private int dimension = WIDTH*60/1920;
+    private int dimension = WIDTH * 60 / 1920;
     private int h = (int) (dimension * (Math.sqrt(3)));
 
     private Rectangle clickBox;
@@ -61,33 +61,24 @@ public class Terrain {
     private int colorBlack[] = { 0, 0, 0 };
 
     private int[][][] defColors = {
-            { colorBrown, colorGray, colorGreen, colorBlue, colorYellow,
-                    colorRed, colorBrown, colorBlack, colorRed, colorGreen,
-                    colorBlue, colorRed, colorBlack },
-            { colorYellow, { 0, 0, 128 }, { 0, 0, 128 }, colorBrown, colorBlack, { 0, 0, 128 },
-                    { 0, 0, 128 }, colorYellow, colorBlack, { 0, 0, 128 }, { 0, 0, 128 }, colorYellow,
-                    { -1, -1, -1 } },
-            { { 0, 0, 128 }, { 0, 0, 128 }, colorBlack, { 0, 0, 128 }, colorGray, { 0, 0, 128 },
-                    colorGreen, { 0, 0, 128 }, colorGreen, { 0, 0, 128 }, colorGray,
-                    { 0, 0, 128 }, { 0, 0, 128 } },
-            { colorGreen, colorBlue, colorYellow, { 0, 0, 128 }, { 0, 0, 128 }, colorRed,
-                    colorBlue, { 0, 0, 128 }, colorRed, { 0, 0, 128 }, colorRed,
-                    colorBrown, { -1, -1, -1 } },
-            { colorBlack, colorBrown, colorRed, colorBlue, colorBlack, colorBrown,
-                    colorGray, colorYellow, { 0, 0, 128 }, { 0, 0, 128 }, colorGreen, colorBlack,
-                    colorBlue },
-            { colorGray, colorGreen, { 0, 0, 128 }, { 0, 0, 128 }, colorYellow, colorGreen,
-                    { 0, 0, 128 }, { 0, 0, 128 }, { 0, 0, 128 }, colorBrown, colorGray,
-                    colorBrown, { -1, -1, -1 } },
-            { { 0, 0, 128 }, { 0, 0, 128 }, { 0, 0, 128 }, colorGray, { 0, 0, 128 }, colorRed,
-                    { 0, 0, 128 }, colorGreen, { 0, 0, 128 }, colorYellow, colorBlack, colorBlue,
-                    colorYellow },
-            { colorYellow, colorBlue, colorBrown, { 0, 0, 128 }, { 0, 0, 128 }, { 0, 0, 128 },
-                    colorBlue, colorBlack, { 0, 0, 128 }, colorGray, colorBrown,
-                    colorGray, { -1, -1, -1 } },
-            { colorRed, colorBlack, colorGray, colorBlue, colorRed,
-                    colorGreen, colorYellow, colorBrown, colorGray, { 0, 0, 128 },
-                    colorBlue, colorGreen, colorRed } };
+            { colorBrown, colorGray, colorGreen, colorBlue, colorYellow, colorRed, colorBrown, colorBlack, colorRed,
+                    colorGreen, colorBlue, colorRed, colorBlack },
+            { colorYellow, { 0, 0, 128 }, { 0, 0, 128 }, colorBrown, colorBlack, { 0, 0, 128 }, { 0, 0, 128 },
+                    colorYellow, colorBlack, { 0, 0, 128 }, { 0, 0, 128 }, colorYellow, { -1, -1, -1 } },
+            { { 0, 0, 128 }, { 0, 0, 128 }, colorBlack, { 0, 0, 128 }, colorGray, { 0, 0, 128 }, colorGreen,
+                    { 0, 0, 128 }, colorGreen, { 0, 0, 128 }, colorGray, { 0, 0, 128 }, { 0, 0, 128 } },
+            { colorGreen, colorBlue, colorYellow, { 0, 0, 128 }, { 0, 0, 128 }, colorRed, colorBlue, { 0, 0, 128 },
+                    colorRed, { 0, 0, 128 }, colorRed, colorBrown, { -1, -1, -1 } },
+            { colorBlack, colorBrown, colorRed, colorBlue, colorBlack, colorBrown, colorGray, colorYellow,
+                    { 0, 0, 128 }, { 0, 0, 128 }, colorGreen, colorBlack, colorBlue },
+            { colorGray, colorGreen, { 0, 0, 128 }, { 0, 0, 128 }, colorYellow, colorGreen, { 0, 0, 128 },
+                    { 0, 0, 128 }, { 0, 0, 128 }, colorBrown, colorGray, colorBrown, { -1, -1, -1 } },
+            { { 0, 0, 128 }, { 0, 0, 128 }, { 0, 0, 128 }, colorGray, { 0, 0, 128 }, colorRed, { 0, 0, 128 },
+                    colorGreen, { 0, 0, 128 }, colorYellow, colorBlack, colorBlue, colorYellow },
+            { colorYellow, colorBlue, colorBrown, { 0, 0, 128 }, { 0, 0, 128 }, { 0, 0, 128 }, colorBlue, colorBlack,
+                    { 0, 0, 128 }, colorGray, colorBrown, colorGray, { -1, -1, -1 } },
+            { colorRed, colorBlack, colorGray, colorBlue, colorRed, colorGreen, colorYellow, colorBrown, colorGray,
+                    { 0, 0, 128 }, colorBlue, colorGreen, colorRed } };
 
     public Terrain(int x, int y, int centerXO, int centerY0, int color[], int fontSize, String b) {
         actionListeners = new ArrayList<ActionListener>();
@@ -141,8 +132,7 @@ public class Terrain {
         }
         clickBox = new Rectangle(centX - dimension / 2, centY - dimension / 2, dimension, dimension);
 
-        if(b != "")
-        {
+        if (b != "") {
             text = b;
         }
     }
@@ -179,47 +169,51 @@ public class Terrain {
                 clickBox.y + clickBox.height / 2 + heightH / 2);
     }
 
-    public String getText()
-    {
+    public String getText() {
         return text;
     }
 
-    public void setText(String newT)
-    {
+    public void setText(String newT) {
         text = newT;
     }
 
-    public int[] getColor()
-    {
-        if(color1 == colorGreen[1])
+    public int[] getColor() {
+        if(color0 == 0 && color1 == 0 && color2 == 128)
         {
+            int []darkBlue = {0, 0, 128};
+            return darkBlue;
+        }
+        else if (color1 == colorGreen[1]) {
             return colorGreen;
-        }
-        else if(color1 == colorBlue[1])
-        {
+        } else if (color1 == colorBlue[1]) {
             return colorBlue;
-        }
-        else if(color1 == colorRed[1])
-        {
+        } else if (color1 == colorRed[1]) {
             return colorRed;
-        }
-        else if(color1 == colorBlack[1])
-        {
+        } else if (color1 == colorBlack[1]) {
             return colorBlack;
-        }
-        else if(color1 == colorYellow[1])
-        {
+        } else if (color1 == colorYellow[1]) {
             return colorYellow;
-        }
-        else if(color1 == colorBrown[1])
-        {
+        } else if (color1 == colorBrown[1]) {
             return colorBrown;
-        }
-        else
-        {
+        } else {
             return colorGray;
         }
 
+    }
+
+    public void setColor(int[] defColors) {
+        color0 = defColors[0];
+        color1 = defColors[1];
+        color2 = defColors[2];
+        if (color0 < 100 || color1 < 100 || color2 < 100) {
+            released = new Color(color0, color1, color2);
+            hover = new Color(color0 + 50, color1 + 50, color2 + 50);
+            pressed = new Color(color0 + 100, color1 + 100, color2 + 100);
+        } else {
+            released = new Color(color0, color1, color2);
+            hover = new Color(color0 - 50, color1 - 50, color2 - 50);
+            pressed = new Color(color0 - 100, color1 - 100, color2 - 100);
+        }
     }
 
     public void addActionListener(ActionListener listener) {

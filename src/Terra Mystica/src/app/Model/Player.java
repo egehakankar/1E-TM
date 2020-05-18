@@ -1,5 +1,6 @@
 package app.Model;
 
+import java.security.PublicKey;
 import java.util.ArrayList;
 import app.Model.BonusCards;
 import app.Model.BonusCard;
@@ -37,6 +38,7 @@ public class Player {
     private int[] templeTrack;
     private int[] sanctuaryTrack;
     private int[] strongholdTrack;
+    private int[] currentAction = {0, 0, 0, 0, 0, 0, 0, 0};
 
     public Player(Faction faction) {
         factionType = faction;
@@ -54,7 +56,7 @@ public class Player {
         this.startingDwellings = factionType.getDwellings();
         this.worker = faction.getWorkers();
         this.spade = 0;
-        spadeLevel = 0;
+        spadeLevel = 3;
         
         points = 0;
         cultLevel = faction.getCult();
@@ -161,7 +163,7 @@ public class Player {
             strongholdTrack[0]--;
             strongholdTrack[1]++;
         }
-        buildings.get(b).get(x).add(y, true);
+        buildings.get(b).get(x).set(y, true);
     }
 
     public void updateShip(int ship) {
@@ -310,4 +312,22 @@ public class Player {
         return key;
     }
 
+    public void resetAction()
+    {
+        for(int a = 0; a < 8; a++)
+        {
+            currentAction[a] = 0;
+        }
+    }
+
+    public void setAction(int a)
+    {
+        resetAction();
+        currentAction[a] = 1;
+    }
+
+    public int[] getAction()
+    {
+        return currentAction;
+    }
 }

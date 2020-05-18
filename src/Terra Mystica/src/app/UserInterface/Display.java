@@ -8,7 +8,7 @@ import app.Management.GameManager;
 
 public class Display {
     private static Display disp;
-    private HashMap<String, DisplayPanel> panels;
+    private static HashMap<String, DisplayPanel> panels;
     private String currentPanel = "";
 
     public Display() {
@@ -34,7 +34,13 @@ public class Display {
         }
     }
 
+    public static void remB()
+    {
+        panels.replace("Bonus Card Screen", new BonusCardScreen());
+    }
+
     public void add(String name, DisplayPanel panel) {
+
         panels.put(name, panel);
     }
 
