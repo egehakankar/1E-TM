@@ -3,13 +3,14 @@ package app.Model;
 import java.security.PublicKey;
 import java.util.ArrayList;
 import app.Model.BonusCards;
+import app.Management.GamePlayManager;
 import app.Model.BonusCard;
 
 public class Player {
     private Player player;
     private Faction factionType;
     private int[] power;
-    //private int powerInt; // BErdan ekledi
+    private int powerInt; // BErdan ekledi
     private int key; //Number of keys. Berdan ekledi.
     private int priest;
     private int shovel;
@@ -24,6 +25,7 @@ public class Player {
     private ArrayList<ArrayList<ArrayList<Boolean>>>  buildings;
     private int points;
     // air, water, fire, earth
+    // fire, water, earth, air olsun.
     private int[] cultLevel;
     // 0 -> 3 space, others 2 space
     private int [][] cultSpaces;
@@ -143,6 +145,7 @@ public class Player {
         {
             dwellingsTrack[0]--;
             dwellingsTrack[1]++;
+            
         }
         else if(b == 1)
         {
@@ -330,5 +333,15 @@ public class Player {
     public int[] getAction()
     {
         return currentAction;
+    }
+
+    public int getPowerInt()
+    {
+        return powerInt;
+    }
+
+    public void setPowerInt(int a)
+    {
+        powerInt = a;
     }
 }

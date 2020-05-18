@@ -11,7 +11,6 @@ import java.awt.Dimension;
 import java.awt.geom.Rectangle2D;
 import java.awt.Toolkit;
 import java.awt.Font;
-import java.awt.BasicStroke;
 
 import javax.imageio.ImageIO;
 
@@ -62,8 +61,6 @@ public class MainGameScreen extends DisplayPanel {
 
     private static ArrayList<Player> players = GamePlayManager.getPlayerList();
     private static int turnPlayer = 0;
-
-    private int[] colorT = players.get(turnPlayer).getFaction().getColor();
 
     private BufferedImage image;
     private String imageLoc;
@@ -162,7 +159,7 @@ public class MainGameScreen extends DisplayPanel {
         playerCount = players.size();
         turnPlayer = GamePlayManager.getTurnPlayer();
 
-        if (playerCount != 0) {
+        if (playerCount != 0 && turnPlayer < playerCount) {
             currenAction = players.get(turnPlayer).getAction();
             allPlayerDwellings = new ArrayList<ArrayList<ArrayList<ArrayList<Boolean>>>>();
             for (int a = 0; a < playerCount; a++) {
@@ -183,8 +180,7 @@ public class MainGameScreen extends DisplayPanel {
                 powerOpt = false;
             }
 
-            if(specOpt)
-            {
+            if (specOpt) {
                 specOptS();
                 specOpt = false;
             }
@@ -217,16 +213,15 @@ public class MainGameScreen extends DisplayPanel {
         }
     }
 
-    private void specOptS()
-    {
+    private void specOptS() {
         int[] colorFT = { 102, 255, 255 };
         factT = new GuiButton((WIDTH / 2 - buttonWidth / 2) - buttonWidth * 3, HEIGHT * 900 / 1080, buttonWidth,
                 buttonHeight / 2, colorFT, 17);
         factT.setText("Faction");
 
         int[] colorBT = { 0, 0, 139 };
-        bonusT = new GuiButton((WIDTH / 2 - buttonWidth / 2 + buttonSpacing) - buttonWidth * 2 + 10, HEIGHT * 900 / 1080,
-                buttonWidth, buttonHeight / 2, colorBT, 20);
+        bonusT = new GuiButton((WIDTH / 2 - buttonWidth / 2 + buttonSpacing) - buttonWidth * 2 + 10,
+                HEIGHT * 900 / 1080, buttonWidth, buttonHeight / 2, colorBT, 20);
         bonusT.setText("Bonus Card");
 
         factT.addActionListener(new ActionListener() {
@@ -270,8 +265,8 @@ public class MainGameScreen extends DisplayPanel {
         pSp.setText("Spade1");
 
         int[] colorPS2 = { 139, 69, 19 };
-        pSp2 = new GuiButton((WIDTH / 2 - buttonWidth / 2 + buttonSpacing) + buttonWidth * 1 + 40, HEIGHT * 900 / 1080, buttonWidth,
-                buttonHeight / 2, colorPS2, 17);
+        pSp2 = new GuiButton((WIDTH / 2 - buttonWidth / 2 + buttonSpacing) + buttonWidth * 1 + 40, HEIGHT * 900 / 1080,
+                buttonWidth, buttonHeight / 2, colorPS2, 17);
         pSp2.setText("Spade2");
 
         pWr.addActionListener(new ActionListener() {
@@ -408,6 +403,7 @@ public class MainGameScreen extends DisplayPanel {
     }
 
     private void drawScoringTiles(Graphics2D g) {
+        int k = 5;
         for (int a = 0; a < 6; a++) {
             imageLoc = "../images/ScoringTiles/";
             imageLoc += GamePlayManager.getScoringTiles().get(a);
@@ -418,8 +414,9 @@ public class MainGameScreen extends DisplayPanel {
                 e.printStackTrace();
             }
 
-            g.drawImage(image, scoringStartWidth, scoringStartHeight + a * scoringHeight, scoringWidth, scoringHeight,
+            g.drawImage(image, scoringStartWidth, scoringStartHeight + k * scoringHeight, scoringWidth, scoringHeight,
                     null);
+            k--;
         }
 
     }
@@ -512,11 +509,18 @@ public class MainGameScreen extends DisplayPanel {
 
                 GamePlayManager.addPassedPlayer(GamePlayManager.getPlayerList().get(GamePlayManager.getTurnPlayer()));
                 if (GamePlayManager.getPlayerList().size() == 0) {
-                    System.out.println(turnPlayer);
-                    ArrayList<Player> newP = GamePlayManager.getPassedPlayers();
-                    Display.remB();
-                    Display.getInstance().setCurrentPanel("Bonus Card Screen");
-                    GamePlayManager.setPlayerList(newP);
+
+                    if (GamePlayManager.getRound() == 5) {
+                        ArrayList<Player> newP = GamePlayManager.getPassedPlayers();
+                        GamePlayManager.setPlayerList(newP);
+                        Display.getInstance().setCurrentPanel("Game Over Screen");
+                    } else {
+                        GamePlayManager.addRound();
+                        ArrayList<Player> newP = GamePlayManager.getPassedPlayers();
+                        Display.remB();
+                        Display.getInstance().setCurrentPanel("Bonus Card Screen");
+                        GamePlayManager.setPlayerList(newP);
+                    }
                 } else {
                     GamePlayManager.addTurnPlayer();
                 }
@@ -533,6 +537,7 @@ public class MainGameScreen extends DisplayPanel {
     }
 
     public void addInfoCur(Graphics2D g) {
+        int[] colorT = players.get(turnPlayer).getFaction().getColor();
         if (turnPlayer != playerCount) {
             colorT = players.get(turnPlayer).getFaction().getColor();
             title = players.get(turnPlayer).getFaction().getName();
@@ -605,7 +610,7 @@ public class MainGameScreen extends DisplayPanel {
                     if (c > 3)
                         c--;
                 }
-
+                int[] colorT = players.get(turnPlayer).getFaction().getColor();
                 colorT = players.get(a).getFaction().getColor();
                 title = players.get(a).getFaction().getName();
                 g.setPaint(new Color(231, 227, 215));
@@ -642,9 +647,8 @@ public class MainGameScreen extends DisplayPanel {
             }
         }
     }
-    
-    private void specialAction()
-    {
+
+    private void specialAction() {
         remove(cultA);
         remove(cultE);
         remove(cultF);
@@ -660,11 +664,9 @@ public class MainGameScreen extends DisplayPanel {
         specOpt = true;
     }
 
-    private void specialAction(String stt)
-    {
-        if(currenAction[6] == 1) {
-            if (GamePlayManager.specialAction(players.get(turnPlayer), stt)) 
-            {
+    private void specialAction(String stt) {
+        if (currenAction[6] == 1) {
+            if (GamePlayManager.specialAction(players.get(turnPlayer), stt)) {
                 remove(factT);
                 remove(bonusT);
                 players.get(turnPlayer).resetAction();
@@ -812,10 +814,12 @@ public class MainGameScreen extends DisplayPanel {
                     drawMap();
                 }
             } else if (GamePlayManager.isAdjOrHomeOrNot(players.get(turnPlayer), k, g, allMapColor) == 2) {
-                if (GamePlayManager.buildDwelling(players.get(turnPlayer), k, g)) {
-                    drawMap();
-                    players.get(turnPlayer).resetAction();
-                    GamePlayManager.addTurnPlayer();
+                if (players.get(turnPlayer).getBuildings().get(0).get(k).get(g) == false) {
+                    if (GamePlayManager.buildDwelling(players.get(turnPlayer), k, g)) {
+                        drawMap();
+                        players.get(turnPlayer).resetAction();
+                        GamePlayManager.addTurnPlayer();
+                    }
                 }
             }
         }

@@ -52,7 +52,7 @@ public class GameManager extends JFrame implements KeyListener, MouseListener, R
 
     private BufferedImage image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
 
-    private Display disp;
+    private static Display disp;
 
     private static GamePlayManager gameP;
     private static ArrayList<Faction> factionTemp;
@@ -70,8 +70,8 @@ public class GameManager extends JFrame implements KeyListener, MouseListener, R
         factionTemp.add(fakir);
         Alchemists alchemists = new Alchemists();
         factionTemp.add(alchemists);
-        /*Swarmlings sw = new Swarmlings();
-        factionTemp.add(sw);*/
+        Swarmlings sw = new Swarmlings();
+        factionTemp.add(sw);
 
         gameP = new GamePlayManager(factionTemp);
         
@@ -99,7 +99,7 @@ public class GameManager extends JFrame implements KeyListener, MouseListener, R
         disp.add("Menu", new MainMenu());
         disp.add("How To Play", new HowToPlay());
         disp.add("Credits", new Credits());
-        disp.add("Selection Screen", new SelectionScreen(this));
+        disp.add("Selection Screen", new SelectionScreen());
         disp.add("GameStart", new GameStartScreen());
         disp.add("Bonus Card Screen", new BonusCardScreen());
         disp.add("Cult Screen", new CultScreen());
@@ -108,6 +108,23 @@ public class GameManager extends JFrame implements KeyListener, MouseListener, R
         disp.add("Game Over Screen", new GameOverScreen());
 
         //Sets current screen.
+        disp.setCurrentPanel("Menu"); 
+    }
+
+    public static void setPlay2(ArrayList<Faction> factions)
+    {
+        gameP = new GamePlayManager(factions);
+        disp.removeAll();
+        disp.add("Menu", new MainMenu());
+        disp.add("How To Play", new HowToPlay());
+        disp.add("Credits", new Credits());
+        disp.add("Selection Screen", new SelectionScreen());
+        disp.add("GameStart", new GameStartScreen());
+        disp.add("Bonus Card Screen", new BonusCardScreen());
+        disp.add("Cult Screen", new CultScreen());
+        disp.add("MainGameScreen", new MainGameScreen());
+        disp.add("PhaseIncome", new PhaseIncome());
+        disp.add("Game Over Screen", new GameOverScreen());
         disp.setCurrentPanel("Menu"); 
     }
 

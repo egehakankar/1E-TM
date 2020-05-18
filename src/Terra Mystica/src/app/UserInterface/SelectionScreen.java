@@ -93,7 +93,7 @@ public class SelectionScreen extends DisplayPanel {
     Fakirs fakirs = new Fakirs();
     Nomads nomads = new Nomads();
 
-    public SelectionScreen(GameManager gM) {
+    public SelectionScreen() {
         super();
 
         playerFactions = new ArrayList<Faction>();

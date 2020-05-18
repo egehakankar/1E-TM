@@ -201,6 +201,11 @@ public class GamePlayManager {
             player.updateCoin(player.getCoin() - reqCoin);
             player.updateWorker(player.getWorker() - reqWorker);
             player.addBuilding(0, x, y);
+            System.out.println(scoringTiles.get(round));
+            if(scoringTiles.get(round) == 0 || scoringTiles.get(round) == 1)
+            {
+                player.updatePoints(player.getPoints() + 2);
+            }
             return true;
         }
         return false;
@@ -209,9 +214,17 @@ public class GamePlayManager {
     public static boolean transformTerrainToHome(Player pl) {
         if (pl.getSpade() > 0) {
             pl.updateSpade(pl.getSpade() - 1);
+            if(scoringTiles.get(round) == 6)
+            {
+                pl.updatePoints(pl.getPoints() + 2);
+            }
             return true;
         } else if (pl.getSpadeLevel() <= pl.getWorker()) {
             pl.updateWorker(pl.getWorker() - pl.getSpadeLevel());
+            if(scoringTiles.get(round) == 6)
+            {
+                pl.updatePoints(pl.getPoints() + 2);
+            }
             return true;
         }
         return false;
@@ -335,6 +348,11 @@ public class GamePlayManager {
             player.updateBuildings(buildings);
             player.updateCoin(player.getCoin() - reqCoin);
             player.updateWorker(player.getWorker() - reqWorker);
+
+            if(scoringTiles.get(round) == 2 || scoringTiles.get(round) == 3)
+            {
+                player.updatePoints(player.getPoints() + 3);
+            }
             return true;
         }
 
@@ -390,6 +408,12 @@ public class GamePlayManager {
             player.updateBuildings(buildings);
             player.updateCoin(player.getCoin() - reqCoin);
             player.updateWorker(player.getWorker() - reqWorker);
+
+            if(scoringTiles.get(round) == 4 || scoringTiles.get(round) == 5)
+            {
+                player.updatePoints(player.getPoints() + 5);
+            }
+
             return true;
         }
 
@@ -447,9 +471,7 @@ public class GamePlayManager {
                 for(int a = 0; a < playerCount; a++)
                 {
                     if(playerList.get(a).getCultSpaces()[cult][i] == 0)
-                    {
                         getC++;
-                    }
                 }
                 if (getC == playerCount) {
                     int[][] temp2 = player.getCultSpaces();
@@ -479,7 +501,6 @@ public class GamePlayManager {
                     if (temp[cult] < 10 && (temp[cult] + k) == 10) {
                         c = 3;
                     }
-
                     if (c > power[0]) {
                         power[1] = power[0] + power[1];
                         c = c - power[0];
@@ -498,7 +519,8 @@ public class GamePlayManager {
                         power[1] = power[1] + c;
                         power[0] = power[0] - c;
                     }
-                    player.updatePower(power);
+                    //player.updatePower(power);
+                    ////////////////
                     player.updatePriest(player.getPriest() - 1);
                     return true;
                 }
@@ -644,11 +666,11 @@ public class GamePlayManager {
         return playerList;
     }
 
-    public int getRound() {
+    public static int getRound() {
         return round;
     }
 
-    public void addRound() {
+    public static void addRound() {
         round++;
     }
 
