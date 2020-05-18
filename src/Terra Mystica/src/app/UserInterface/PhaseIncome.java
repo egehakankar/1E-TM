@@ -80,6 +80,7 @@ public class PhaseIncome extends DisplayPanel {
 
         if(check)
         {
+            BonusCardScreen.reset();
             for(int a  = 0; a < playerCount; a++)
             {
                 incomes[a] = GamePlayManager.receiveIncome(players.get(a));

@@ -95,6 +95,10 @@ public class BonusCardScreen extends DisplayPanel {
         addButtons = true;
     }
 
+    public static void reset()
+    {
+        //this = new BonusCardScreen();
+    }
     public void addBon()
     {
         bonusCardNumbers = new ArrayList<Integer>();

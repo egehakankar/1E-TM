@@ -43,6 +43,11 @@ public class Display {
 
         panels.put(name, panel);
     }
+    public void reset(String name, DisplayPanel panel)
+    {
+        panels.remove(name,panel);
+        panels.put(name,panel);
+    }
 
     public void setCurrentPanel(String name) {
         currentPanel = name;

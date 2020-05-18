@@ -12,12 +12,13 @@ public class GamePlayManager {
     private static ArrayList<Player> passingPlayerList;
     private static ArrayList<Integer> scoringTiles;
     private static int turnPlayer;
-    private static ArrayList<Player> playerPassed;
+    private static ArrayList<Player> passedPlayers;
 
     public GamePlayManager(ArrayList<Faction> factionList) {
-        playerPassed = new ArrayList<Player>();
+        
         scoringTiles = new ArrayList<Integer>();
         turnPlayer = 0;
+        passedPlayers = new ArrayList<Player>();
 
         for (int i = 0; i < 6; i++) {
             int randomNumber = (int) (Math.random() * 8);
@@ -31,6 +32,7 @@ public class GamePlayManager {
         playerList = new ArrayList<Player>();
         for (int i = 0; i < factionList.size(); i++) {
             Player player = new Player(factionList.get(i));
+            player.updatePriest(8);
             player.updatePoints(i);
             playerList.add(player);
         }
@@ -421,17 +423,27 @@ public class GamePlayManager {
     public static boolean sendPriestCult(Player player, String cultName) {
         int cult = 0;
         if (cultName.equals("air")) {
+            cult = 3;
         } else if (cultName.equals("water")) {
             cult = 1;
         } else if (cultName.equals("fire")) {
-            cult = 2;
+            cult = 0;
         } else {
-            cult = 3;
+            cult = 2;
         }
+        int getC = 0;;
         if (player.getPriest() > 0) {
             for (int i = 0; i < 4; i++) {
-                if (player.getCultSpaces()[cult][i] == 0) {
-
+                getC = 0;
+                for(int a = 0; a < playerCount; a++)
+                {
+                    if(playerList.get(a).getCultSpaces()[cult][i] == 0)
+                        getC++;
+                }
+                if (getC == 4) {
+                    int[][] temp2 = player.getCultSpaces();
+                    temp2[cult][i] = 1;
+                    player.updateCultSpace(temp2);
                     int k = 2;
                     int c = 0;
                     if (i == 0) {
@@ -625,7 +637,7 @@ public class GamePlayManager {
     }
 
     public static void addPassedPlayer(Player p) {
-        playerPassed.add(p);
+        passedPlayers.add(p);
         playerList.remove(p);
 
         playerCount = playerList.size();
@@ -637,7 +649,7 @@ public class GamePlayManager {
     }
 
     public static ArrayList<Player> getPassedPlayers() {
-        return playerPassed;
+        return passedPlayers;
     }
 
     public static void setTurnPlayer(int i) {
@@ -650,6 +662,6 @@ public class GamePlayManager {
         {
             playerList.add(newPlayers.get(a));
         }
-        playerPassed.clear();
+        passedPlayers.clear();
     }
 }

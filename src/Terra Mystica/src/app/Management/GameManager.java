@@ -26,6 +26,7 @@ import app.Model.Swarmlings;
 import app.UserInterface.BonusCardScreen;
 import app.UserInterface.Credits;
 import app.UserInterface.Display;
+import app.UserInterface.DisplayPanel;
 import app.UserInterface.GameStartScreen;
 import app.UserInterface.HowToPlay;
 import app.UserInterface.MainGameScreen;
@@ -73,7 +74,7 @@ public class GameManager extends JFrame implements KeyListener, MouseListener, R
         factionTemp.add(sw);*/
 
         gameP = new GamePlayManager(factionTemp);
-
+        
         setPreferredSize(new DimensionUIResource(WIDTH, HEIGHT));
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -243,5 +244,10 @@ public class GameManager extends JFrame implements KeyListener, MouseListener, R
     @Override
     public void mouseReleased(MouseEvent e) {
         disp.mouseReleased(e);
+    }
+
+    public void resetScreen(String name, DisplayPanel panel)
+    {
+        disp.reset(name, panel);
     }
 }
