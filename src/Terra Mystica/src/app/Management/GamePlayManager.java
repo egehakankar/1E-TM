@@ -423,16 +423,20 @@ public class GamePlayManager {
     public static boolean sendPriestCult(Player player, String cultName) {
         int cult = 0;
         if (cultName.equals("air")) {
+            cult = 3;
         } else if (cultName.equals("water")) {
             cult = 1;
         } else if (cultName.equals("fire")) {
-            cult = 2;
+            cult = 0;
         } else {
-            cult = 3;
+            cult = 2;
         }
         if (player.getPriest() > 0) {
             for (int i = 0; i < 4; i++) {
                 if (player.getCultSpaces()[cult][i] == 0) {
+                    int[][] temp2 = player.getCultSpaces();
+                    temp2[cult][i] = 1;
+                    player.updateCultSpace(temp2);
                     int k = 2;
                     int c = 0;
                     if (i == 0) {
