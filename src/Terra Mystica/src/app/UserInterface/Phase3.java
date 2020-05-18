@@ -69,12 +69,12 @@ public class Phase3 extends DisplayPanel {
     }
 
     
-    int round = GamePlayManager.getRound();
+    int round;
 
     @Override
     public void render(Graphics2D g, GameManager gM) {
-        int scoringTileNo = GamePlayManager.getScoringTiles().get(round);
-        scoringTileNo --;
+        round = GamePlayManager.getRound();
+        int scoringTileNo = GamePlayManager.getScoringTiles().get(round-1);
         g.drawImage(image, 0, 0, WIDTH, HEIGHT, null);
 
         super.render(g, gM);

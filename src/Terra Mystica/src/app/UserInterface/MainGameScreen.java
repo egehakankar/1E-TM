@@ -518,7 +518,7 @@ public class MainGameScreen extends DisplayPanel {
                         GamePlayManager.addRound();
                         ArrayList<Player> newP = GamePlayManager.getPassedPlayers();
                         Display.remB();
-                        Display.getInstance().setCurrentPanel("Bonus Card Screen");
+                        Display.getInstance().setCurrentPanel("Phase3");
                         GamePlayManager.setPlayerList(newP);
                     }
                 } else {

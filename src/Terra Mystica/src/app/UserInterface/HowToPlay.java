@@ -28,7 +28,7 @@ public class HowToPlay extends DisplayPanel {
 
     private Font titleFont = new Font("Bitstream Vera Sans", 1, WIDTH * 120 / 1920);
     private BufferedImage image;
-    private BufferedImage ss0, ss1, ss2, ss3, ss4, ss5;
+    private BufferedImage ss0, ss1, ss2, ss3, ss4, ss5, ss6, ss7, ss8;
     private int page = 0;
 
     public HowToPlay() {
@@ -67,6 +67,27 @@ public class HowToPlay extends DisplayPanel {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        try {
+            ss5 = ImageIO.read(getClass().getResourceAsStream("../images/screenshots/ss5.png"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try {
+            ss6 = ImageIO.read(getClass().getResourceAsStream("../images/screenshots/ss6.png"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try {
+            ss7 = ImageIO.read(getClass().getResourceAsStream("../images/screenshots/ss7.png"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try {
+            ss8 = ImageIO.read(getClass().getResourceAsStream("../images/screenshots/ss8.png"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        
         
 
         int colorBB[] = { 255, 178, 102 };
@@ -89,6 +110,9 @@ public class HowToPlay extends DisplayPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 page ++;
+                if (page ==9)
+                    Display.getInstance().setCurrentPanel("Menu");
+
             }
         });
         add (goForwardB);
@@ -145,6 +169,32 @@ public class HowToPlay extends DisplayPanel {
             g.drawString("This is the main gameplay screen screen.", WIDTH/4, HEIGHT/2+40 );
             g.drawString("You can reach scoring tiles, cults and actions here.", WIDTH/4,HEIGHT/2+40+spacing );
             g.drawString("Select an action to continue.", WIDTH/4, HEIGHT/2+40+spacing*2);
+
+        }
+
+        else if( page == 6 )
+        {
+            g.drawImage(ss8, WIDTH/4,0, WIDTH/2, HEIGHT/2, null);
+            g.drawString("This is the cult screen.", WIDTH/4, HEIGHT/2+40 );
+            g.drawString("You can see your priests and markers here.", WIDTH/4,HEIGHT/2+40+spacing );
+            g.drawString("Click button to go back.", WIDTH/4, HEIGHT/2+40+spacing*2);
+        }
+
+        else if( page == 7 )
+        {
+            g.drawImage(ss6, WIDTH/4,0, WIDTH/2, HEIGHT/2, null);
+            g.drawString("This is the Phase 3 screen.", WIDTH/4, HEIGHT/2+40 );
+            g.drawString("Users receive cult bonuses here.", WIDTH/4,HEIGHT/2+40+spacing );
+            g.drawString("Click button to continue.", WIDTH/4, HEIGHT/2+40+spacing*2);
+
+        }
+
+        else if( page == 8 )
+        {
+            g.drawImage(ss7, WIDTH/4,0, WIDTH/2, HEIGHT/2, null);
+            g.drawString("This is the final screen of the game.", WIDTH/4, HEIGHT/2+40 );
+            g.drawString("It displays player info according to points.", WIDTH/4,HEIGHT/2+40+spacing );
+            g.drawString("Click MENU to go back to main menu.", WIDTH/4, HEIGHT/2+40+spacing*2);
 
         }
 
