@@ -101,6 +101,7 @@ public class MainGameScreen extends DisplayPanel {
 
     @Override
     public void render(Graphics2D g, GameManager gM) {
+        turnPlayer = GamePlayManager.getTurnPlayer();
         g.drawImage(bImage, 0, 0, WIDTH, HEIGHT, null);
 
         allPlayerDwellings = new ArrayList<ArrayList<ArrayList<ArrayList<Boolean>>>>();
@@ -293,7 +294,28 @@ public class MainGameScreen extends DisplayPanel {
         pass.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // transformOrBuild(e);
+                GamePlayManager.addPassedPlayer( GamePlayManager.getPlayerList().get(GamePlayManager.getTurnPlayer()));
+                if( GamePlayManager.getPassedPlayers().size() == GamePlayManager.getPlayerList().size() )
+                {
+                    GamePlayManager.setPlayerList(GamePlayManager.getPassedPlayers());
+                    System.out.println(GamePlayManager.getPlayerList().size());
+                    Display.getInstance().setCurrentPanel("Bonus Card Screen");
+                }
+                
+                else
+                {
+                    int trp = GamePlayManager.getTurnPlayer();
+                    if( trp == GamePlayManager.getPlayerList().size()-1 )
+                    {
+                        GamePlayManager.setTurnPlayer(0);
+                        System.out.println(GamePlayManager.getPlayerList().size());
+                    }
+                    else
+                    {
+                        GamePlayManager.setTurnPlayer(trp + 1);
+                    }
+                }
+                
             }
         });
         add(upgradeSpade);

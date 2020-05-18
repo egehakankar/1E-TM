@@ -93,6 +93,10 @@ public class BonusCardScreen extends DisplayPanel {
         addButtons = true;
     }
 
+    public static void reset()
+    {
+        //this = new BonusCardScreen();
+    }
     public void addBon()
     {
         bonusCardNumbers = new ArrayList<Integer>();
@@ -133,7 +137,13 @@ public class BonusCardScreen extends DisplayPanel {
                     players.get(turnOfPlayer).updateByBonuscardNumber(bonusCards.get(a).getCardNumer());
                     turnOfPlayer ++;
                     if( players.size() == turnOfPlayer )
+                    {
+                        turnOfPlayer = 0;
+                        //addBon();
+                        addButtons = !addButtons;
+                        
                         Display.getInstance().setCurrentPanel("PhaseIncome");
+                    }
                 }
             });
         }
