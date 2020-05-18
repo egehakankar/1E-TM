@@ -10,18 +10,15 @@ import java.awt.font.TextLayout;
 import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 
-public class GuiButton 
-{
-    private enum State
-    {
-        RELEASED,
-        HOVER,
-        PRESSED
+public class GuiButton {
+    private enum State {
+        RELEASED, HOVER, PRESSED
     }
+
     private State currentState = State.RELEASED;
     private Rectangle clickBox;
     private ArrayList<ActionListener> actionListeners;
-    private String text = "";
+    private String text = " ";
 
     private Color released;
     private Color hover;
@@ -32,43 +29,48 @@ public class GuiButton
     private int color1;
     private int color2;
 
-    public GuiButton(int x, int y, int width, int height, int color[], int fontSize)
-    {
-        clickBox = new Rectangle(x, y, width, height);
-        actionListeners = new ArrayList<ActionListener>();
+    public GuiButton(int x, int y, int width, int height, int color[], int fontSize) {
+        
+        if (color[0] != -1) {
+            clickBox = new Rectangle(x, y, width, height);
+            actionListeners = new ArrayList<ActionListener>();
 
-        this.fontSize = fontSize;
+            this.fontSize = fontSize;
 
-        this.color0 = color[0];
-        this.color1 = color[1];
-        this.color2 = color[2];
+            if (color[0] < 100 || color[1] < 100 || color[2] < 100) {
+                this.color0 = color[0];
+                this.color1 = color[1];
+                this.color2 = color[2];
 
-        released = new Color(color[0], color[1], color[2]);
-        hover = new Color(color[0] - 50, color[1] - 50, color[2] - 50);
-        pressed = new Color(color[0] - 100, color[1] - 100, color[2] - 100);
+                released = new Color(color[0], color[1], color[2]);
+                hover = new Color(color[0] + 50, color[1] + 50, color[2] + 50);
+                pressed = new Color(color[0] + 100, color[1] + 100, color[2] + 100);
+            } else {
+                this.color0 = color[0];
+                this.color1 = color[1];
+                this.color2 = color[2];
 
-        font = new Font("Courier New", 1, fontSize);
+                released = new Color(color[0], color[1], color[2]);
+                hover = new Color(color[0] - 50, color[1] - 50, color[2] - 50);
+                pressed = new Color(color[0] - 100, color[1] - 100, color[2] - 100);
+            }
+
+            font = new Font("Courier New", 1, fontSize);
+        }
     }
 
-    public void update()
-    {
+    public void update() {
 
     }
 
-    public void render(Graphics2D g)
-    {
-        if(currentState == State.RELEASED)
-        {
+    public void render(Graphics2D g) {
+        if (currentState == State.RELEASED) {
             g.setColor(released);
             g.fill(clickBox);
-        }
-        else if(currentState == State.HOVER)
-        {
+        } else if (currentState == State.HOVER) {
             g.setColor(hover);
             g.fill(clickBox);
-        }
-        else if(currentState == State.PRESSED)
-        {
+        } else if (currentState == State.PRESSED) {
             g.setColor(pressed);
             g.fill(clickBox);
         }
@@ -77,113 +79,98 @@ public class GuiButton
 
         Rectangle2D b = g.getFontMetrics().getStringBounds(text, g);
         TextLayout t = new TextLayout(text, font, g.getFontRenderContext());
-        int widthM = (int)b.getWidth();
-        int heightH = (int)t.getBounds().getHeight();
+        int widthM = (int) b.getWidth();
+        int heightH = (int) t.getBounds().getHeight();
 
         g.drawString(text, clickBox.x + clickBox.width / 2 - widthM / 2,
-                    clickBox.y + clickBox.height / 2 + heightH / 2);
+                clickBox.y + clickBox.height / 2 + heightH / 2);
     }
 
-    public void addActionListener(ActionListener listener)
-    {
+    public void addActionListener(ActionListener listener) {
         actionListeners.add(listener);
     }
 
-    public GuiButton mousePressed(MouseEvent e)
-    {
-        if(clickBox.contains(e.getPoint()))
-        {
+    public GuiButton mousePressed(MouseEvent e) {
+        if (clickBox.contains(e.getPoint())) {
             currentState = State.PRESSED;
             return this;
         }
         return null;
     }
 
-    public void mouseDragged(MouseEvent e)
-    {
-        if(clickBox.contains(e.getPoint()))
-        {
+    public void mouseDragged(MouseEvent e) {
+        if (clickBox.contains(e.getPoint())) {
             currentState = State.PRESSED;
-        }
-        else
-        {
+        } else {
             currentState = State.RELEASED;
         }
     }
 
-    public void mouseMoved(MouseEvent e)
-    {
-        if(clickBox.contains(e.getPoint()))
-        {
+    public void mouseMoved(MouseEvent e) {
+        if (clickBox.contains(e.getPoint())) {
             currentState = State.HOVER;
-        }
-        else
-        {
+        } else {
             currentState = State.RELEASED;
         }
     }
 
-    public void mouseReleased(MouseEvent e)
-    {
-        if(clickBox.contains(e.getPoint()))
-        {
-            for(ActionListener a: actionListeners)
-            {
+    public void mouseReleased(MouseEvent e) {
+        if (clickBox.contains(e.getPoint())) {
+            for (ActionListener a : actionListeners) {
                 a.actionPerformed(null);
             }
         }
         currentState = State.RELEASED;
     }
 
-    public int getX()
-    {
+    public int getX() {
         return clickBox.x;
     }
 
-    public int getY()
-    {
+    public int getY() {
         return clickBox.y;
     }
 
-    public int getWidth()
-    {
+    public int getWidth() {
         return clickBox.width;
     }
 
-    public int getHeight()
-    {
+    public int getHeight() {
         return clickBox.height;
     }
 
-    public int getFontSize()
-    {
+    public int getFontSize() {
         return fontSize;
     }
 
-    public void setText(String text)
-    {
+    public void setText(String text) {
         this.text = text;
     }
 
-    public String getText()
-    {
+    public String getText() {
         return this.text;
     }
 
-    public int[] changeColorExact(int setColor[])
-    {
+    public void changeColorExact(int setColor[]) {
         released = new Color(setColor[0], setColor[1], setColor[2]);
         hover = new Color(setColor[0], setColor[1], setColor[2]);
         pressed = new Color(setColor[0], setColor[1], setColor[2]);
-
-        int color[] = {color0, color1, color2};
-        return color;
     }
 
-    public void setColor(int color[])
-    {
-        released = new Color(color[0], color[1], color[2]);
-        hover = new Color(color[0] - 50, color[1] - 50, color[2] - 50);
-        pressed = new Color(color[0] - 100, color[1] - 100, color[2] - 100);
+    public void setColor(int color[]) {
+        if (color[0] < 100 || color[1] < 100 || color[2] < 100) {
+            released = new Color(color[0], color[1], color[2]);
+            hover = new Color(color[0] + 50, color[1] + 50, color[2] + 50);
+            pressed = new Color(color[0] + 100, color[1] + 100, color[2] + 100);
+        } else {
+            released = new Color(color[0], color[1], color[2]);
+            hover = new Color(color[0] - 50, color[1] - 50, color[2] - 50);
+            pressed = new Color(color[0] - 100, color[1] - 100, color[2] - 100);
+        }
+    }
+
+    public int[] getColor() {
+        int color[] = { color0, color1, color2 };
+        return color;
     }
 }
