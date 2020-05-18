@@ -431,13 +431,19 @@ public class GamePlayManager {
         } else {
             cult = 2;
         }
-
-
         int getC = 0;;
         if (player.getPriest() > 0) {
             for (int i = 0; i < 4; i++) {
-                if (player.getCultSpaces()[cult][i] == 0) {
-
+                getC = 0;
+                for(int a = 0; a < playerCount; a++)
+                {
+                    if(playerList.get(a).getCultSpaces()[cult][i] == 0)
+                        getC++;
+                }
+                if (getC == playerCount) {
+                    int[][] temp2 = player.getCultSpaces();
+                    temp2[cult][i] = 1;
+                    player.updateCultSpace(temp2);
                     int k = 2;
                     int c = 0;
                     if (i == 0) {
@@ -462,7 +468,7 @@ public class GamePlayManager {
                     if (temp[cult] < 10 && (temp[cult] + k) == 10) {
                         c = 3;
                     }
-
+////////////////////////7
                     if (c > power[0]) {
                         power[1] = power[0] + power[1];
                         c = c - power[0];
@@ -481,7 +487,9 @@ public class GamePlayManager {
                         power[1] = power[1] + c;
                         power[0] = power[0] - c;
                     }
-                    player.updatePriest(player.getPriest() - 1);
+                    //player.updatePower(power);
+                    ////////////////
+                    //player.updatePriest(player.getPriest() - 1);
                     return true;
                 }
             }

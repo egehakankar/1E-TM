@@ -41,11 +41,25 @@ public class CultScreen extends DisplayPanel{
     private int x = width*350/1366;
     private int y = height*100/768;
 
-    private Color red = new Color( 255, 106, 107 );
-    private Color blue = new Color( 112, 155, 219 );
-    private Color brown = new Color ( 140, 104, 100 );
-    private Color gray = new Color ( 192, 192, 192 );
+    int[][]oldValues;
+    int[][] pwAdded;
+
+    int [] cRed = {150, 0, 0};
+    int [] cBlue = {112-12, 155-50, 219-50};
+    int [] cBrown = {150,75,0};
+    int [] cGray = {166, 154, 156};
+
+    private Color red = new Color(cRed[0], cRed[1], cRed[2]);
+    private Color blue = new Color( cBlue[0], cBlue[1], cBlue[2] );
+    private Color brown = new Color ( cBrown[0], cBrown[1], cBrown[2] );
+    private Color gray = new Color ( cGray[0], cGray[1], cGray[2] );
     private Color purple = new Color(189, 19, 149);
+    boolean b = true;
+
+    boolean b1 = true;
+    boolean b2 = true;
+    boolean b3 = true;
+    boolean b4 = true;
 
     BasicStroke str = new BasicStroke(10);
     BasicStroke str2 = new BasicStroke(5);
@@ -53,7 +67,7 @@ public class CultScreen extends DisplayPanel{
 
     private GuiButton[] buttons;
 
-    int[][] colors = {{ 255, 106, 107}, {112, 155, 219}, {140, 104, 100}, {192, 192, 192}};
+    int[][] colors = {cRed,cBlue,cBrown, cGray};
     int colorBB[] = { 255, 178, 102 };
 
     private static ArrayList<Player> players;
@@ -101,9 +115,12 @@ public class CultScreen extends DisplayPanel{
 
     @Override
     public void render(Graphics2D g, GameManager gM) {
-        boolean b = true;
+        players = GamePlayManager.getPlayerList();
+        
         if(b)
         {
+            pwAdded = new int[players.size()][4];
+            oldValues = new int[players.size()][4];
             buttons = new GuiButton[16];
             int c = 0;
             //drawing buttons
@@ -120,7 +137,7 @@ public class CultScreen extends DisplayPanel{
                     
                     //buttons[c].setText(""+i+j);
 
-                    if(j == 2)
+                    if(j == 0)
                         buttons[c].setText("3");
                     else
                         buttons[c].setText("2");
@@ -139,7 +156,7 @@ public class CultScreen extends DisplayPanel{
 
 
         //title = "Select a cult for " + players.get(turnOfPlayer).getFaction().getName();
-        players = GamePlayManager.getPlayerList();
+        
         g.drawImage(image, 0, 0, width, height, null);
         g.drawImage(image2, 100, 50, width-150, height-100, null);
         g.drawImage( key, 140, 80, 160,90, null );
@@ -206,6 +223,29 @@ public class CultScreen extends DisplayPanel{
             }
             
         }
+        
+        for( int i = 0; i < players.size() ; i ++ )
+        {
+             
+            int[] cl = players.get(i).getCultLevel();
+
+            for( int j = 0; j < 4; j++ )
+            {
+                
+                int[] tClr = players.get(i).getFaction().getColor();
+                g.setColor(new Color(tClr[0],tClr[1],tClr[2]));
+                if( i == 0)
+                    g.fillOval((x +5)+(10-cl[j])*cultWidth,(y+5)+j*cultHeight+j*spacing2, 20,20);
+                else if( i == 1 )
+                    g.fillOval((x-25)+(11-cl[j])*cultWidth,(y+5)+j*cultHeight+j*spacing2, 20,20);
+                else if( i == 2 )
+                    g.fillOval((x +5)+(10-cl[j])*cultWidth,(y-25)+(j+1)*cultHeight+j*spacing2, 20,20);
+                else if( i == 3 )
+                    g.fillOval((x-25)+(11-cl[j])*cultWidth,(y-25)+(j+1)*cultHeight+j*spacing2, 20,20);
+                else
+                    g.fillOval(x+cultWidth/2+(10-cl[j])*cultWidth, y+cultHeight/2+j*cultHeight+j*spacing2, 20, 20);
+            }
+        }
 
         for(int k = 0; k < players.size(); k ++)
         {
@@ -214,10 +254,9 @@ public class CultScreen extends DisplayPanel{
             {
                 for(int j = 0; j < 4 ; j ++)
                 {
-                    if(players.get(i).getCultSpaces()[i][j] == 1 )
+                    if(players.get(k).getCultSpaces()[i][j] == 1 )
                     {
-                        System.out.println("Here");
-                        int [] clr = players.get(i).getFaction().getColor();
+                        int [] clr = players.get(k).getFaction().getColor();
                         //int [] clr = {0,0,0};
                         buttons[c].setColor(clr);
                     }

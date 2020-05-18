@@ -70,8 +70,8 @@ public class GameManager extends JFrame implements KeyListener, MouseListener, R
         factionTemp.add(fakir);
         Alchemists alchemists = new Alchemists();
         factionTemp.add(alchemists);
-        /*Swarmlings sw = new Swarmlings();
-        factionTemp.add(sw);*/
+        Swarmlings sw = new Swarmlings();
+        factionTemp.add(sw);
 
         gameP = new GamePlayManager(factionTemp);
         
