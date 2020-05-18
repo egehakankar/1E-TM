@@ -198,7 +198,7 @@ public class Player {
     }
 
     public int getPoints() {
-        return coin;
+        return points;
     }
 
     public void updateCultLevel(int[] cultLevel) {

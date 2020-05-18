@@ -31,6 +31,7 @@ import app.UserInterface.MainMenu;
 import app.UserInterface.PhaseIncome;
 import app.UserInterface.SelectionScreen;
 import app.UserInterface.CultScreen;
+import app.UserInterface.GameOverScreen;
 
 public class GameManager extends JFrame implements KeyListener, MouseListener, Runnable, MouseMotionListener {
     private static final long serialVersionUID = 1L;
@@ -97,9 +98,10 @@ public class GameManager extends JFrame implements KeyListener, MouseListener, R
         disp.add("Cult Screen", new CultScreen());
         disp.add("MainGameScreen", new MainGameScreen());
         disp.add("PhaseIncome", new PhaseIncome());
+        disp.add("Game Over Screen", new GameOverScreen());
 
         //Sets current screen.
-        disp.setCurrentPanel("MainGameScreen"); 
+        disp.setCurrentPanel("Game Over Screen"); 
     }
 
     public static void setPlay(ArrayList<Faction> factions)

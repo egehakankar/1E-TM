@@ -28,6 +28,7 @@ public class GamePlayManager {
         playerList = new ArrayList<Player>();
         for ( int i = 0; i < factionList.size(); i++){
             Player player = new Player(factionList.get(i));
+            player.updatePoints(i);
             playerList.add(player);
         }
         playerCount = playerList.size();
