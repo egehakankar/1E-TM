@@ -522,7 +522,7 @@ public class MainGameScreen extends DisplayPanel {
                         GamePlayManager.addRound();
                         ArrayList<Player> newP = GamePlayManager.getPassedPlayers();
                         Display.remB();
-                        Display.getInstance().setCurrentPanel("PhaseIncome");
+                        Display.getInstance().setCurrentPanel("Phase3");
                         GamePlayManager.setPlayerList(newP);
                     }
                 } else {
