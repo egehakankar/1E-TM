@@ -43,7 +43,8 @@ public class Player {
     public Player(Faction faction) {
         factionType = faction;
         this.power = faction.getPower();
-        this.priest = faction.getPriests();
+        //this.priest = faction.getPriests();
+        this.priest = 8;
         this.shovel = 0;
 
         if (faction.getName().equals("Mermaids")) {

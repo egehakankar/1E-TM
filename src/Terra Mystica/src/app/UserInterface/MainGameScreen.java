@@ -526,17 +526,18 @@ public class MainGameScreen extends DisplayPanel {
     }
 
     private void sendPriest(String name, GuiButton a, GuiButton b, GuiButton c, GuiButton d) {
+        if (currenAction[4] == 1) {
+            if (GamePlayManager.sendPriestCult(players.get(turnPlayer), name)) {
+                remove(cultA);
+                remove(cultE);
+                remove(cultF);
+                remove(cultW);
+                players.get(turnPlayer).resetAction();
+                GamePlayManager.addTurnPlayer();
+                drawMap();
 
-        if (GamePlayManager.sendPriestCult(players.get(turnPlayer), name)) {
-            remove(cultA);
-            remove(cultE);
-            remove(cultF);
-            remove(cultW);
-            players.get(turnPlayer).resetAction();
-            GamePlayManager.addTurnPlayer();
-            drawMap();
-
-            name = "";
+                name = "";
+            }
         }
     }
 
