@@ -7,7 +7,7 @@ import app.Model.*;
 public class GamePlayManager {
 
     private static int playerCount;
-    private int round;
+    private static int round;
     private static ArrayList<Player> playerList;
     private static ArrayList<Player> passingPlayerList;
     private static ArrayList<Integer> scoringTiles;
@@ -431,6 +431,7 @@ public class GamePlayManager {
         if (player.getPriest() > 0) {
             for (int i = 0; i < 4; i++) {
                 if (player.getCultSpaces()[cult][i] == 0) {
+
                     int k = 2;
                     int c = 0;
                     if (i == 0) {
@@ -644,6 +645,7 @@ public class GamePlayManager {
     }
 
     public static void setPlayerList(ArrayList<Player> newPlayers) {
+    
         for(int a = 0; a < newPlayers.size(); a++)
         {
             playerList.add(newPlayers.get(a));
