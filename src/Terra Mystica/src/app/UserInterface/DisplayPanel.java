@@ -36,8 +36,9 @@ public class DisplayPanel {
     }
 
     public void render(Graphics2D g, GameManager nG) {
-        for (GuiButton a : buttons) {
-            a.render(g);
+        for( int i = 0; i < buttons.size(); i++ )
+        {
+            buttons.get(i).render(g);
         }
         for (GuiButton a : radioButtons) {
             a.render(g);
@@ -67,7 +68,14 @@ public class DisplayPanel {
     }
 
     public void remove(GuiButton button) {
-        buttons.remove(button);
+        for( int i = 0; i < buttons.size(); i++ )
+        {
+            if(buttons.get(i).equals(button))
+            {
+                buttons.remove(button);
+            }  
+        }
+        
     }
 
     public void removeRadio(GuiButton button) {
@@ -108,8 +116,9 @@ public class DisplayPanel {
     }
 
     public void mouseReleased(MouseEvent e) {
-        for (GuiButton a : buttons) {
-            a.mouseReleased(e);
+        for( int i = 0; i < buttons.size(); i++ )
+        {
+            buttons.get(i).mouseReleased(e);
         }
         for (GuiButton a : radioButtons) {
             a.mouseReleased(e);
