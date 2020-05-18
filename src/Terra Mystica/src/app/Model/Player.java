@@ -16,7 +16,6 @@ public class Player {
     private int coin;
     private int worker;
     private int startingDwellings;
-    private int id;
     private int town;
     private BonusCard bc;
     private int bonusCardNumber;
@@ -56,7 +55,6 @@ public class Player {
         this.worker = faction.getWorkers();
         this.spade = 0;
         spadeLevel = 0;
-        id = 0;
         
         points = 0;
         cultLevel = faction.getCult();

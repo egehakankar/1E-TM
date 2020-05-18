@@ -55,7 +55,7 @@ public class CultScreen extends DisplayPanel{
     int colorBB[] = { 255, 178, 102 };
 
     private static ArrayList<Player> players;
-    private int turnOfPlayer = 1;
+    private int turnOfPlayer = 0;
     
 
     public CultScreen() {
