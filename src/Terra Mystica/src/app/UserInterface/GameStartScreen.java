@@ -37,8 +37,7 @@ public class GameStartScreen extends DisplayPanel {
     private int[] currentPlayerD = {0,0,0,0,0};
     private int[] dwC = {0,0,0,0,0};
 
-    int[] colorT = players.get(turnPlayer).getFaction().getColor();
-
+    int[] colorT = {0,0,0};
     public GameStartScreen() {
         try {
             image = ImageIO.read(getClass().getResourceAsStream("../images/background1.jpg"));

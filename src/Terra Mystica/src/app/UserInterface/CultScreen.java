@@ -72,7 +72,6 @@ public class CultScreen extends DisplayPanel{
 
     private static ArrayList<Player> players;
     private int turnOfPlayer = 0;
-    
 
     public CultScreen() {
         super();
@@ -217,11 +216,7 @@ public class CultScreen extends DisplayPanel{
                 else
                     n = cultWidth/5;
                 g.drawString(""+(10-j), x+j*cultWidth + n, y+i*cultHeight+(i+2)*spacing2);
-
-                
-                
             }
-            
         }
         
         for( int i = 0; i < players.size() ; i ++ )
@@ -231,7 +226,6 @@ public class CultScreen extends DisplayPanel{
 
             for( int j = 0; j < 4; j++ )
             {
-                
                 int[] tClr = players.get(i).getFaction().getColor();
                 g.setColor(new Color(tClr[0],tClr[1],tClr[2]));
                 if( i == 0)
@@ -247,7 +241,7 @@ public class CultScreen extends DisplayPanel{
             }
         }
 
-        for(int k = 0; k < players.size(); k ++)
+        for(int k = 0; k < players.size(); k++)
         {
             int c = 0;
             for(int i = 0; i < 4 ; i ++)
@@ -260,7 +254,7 @@ public class CultScreen extends DisplayPanel{
                         //int [] clr = {0,0,0};
                         buttons[c].setColor(clr);
                     }
-                    c ++;
+                    c++;
                 }
             }
         }

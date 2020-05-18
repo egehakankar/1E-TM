@@ -3,6 +3,7 @@ package app.Model;
 import java.security.PublicKey;
 import java.util.ArrayList;
 import app.Model.BonusCards;
+import app.Management.GamePlayManager;
 import app.Model.BonusCard;
 
 public class Player {
@@ -45,7 +46,7 @@ public class Player {
         factionType = faction;
         this.power = faction.getPower();
         //this.priest = faction.getPriests();
-        this.priest = 8;
+        this.priest = 0;
         this.shovel = 0;
 
         if (faction.getName().equals("Mermaids")) {
@@ -144,6 +145,7 @@ public class Player {
         {
             dwellingsTrack[0]--;
             dwellingsTrack[1]++;
+            
         }
         else if(b == 1)
         {

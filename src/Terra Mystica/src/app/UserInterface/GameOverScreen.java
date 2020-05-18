@@ -70,11 +70,8 @@ public class GameOverScreen extends DisplayPanel {
                 ArrayList<Faction> factionTemp = new ArrayList<Faction>();
                 Auren auren = new Auren();
                 factionTemp.add(auren);
-                Fakirs fakir = new Fakirs();
-                factionTemp.add(fakir);
-                GameManager.setPlay(factionTemp);
                 check = true;
-                Display.getInstance().setCurrentPanel("Menu");
+                GameManager.setPlay2(factionTemp);
             }
         });
         add(goBackB);
@@ -89,6 +86,10 @@ public class GameOverScreen extends DisplayPanel {
     public void render(Graphics2D g, GameManager gM) {
 
         if (check) {
+            players = GamePlayManager.getPlayerList();
+
+            calculateAll();
+
             players = GamePlayManager.getPlayerList();
 
             // Sort players according to their victory points
@@ -153,5 +154,100 @@ public class GameOverScreen extends DisplayPanel {
         }
 
         super.render(g, gM);
+    }
+
+    private void calculateAll() {
+        // Cult
+        int[] cultMax = {0, 0, 0, 0, 0};
+        int[] cultMid= {0, 0, 0, 0, 0};
+        int[] cultMin= {0, 0, 0, 0, 0};
+        int maxP = 0;
+        int minP = 0;
+        int midP = 0;
+
+        for (int a = 0; a < players.size(); a++) {
+            cultMax[a] = 0;
+            cultMid[a] = 0;
+            cultMin[a] = 0;
+        }
+        for (int a = 0; a < 4; a++) {
+            for (int b = 0; b < players.size(); b++) {
+                if (players.get(b).getCultLevel()[a] > cultMax[a]) {
+                    maxP = b;
+                    cultMax[a] = players.get(b).getCultLevel()[a];
+                } else if (players.get(b).getCultLevel()[a] > cultMid[a]
+                        && players.get(b).getCultLevel()[a] < cultMax[a]) {
+                    midP = b;
+                    cultMid[a] = players.get(b).getCultLevel()[a];
+                } else if (players.get(b).getCultLevel()[a] > cultMin[a]
+                        && players.get(b).getCultLevel()[a] < cultMid[a]) {
+                    minP = b;
+                    cultMin[a] = players.get(b).getCultLevel()[a];
+                }
+            }
+            if(players.size() > 2)
+            {
+                players.get(maxP).updatePoints(players.get(maxP).getPoints() + 8);
+                players.get(midP).updatePoints(players.get(midP).getPoints() + 4);
+                players.get(minP).updatePoints(players.get(minP).getPoints() + 2);
+            }
+            else
+            {
+                players.get(maxP).updatePoints(players.get(maxP).getPoints() + 8);
+                players.get(midP).updatePoints(players.get(midP).getPoints() + 4);
+            }
+        }
+
+        // Area Scoring
+        int first = 0;
+        int second = 0;
+        int third = 0;
+        int cur = 0;
+
+        int f = 0;
+        int s = 0;
+        int t = 0;
+        for (int a = 0; a < players.size(); a++) {
+            cur += players.get(a).getDwellingTrack()[1];
+            cur += players.get(a).getTempleTrack()[1];
+            cur += players.get(a).getSanctuaryTrack()[1];
+            cur += players.get(a).getStrongholdTrack()[1];
+            cur += players.get(a).getTradingTrack()[1];
+
+            if(cur > first)
+            {
+                f = a;
+                first = cur;
+            }
+            else if(cur > second)
+            {
+                s = a;
+                second = cur;
+            }
+            else if(cur > third)
+            {
+                t = a;
+                third = cur;
+            }
+        }
+        if(players.size() > 2)
+        {
+            players.get(f).updatePoints(players.get(f).getPoints() + 18);
+            players.get(s).updatePoints(players.get(s).getPoints() + 12);
+            players.get(t).updatePoints(players.get(t).getPoints() + 6);
+        }
+        else
+        {
+            players.get(f).updatePoints(players.get(f).getPoints() + 18);
+            players.get(s).updatePoints(players.get(s).getPoints() + 12);
+        }
+
+        //Resource
+        int k = 0;
+        for(int a = 0; a < players.size(); a++)
+        {
+            k = players.get(a).getCoin() / 3;
+            players.get(a).updatePoints(players.get(a).getPoints() + k);
+        }
     }
 }

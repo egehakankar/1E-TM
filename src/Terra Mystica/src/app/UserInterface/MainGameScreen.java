@@ -11,7 +11,6 @@ import java.awt.Dimension;
 import java.awt.geom.Rectangle2D;
 import java.awt.Toolkit;
 import java.awt.Font;
-import java.awt.BasicStroke;
 
 import javax.imageio.ImageIO;
 
@@ -41,6 +40,8 @@ public class MainGameScreen extends DisplayPanel {
     private int otherPlayerSpacing = HEIGHT * 190 / 1080;
 
     private String cult = "";
+    private String powerT = "";
+    private String specT = "";
 
     private ArrayList<ArrayList<int[]>> allMapColor;
 
@@ -61,8 +62,6 @@ public class MainGameScreen extends DisplayPanel {
     private static ArrayList<Player> players = GamePlayManager.getPlayerList();
     private static int turnPlayer = 0;
 
-    private int[] colorT = players.get(turnPlayer).getFaction().getColor();
-
     private BufferedImage image;
     private String imageLoc;
 
@@ -79,11 +78,22 @@ public class MainGameScreen extends DisplayPanel {
     private static int[] currenAction = { 0, 0, 0, 0, 0, 0, 0, 0 };
 
     private boolean cultOpt = false;
+    private boolean powerOpt = false;
+    private boolean specOpt = false;
 
     GuiButton cultE;
     GuiButton cultF;
     GuiButton cultA;
     GuiButton cultW;
+
+    GuiButton pPr;
+    GuiButton pWr;
+    GuiButton pSp;
+    GuiButton pSp2;
+    GuiButton pCn;
+
+    GuiButton factT;
+    GuiButton bonusT;
 
     public MainGameScreen() {
         allMapColor = new ArrayList<ArrayList<int[]>>();
@@ -149,7 +159,7 @@ public class MainGameScreen extends DisplayPanel {
         playerCount = players.size();
         turnPlayer = GamePlayManager.getTurnPlayer();
 
-        if (playerCount != 0) {
+        if (playerCount != 0 && turnPlayer < playerCount) {
             currenAction = players.get(turnPlayer).getAction();
             allPlayerDwellings = new ArrayList<ArrayList<ArrayList<ArrayList<Boolean>>>>();
             for (int a = 0; a < playerCount; a++) {
@@ -163,6 +173,16 @@ public class MainGameScreen extends DisplayPanel {
             if (cultOpt) {
                 cultOptS();
                 cultOpt = false;
+            }
+
+            if (powerOpt) {
+                powerOpts();
+                powerOpt = false;
+            }
+
+            if (specOpt) {
+                specOptS();
+                specOpt = false;
             }
 
             resources.clear();
@@ -193,6 +213,104 @@ public class MainGameScreen extends DisplayPanel {
         }
     }
 
+    private void specOptS() {
+        int[] colorFT = { 102, 255, 255 };
+        factT = new GuiButton((WIDTH / 2 - buttonWidth / 2) - buttonWidth * 3, HEIGHT * 900 / 1080, buttonWidth,
+                buttonHeight / 2, colorFT, 17);
+        factT.setText("Faction");
+
+        int[] colorBT = { 0, 0, 139 };
+        bonusT = new GuiButton((WIDTH / 2 - buttonWidth / 2 + buttonSpacing) - buttonWidth * 2 + 10,
+                HEIGHT * 900 / 1080, buttonWidth, buttonHeight / 2, colorBT, 20);
+        bonusT.setText("Bonus Card");
+
+        factT.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                specT = "faction";
+                specialAction(specT);
+            }
+        });
+        bonusT.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                specT = "bonusCard";
+                specialAction(specT);
+            }
+        });
+
+        add(bonusT);
+        add(factT);
+    }
+
+    private void powerOpts() {
+        int[] colorPP = { 102, 255, 255 };
+        pPr = new GuiButton((WIDTH / 2 - buttonWidth / 2) - buttonWidth * 3, HEIGHT * 900 / 1080, buttonWidth,
+                buttonHeight / 2, colorPP, 17);
+        pPr.setText("Priest");
+
+        int[] colorPW = { 0, 0, 139 };
+        pWr = new GuiButton((WIDTH / 2 - buttonWidth / 2 + buttonSpacing) - buttonWidth * 2 + 10, HEIGHT * 900 / 1080,
+                buttonWidth, buttonHeight / 2, colorPW, 20);
+        pWr.setText("Worker");
+
+        int[] colorPC = { 255, 106, 107 };
+        pCn = new GuiButton((WIDTH / 2 - buttonWidth / 2 + buttonSpacing) - buttonWidth * 1 + 20, HEIGHT * 900 / 1080,
+                buttonWidth, buttonHeight / 2, colorPC, 20);
+        pCn.setText("Coin");
+
+        int[] colorPS = { 139, 69, 19 };
+        pSp = new GuiButton((WIDTH / 2 - buttonWidth / 2 + buttonSpacing) + 30, HEIGHT * 900 / 1080, buttonWidth,
+                buttonHeight / 2, colorPS, 17);
+        pSp.setText("Spade1");
+
+        int[] colorPS2 = { 139, 69, 19 };
+        pSp2 = new GuiButton((WIDTH / 2 - buttonWidth / 2 + buttonSpacing) + buttonWidth * 1 + 40, HEIGHT * 900 / 1080,
+                buttonWidth, buttonHeight / 2, colorPS2, 17);
+        pSp2.setText("Spade2");
+
+        pWr.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                powerT = "convertWorkers";
+                powerAction(powerT);
+            }
+        });
+        pCn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                powerT = "convertCoins";
+                powerAction(powerT);
+            }
+        });
+        pPr.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                powerT = "convertPriest";
+                powerAction(powerT);
+            }
+        });
+        pSp.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                powerT = "convertOneSpade";
+                powerAction(powerT);
+            }
+        });
+        pSp2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                powerT = "convertTwoSpade";
+                powerAction(powerT);
+            }
+        });
+        add(pCn);
+        add(pSp);
+        add(pSp2);
+        add(pWr);
+        add(pPr);
+    }
+
     private void cultOptS() {
         int[] colorAB = { 102, 255, 255 };
         cultA = new GuiButton((WIDTH / 2 - buttonWidth / 2) - buttonWidth * 3, HEIGHT * 900 / 1080, buttonWidth,
@@ -218,28 +336,28 @@ public class MainGameScreen extends DisplayPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 cult = "water";
-                sendPriest(cult, cultA, cultE, cultF, cultW);
+                sendPriest(cult);
             }
         });
         cultF.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 cult = "fire";
-                sendPriest(cult, cultA, cultE, cultF, cultW);
+                sendPriest(cult);
             }
         });
         cultE.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 cult = "earth";
-                sendPriest(cult, cultA, cultE, cultF, cultW);
+                sendPriest(cult);
             }
         });
         cultA.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 cult = "air";
-                sendPriest(cult, cultA, cultE, cultF, cultW);
+                sendPriest(cult);
             }
         });
         add(cultA);
@@ -285,6 +403,7 @@ public class MainGameScreen extends DisplayPanel {
     }
 
     private void drawScoringTiles(Graphics2D g) {
+        int k = 5;
         for (int a = 0; a < 6; a++) {
             imageLoc = "../images/ScoringTiles/";
             imageLoc += GamePlayManager.getScoringTiles().get(a);
@@ -295,8 +414,9 @@ public class MainGameScreen extends DisplayPanel {
                 e.printStackTrace();
             }
 
-            g.drawImage(image, scoringStartWidth, scoringStartHeight + a * scoringHeight, scoringWidth, scoringHeight,
+            g.drawImage(image, scoringStartWidth, scoringStartHeight + k * scoringHeight, scoringWidth, scoringHeight,
                     null);
+            k--;
         }
 
     }
@@ -364,7 +484,7 @@ public class MainGameScreen extends DisplayPanel {
         powerAction.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // transformOrBuild(e);
+                powerAction();
             }
         });
 
@@ -375,7 +495,7 @@ public class MainGameScreen extends DisplayPanel {
         specialAction.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // transformOrBuild(e);
+                specialAction();
             }
         });
 
@@ -389,11 +509,18 @@ public class MainGameScreen extends DisplayPanel {
 
                 GamePlayManager.addPassedPlayer(GamePlayManager.getPlayerList().get(GamePlayManager.getTurnPlayer()));
                 if (GamePlayManager.getPlayerList().size() == 0) {
-                    System.out.println(turnPlayer);
-                    ArrayList<Player> newP = GamePlayManager.getPassedPlayers();
-                    Display.remB();
-                    Display.getInstance().setCurrentPanel("Bonus Card Screen");
-                    GamePlayManager.setPlayerList(newP);
+
+                    if (GamePlayManager.getRound() == 5) {
+                        ArrayList<Player> newP = GamePlayManager.getPassedPlayers();
+                        GamePlayManager.setPlayerList(newP);
+                        Display.getInstance().setCurrentPanel("Game Over Screen");
+                    } else {
+                        GamePlayManager.addRound();
+                        ArrayList<Player> newP = GamePlayManager.getPassedPlayers();
+                        Display.remB();
+                        Display.getInstance().setCurrentPanel("Bonus Card Screen");
+                        GamePlayManager.setPlayerList(newP);
+                    }
                 } else {
                     GamePlayManager.addTurnPlayer();
                 }
@@ -410,6 +537,7 @@ public class MainGameScreen extends DisplayPanel {
     }
 
     public void addInfoCur(Graphics2D g) {
+        int[] colorT = players.get(turnPlayer).getFaction().getColor();
         if (turnPlayer != playerCount) {
             colorT = players.get(turnPlayer).getFaction().getColor();
             title = players.get(turnPlayer).getFaction().getName();
@@ -482,7 +610,7 @@ public class MainGameScreen extends DisplayPanel {
                     if (c > 3)
                         c--;
                 }
-
+                int[] colorT = players.get(turnPlayer).getFaction().getColor();
                 colorT = players.get(a).getFaction().getColor();
                 title = players.get(a).getFaction().getName();
                 g.setPaint(new Color(231, 227, 215));
@@ -520,22 +648,100 @@ public class MainGameScreen extends DisplayPanel {
         }
     }
 
+    private void specialAction() {
+        remove(cultA);
+        remove(cultE);
+        remove(cultF);
+        remove(cultW);
+        remove(pWr);
+        remove(pSp2);
+        remove(pPr);
+        remove(pCn);
+        remove(pSp);
+        remove(factT);
+        remove(bonusT);
+        players.get(turnPlayer).setAction(6);
+        specOpt = true;
+    }
+
+    private void specialAction(String stt) {
+        if (currenAction[6] == 1) {
+            if (GamePlayManager.specialAction(players.get(turnPlayer), stt)) {
+                remove(factT);
+                remove(bonusT);
+                players.get(turnPlayer).resetAction();
+                GamePlayManager.addTurnPlayer();
+                drawMap();
+                stt = "";
+            }
+        }
+    }
+
+    private void powerAction() {
+        remove(cultA);
+        remove(cultE);
+        remove(cultF);
+        remove(cultW);
+        remove(pWr);
+        remove(pSp2);
+        remove(pPr);
+        remove(pCn);
+        remove(pSp);
+        remove(factT);
+        remove(bonusT);
+        players.get(turnPlayer).setAction(5);
+        powerOpt = true;
+    }
+
+    private void powerAction(String sp) {
+        if (currenAction[5] == 1) {
+            if (GamePlayManager.convertPower(players.get(turnPlayer), sp)) {
+                remove(pWr);
+                remove(pSp2);
+                remove(pPr);
+                remove(pCn);
+                remove(pSp);
+                players.get(turnPlayer).resetAction();
+                GamePlayManager.addTurnPlayer();
+                drawMap();
+                sp = "";
+            }
+        }
+    }
+
     private void sendPriest() {
+        remove(cultA);
+        remove(cultE);
+        remove(cultF);
+        remove(cultW);
+        remove(pWr);
+        remove(pSp2);
+        remove(pPr);
+        remove(pCn);
+        remove(pSp);
+        remove(factT);
+        remove(bonusT);
         players.get(turnPlayer).setAction(4);
         cultOpt = true;
     }
 
-    private void sendPriest(String name, GuiButton a, GuiButton b, GuiButton c, GuiButton d) {
+    private void sendPriest(String name) {
         if (currenAction[4] == 1) {
             if (GamePlayManager.sendPriestCult(players.get(turnPlayer), name)) {
                 remove(cultA);
                 remove(cultE);
                 remove(cultF);
                 remove(cultW);
+                remove(pWr);
+                remove(pSp2);
+                remove(pPr);
+                remove(pCn);
+                remove(pSp);
+                remove(factT);
+                remove(bonusT);
                 players.get(turnPlayer).resetAction();
                 GamePlayManager.addTurnPlayer();
                 drawMap();
-
                 name = "";
             }
         }
@@ -546,6 +752,13 @@ public class MainGameScreen extends DisplayPanel {
         remove(cultE);
         remove(cultF);
         remove(cultW);
+        remove(pWr);
+        remove(pSp2);
+        remove(pPr);
+        remove(pCn);
+        remove(pSp);
+        remove(factT);
+        remove(bonusT);
         players.get(turnPlayer).setAction(2);
         if (GamePlayManager.increaseSpadeLevel(players.get(turnPlayer))) {
             players.get(turnPlayer).resetAction();
@@ -559,6 +772,13 @@ public class MainGameScreen extends DisplayPanel {
         remove(cultE);
         remove(cultF);
         remove(cultW);
+        remove(pWr);
+        remove(pSp2);
+        remove(pPr);
+        remove(pCn);
+        remove(pSp);
+        remove(factT);
+        remove(bonusT);
         players.get(turnPlayer).setAction(1);
         if (GamePlayManager.advanceShipping(players.get(turnPlayer))) {
             players.get(turnPlayer).resetAction();
@@ -572,6 +792,13 @@ public class MainGameScreen extends DisplayPanel {
         remove(cultE);
         remove(cultF);
         remove(cultW);
+        remove(pWr);
+        remove(pSp2);
+        remove(pPr);
+        remove(pCn);
+        remove(pSp);
+        remove(factT);
+        remove(bonusT);
         players.get(turnPlayer).setAction(0);
     }
 
@@ -587,10 +814,12 @@ public class MainGameScreen extends DisplayPanel {
                     drawMap();
                 }
             } else if (GamePlayManager.isAdjOrHomeOrNot(players.get(turnPlayer), k, g, allMapColor) == 2) {
-                if (GamePlayManager.buildDwelling(players.get(turnPlayer), k, g)) {
-                    drawMap();
-                    players.get(turnPlayer).resetAction();
-                    GamePlayManager.addTurnPlayer();
+                if (players.get(turnPlayer).getBuildings().get(0).get(k).get(g) == false) {
+                    if (GamePlayManager.buildDwelling(players.get(turnPlayer), k, g)) {
+                        drawMap();
+                        players.get(turnPlayer).resetAction();
+                        GamePlayManager.addTurnPlayer();
+                    }
                 }
             }
         }
@@ -601,6 +830,13 @@ public class MainGameScreen extends DisplayPanel {
         remove(cultE);
         remove(cultF);
         remove(cultW);
+        remove(pWr);
+        remove(pSp2);
+        remove(pPr);
+        remove(pCn);
+        remove(pSp);
+        remove(factT);
+        remove(bonusT);
         players.get(turnPlayer).setAction(3);
     }
 

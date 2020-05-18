@@ -22,6 +22,11 @@ public class Display {
         return disp;
     }
 
+    public void removeAll()
+    {
+        panels.clear();
+    }
+
     public void update() {
         if (panels.get(currentPanel) != null) {
             panels.get(currentPanel).update();
