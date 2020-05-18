@@ -618,7 +618,7 @@ public class GamePlayManager {
         return playerList;
     }
 
-    public int getRound() {
+    public static int getRound() {
         return round;
     }
 

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class ScoringTiles {
     
-    ArrayList<ScoringTile> scoringPack;
+    private static ArrayList<ScoringTile> scoringPack;
     ScoringTile priestCultWater;
     ScoringTile powerCultFire;
     ScoringTile spadeCultAir;
@@ -35,7 +35,7 @@ public class ScoringTiles {
 
     }
 
-    public ArrayList<ScoringTile> getScoringTiles(){
+    public static ArrayList<ScoringTile> getScoringTiles(){
         return scoringPack;
     }
 }
