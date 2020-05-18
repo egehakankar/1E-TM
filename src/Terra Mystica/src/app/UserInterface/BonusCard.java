@@ -30,6 +30,7 @@ public class BonusCard {
         clickBox = new Rectangle(x, y, width, height);
         actionListeners = new ArrayList<ActionListener>();
 
+        this.bonusCardNumber = bonusCardNumber;
         String imageLoc = "../images/BonusCards/bc";
         imageLoc += bonusCardNumber;
         imageLoc += ".png";

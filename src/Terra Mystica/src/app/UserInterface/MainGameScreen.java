@@ -41,6 +41,8 @@ public class MainGameScreen extends DisplayPanel {
     private int otherPlayerSpacing = HEIGHT * 190 / 1080;
 
     private String cult = "";
+    private String powerT = "";
+    private String specT = "";
 
     private ArrayList<ArrayList<int[]>> allMapColor;
 
@@ -79,11 +81,22 @@ public class MainGameScreen extends DisplayPanel {
     private static int[] currenAction = { 0, 0, 0, 0, 0, 0, 0, 0 };
 
     private boolean cultOpt = false;
+    private boolean powerOpt = false;
+    private boolean specOpt = false;
 
     GuiButton cultE;
     GuiButton cultF;
     GuiButton cultA;
     GuiButton cultW;
+
+    GuiButton pPr;
+    GuiButton pWr;
+    GuiButton pSp;
+    GuiButton pSp2;
+    GuiButton pCn;
+
+    GuiButton factT;
+    GuiButton bonusT;
 
     public MainGameScreen() {
         allMapColor = new ArrayList<ArrayList<int[]>>();
@@ -165,6 +178,17 @@ public class MainGameScreen extends DisplayPanel {
                 cultOpt = false;
             }
 
+            if (powerOpt) {
+                powerOpts();
+                powerOpt = false;
+            }
+
+            if(specOpt)
+            {
+                specOptS();
+                specOpt = false;
+            }
+
             resources.clear();
             for (int a = 0; a < playerCount; a++) {
                 resources.add(new ArrayList<Integer>());
@@ -193,6 +217,105 @@ public class MainGameScreen extends DisplayPanel {
         }
     }
 
+    private void specOptS()
+    {
+        int[] colorFT = { 102, 255, 255 };
+        factT = new GuiButton((WIDTH / 2 - buttonWidth / 2) - buttonWidth * 3, HEIGHT * 900 / 1080, buttonWidth,
+                buttonHeight / 2, colorFT, 17);
+        factT.setText("Faction");
+
+        int[] colorBT = { 0, 0, 139 };
+        bonusT = new GuiButton((WIDTH / 2 - buttonWidth / 2 + buttonSpacing) - buttonWidth * 2 + 10, HEIGHT * 900 / 1080,
+                buttonWidth, buttonHeight / 2, colorBT, 20);
+        bonusT.setText("Bonus Card");
+
+        factT.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                specT = "faction";
+                specialAction(specT);
+            }
+        });
+        bonusT.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                specT = "bonusCard";
+                specialAction(specT);
+            }
+        });
+
+        add(bonusT);
+        add(factT);
+    }
+
+    private void powerOpts() {
+        int[] colorPP = { 102, 255, 255 };
+        pPr = new GuiButton((WIDTH / 2 - buttonWidth / 2) - buttonWidth * 3, HEIGHT * 900 / 1080, buttonWidth,
+                buttonHeight / 2, colorPP, 17);
+        pPr.setText("Priest");
+
+        int[] colorPW = { 0, 0, 139 };
+        pWr = new GuiButton((WIDTH / 2 - buttonWidth / 2 + buttonSpacing) - buttonWidth * 2 + 10, HEIGHT * 900 / 1080,
+                buttonWidth, buttonHeight / 2, colorPW, 20);
+        pWr.setText("Worker");
+
+        int[] colorPC = { 255, 106, 107 };
+        pCn = new GuiButton((WIDTH / 2 - buttonWidth / 2 + buttonSpacing) - buttonWidth * 1 + 20, HEIGHT * 900 / 1080,
+                buttonWidth, buttonHeight / 2, colorPC, 20);
+        pCn.setText("Coin");
+
+        int[] colorPS = { 139, 69, 19 };
+        pSp = new GuiButton((WIDTH / 2 - buttonWidth / 2 + buttonSpacing) + 30, HEIGHT * 900 / 1080, buttonWidth,
+                buttonHeight / 2, colorPS, 17);
+        pSp.setText("Spade1");
+
+        int[] colorPS2 = { 139, 69, 19 };
+        pSp2 = new GuiButton((WIDTH / 2 - buttonWidth / 2 + buttonSpacing) + buttonWidth * 1 + 40, HEIGHT * 900 / 1080, buttonWidth,
+                buttonHeight / 2, colorPS2, 17);
+        pSp2.setText("Spade2");
+
+        pWr.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                powerT = "convertWorkers";
+                powerAction(powerT);
+            }
+        });
+        pCn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                powerT = "convertCoins";
+                powerAction(powerT);
+            }
+        });
+        pPr.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                powerT = "convertPriest";
+                powerAction(powerT);
+            }
+        });
+        pSp.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                powerT = "convertOneSpade";
+                powerAction(powerT);
+            }
+        });
+        pSp2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                powerT = "convertTwoSpade";
+                powerAction(powerT);
+            }
+        });
+        add(pCn);
+        add(pSp);
+        add(pSp2);
+        add(pWr);
+        add(pPr);
+    }
+
     private void cultOptS() {
         int[] colorAB = { 102, 255, 255 };
         cultA = new GuiButton((WIDTH / 2 - buttonWidth / 2) - buttonWidth * 3, HEIGHT * 900 / 1080, buttonWidth,
@@ -218,28 +341,28 @@ public class MainGameScreen extends DisplayPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 cult = "water";
-                sendPriest(cult, cultA, cultE, cultF, cultW);
+                sendPriest(cult);
             }
         });
         cultF.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 cult = "fire";
-                sendPriest(cult, cultA, cultE, cultF, cultW);
+                sendPriest(cult);
             }
         });
         cultE.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 cult = "earth";
-                sendPriest(cult, cultA, cultE, cultF, cultW);
+                sendPriest(cult);
             }
         });
         cultA.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 cult = "air";
-                sendPriest(cult, cultA, cultE, cultF, cultW);
+                sendPriest(cult);
             }
         });
         add(cultA);
@@ -364,7 +487,7 @@ public class MainGameScreen extends DisplayPanel {
         powerAction.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // transformOrBuild(e);
+                powerAction();
             }
         });
 
@@ -375,7 +498,7 @@ public class MainGameScreen extends DisplayPanel {
         specialAction.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // transformOrBuild(e);
+                specialAction();
             }
         });
 
@@ -519,23 +642,104 @@ public class MainGameScreen extends DisplayPanel {
             }
         }
     }
+    
+    private void specialAction()
+    {
+        remove(cultA);
+        remove(cultE);
+        remove(cultF);
+        remove(cultW);
+        remove(pWr);
+        remove(pSp2);
+        remove(pPr);
+        remove(pCn);
+        remove(pSp);
+        remove(factT);
+        remove(bonusT);
+        players.get(turnPlayer).setAction(6);
+        specOpt = true;
+    }
+
+    private void specialAction(String stt)
+    {
+        if(currenAction[6] == 1) {
+            if (GamePlayManager.specialAction(players.get(turnPlayer), stt)) 
+            {
+                remove(factT);
+                remove(bonusT);
+                players.get(turnPlayer).resetAction();
+                GamePlayManager.addTurnPlayer();
+                drawMap();
+                stt = "";
+            }
+        }
+    }
+
+    private void powerAction() {
+        remove(cultA);
+        remove(cultE);
+        remove(cultF);
+        remove(cultW);
+        remove(pWr);
+        remove(pSp2);
+        remove(pPr);
+        remove(pCn);
+        remove(pSp);
+        remove(factT);
+        remove(bonusT);
+        players.get(turnPlayer).setAction(5);
+        powerOpt = true;
+    }
+
+    private void powerAction(String sp) {
+        if (currenAction[5] == 1) {
+            if (GamePlayManager.convertPower(players.get(turnPlayer), sp)) {
+                remove(pWr);
+                remove(pSp2);
+                remove(pPr);
+                remove(pCn);
+                remove(pSp);
+                players.get(turnPlayer).resetAction();
+                GamePlayManager.addTurnPlayer();
+                drawMap();
+                sp = "";
+            }
+        }
+    }
 
     private void sendPriest() {
+        remove(cultA);
+        remove(cultE);
+        remove(cultF);
+        remove(cultW);
+        remove(pWr);
+        remove(pSp2);
+        remove(pPr);
+        remove(pCn);
+        remove(pSp);
+        remove(factT);
+        remove(bonusT);
         players.get(turnPlayer).setAction(4);
         cultOpt = true;
     }
 
-    private void sendPriest(String name, GuiButton a, GuiButton b, GuiButton c, GuiButton d) {
+    private void sendPriest(String name) {
         if (currenAction[4] == 1) {
             if (GamePlayManager.sendPriestCult(players.get(turnPlayer), name)) {
                 remove(cultA);
                 remove(cultE);
                 remove(cultF);
                 remove(cultW);
+                remove(pWr);
+                remove(pSp2);
+                remove(pPr);
+                remove(pCn);
+                remove(pSp);
+                remove(factT);
+                remove(bonusT);
                 players.get(turnPlayer).resetAction();
                 GamePlayManager.addTurnPlayer();
                 drawMap();
-
                 name = "";
             }
         }
@@ -546,6 +750,13 @@ public class MainGameScreen extends DisplayPanel {
         remove(cultE);
         remove(cultF);
         remove(cultW);
+        remove(pWr);
+        remove(pSp2);
+        remove(pPr);
+        remove(pCn);
+        remove(pSp);
+        remove(factT);
+        remove(bonusT);
         players.get(turnPlayer).setAction(2);
         if (GamePlayManager.increaseSpadeLevel(players.get(turnPlayer))) {
             players.get(turnPlayer).resetAction();
@@ -559,6 +770,13 @@ public class MainGameScreen extends DisplayPanel {
         remove(cultE);
         remove(cultF);
         remove(cultW);
+        remove(pWr);
+        remove(pSp2);
+        remove(pPr);
+        remove(pCn);
+        remove(pSp);
+        remove(factT);
+        remove(bonusT);
         players.get(turnPlayer).setAction(1);
         if (GamePlayManager.advanceShipping(players.get(turnPlayer))) {
             players.get(turnPlayer).resetAction();
@@ -572,6 +790,13 @@ public class MainGameScreen extends DisplayPanel {
         remove(cultE);
         remove(cultF);
         remove(cultW);
+        remove(pWr);
+        remove(pSp2);
+        remove(pPr);
+        remove(pCn);
+        remove(pSp);
+        remove(factT);
+        remove(bonusT);
         players.get(turnPlayer).setAction(0);
     }
 
@@ -601,6 +826,13 @@ public class MainGameScreen extends DisplayPanel {
         remove(cultE);
         remove(cultF);
         remove(cultW);
+        remove(pWr);
+        remove(pSp2);
+        remove(pPr);
+        remove(pCn);
+        remove(pSp);
+        remove(factT);
+        remove(bonusT);
         players.get(turnPlayer).setAction(3);
     }
 

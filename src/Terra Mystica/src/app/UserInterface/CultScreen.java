@@ -120,7 +120,7 @@ public class CultScreen extends DisplayPanel{
                     
                     //buttons[c].setText(""+i+j);
 
-                    if(j == 2)
+                    if(j == 0)
                         buttons[c].setText("3");
                     else
                         buttons[c].setText("2");

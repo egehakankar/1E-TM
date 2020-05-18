@@ -108,7 +108,7 @@ public class GameManager extends JFrame implements KeyListener, MouseListener, R
         disp.add("Game Over Screen", new GameOverScreen());
 
         //Sets current screen.
-        disp.setCurrentPanel("MainGameScreen"); 
+        disp.setCurrentPanel("Menu"); 
     }
 
     public static void setPlay(ArrayList<Faction> factions)
