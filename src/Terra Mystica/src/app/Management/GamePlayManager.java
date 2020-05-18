@@ -431,9 +431,18 @@ public class GamePlayManager {
         } else {
             cult = 2;
         }
+
+
+        int getC = 0;;
         if (player.getPriest() > 0) {
             for (int i = 0; i < 4; i++) {
-                if (player.getCultSpaces()[cult][i] == 0) {
+                getC = 0;
+                for(int a = 0; a < playerCount; a++)
+                {
+                    if(playerList.get(a).getCultSpaces()[cult][i] == 0)
+                        getC++;
+                }
+                if (getC == 4) {
                     int[][] temp2 = player.getCultSpaces();
                     temp2[cult][i] = 1;
                     player.updateCultSpace(temp2);
